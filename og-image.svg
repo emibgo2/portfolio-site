@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0a0b0c"/>
+  <g fill="#5eead4" opacity="0.5">
+    <circle cx="980" cy="150" r="5"/>
+    <circle cx="1030" cy="210" r="3.5"/>
+    <circle cx="1085" cy="130" r="4.5"/>
+    <circle cx="940" cy="260" r="3"/>
+    <circle cx="1110" cy="280" r="3.5"/>
+    <circle cx="1010" cy="330" r="4"/>
+    <circle cx="1050" cy="90" r="3"/>
+    <circle cx="900" cy="180" r="3.5"/>
+  </g>
+  <g stroke="#3b4045" stroke-width="1.5" opacity="0.7">
+    <line x1="980" y1="150" x2="1030" y2="210"/>
+    <line x1="1030" y1="210" x2="1085" y2="130"/>
+    <line x1="1085" y1="130" x2="980" y2="150"/>
+    <line x1="1030" y1="210" x2="1110" y2="280"/>
+    <line x1="940" y1="260" x2="1010" y2="330"/>
+    <line x1="1010" y1="330" x2="900" y2="180"/>
+    <line x1="900" y1="180" x2="940" y2="260"/>
+  </g>
+  <text x="72" y="120" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="26" letter-spacing="3" fill="#5eead4">SYSTEM · DECISION · INCIDENT ARCHIVE</text>
+  <text x="70" y="300" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif" font-size="58" font-weight="700" letter-spacing="-2" fill="#e8eaed">레거시를 걷어내고, 장애를 줄이고,</text>
+  <text x="70" y="382" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif" font-size="58" font-weight="700" letter-spacing="-2" fill="#5eead4">숫자로 남깁니다.</text>
+  <text x="72" y="466" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif" font-size="30" letter-spacing="-0.5" fill="#9aa0a6">고지훈 · Backend &amp; Infrastructure Engineer</text>
+  <text x="72" y="520" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="22" fill="#5f6368">시스템 12 · 아키텍처 결정 12 · 장애 기록 6 · 런북 5</text>
+  <line x1="72" y1="556" x2="1128" y2="556" stroke="#1f2328" stroke-width="2"/>
+  <text x="72" y="592" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif" font-size="20" fill="#5f6368">무엇을 왜 그렇게 결정했고, 무엇을 막았는지의 기록입니다.</text>
+</svg>
