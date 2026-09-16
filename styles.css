@@ -91,26 +91,34 @@ a:hover{color:var(--accent)}
 
 /* ------------------------------------------------------------------- hero */
 main{padding-top:57px}
-.hero{position:relative; overflow:hidden; border-bottom:1px solid var(--line-2); min-height:640px}
-#graph{position:absolute; z-index:0; inset:0; width:100%; height:100%; opacity:1; pointer-events:none; mix-blend-mode:screen; filter:saturate(1.15) contrast(1.05)}
-.hero::before{content:""; position:absolute; z-index:1; inset:0; pointer-events:none; background:radial-gradient(ellipse 54% 88% at 78% 50%, rgba(35,76,76,.28), transparent 72%);}
+.hero{position:relative; overflow:hidden; border-bottom:1px solid var(--line-2); min-height:640px; background:#030608}
+#graph{position:absolute; z-index:0; inset:0; width:100%; height:100%; opacity:1; pointer-events:auto; mix-blend-mode:screen; filter:brightness(1.28) saturate(1.12) contrast(1.04); cursor:grab}
+.hero::before{content:""; position:absolute; z-index:1; inset:0; pointer-events:none; background:
+  radial-gradient(circle at 28% 50%, rgba(0,143,174,.17), transparent 32%),
+  radial-gradient(circle at 58% 46%, rgba(17,41,54,.20), transparent 48%);}
+.graph-label{position:absolute; z-index:3; top:0; left:0; padding:4px 8px; border:1px solid rgba(94,234,212,.48); background:rgba(3,9,12,.82); color:var(--accent); font:500 11px/1.2 var(--mono); letter-spacing:.05em; pointer-events:none; transform:translate3d(-999px,-999px,0); box-shadow:0 0 20px rgba(0,183,255,.16)}
+.graph-label[hidden]{display:none}
 .graph-hint{display:none}
 .hero::after{
   content:""; position:absolute; z-index:1; inset:0; pointer-events:none;
   background:linear-gradient(90deg,
-    rgba(10,11,12,.98) 0%, rgba(10,11,12,.96) 34%, rgba(10,11,12,.76) 49%,
-    rgba(10,11,12,.16) 66%, rgba(10,11,12,0) 82%, rgba(10,11,12,.16) 100%);
+    rgba(3,6,8,.02) 0%, rgba(3,6,8,.02) 40%, rgba(3,6,8,.12) 54%,
+    rgba(3,6,8,.3) 72%, rgba(3,6,8,.42) 100%);
 }
-.hero-in{position:relative; z-index:2; max-width:var(--shell); margin:0 auto; padding:var(--s9) 40px var(--s7)}
+.hero-in{position:relative; z-index:2; max-width:var(--shell); min-height:640px; display:flex; align-items:center; margin:0 auto; padding:var(--s9) 40px var(--s7); pointer-events:none}
+.hero-copy{width:50%; margin-left:auto; pointer-events:auto}
+.hero-copy .kpis{max-width:none}
+.hero-copy .kpi .v{font-size:13px; white-space:normal; line-height:1.35}
 .hero .lead{margin-top:var(--s5); max-width:38ch; font-size:16.5px; line-height:1.7; color:var(--fg-2)}
 .kpis{margin-bottom:var(--s4)}
 @media(max-width:900px){
-  .hero{min-height:0}
-  .hero::after{background:linear-gradient(180deg, rgba(10,11,12,.96) 0%, rgba(10,11,12,.90) 38%, rgba(10,11,12,.70) 68%, rgba(10,11,12,.40) 100%)}
+  .hero{min-height:760px}
+  .hero::after{background:linear-gradient(180deg, rgba(3,6,8,.08) 0%, rgba(3,6,8,.10) 34%, rgba(3,6,8,.65) 56%, rgba(3,6,8,.98) 82%, rgba(3,6,8,1) 100%)}
   #graph{opacity:.84}
   .graph-hint{right:20px; bottom:18px}
   .hero .lead{max-width:none}
-  .hero-in{padding:var(--s8) 20px 0}
+  .hero-in{min-height:760px; align-items:flex-end; padding:var(--s8) 20px var(--s7)}
+  .hero-copy{width:100%; margin:0}
 }
 .eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--accent)}
 .hero h1{
@@ -119,6 +127,7 @@ main{padding-top:57px}
   max-width:22ch;
 }
 .hero h1 em{font-style:normal; color:var(--fg-3); font-weight:500}
+.hero-copy h1,.hero-copy .lead,.hero-copy .kpis,.hero-copy .depth-hint{text-shadow:0 3px 18px rgba(0,0,0,.82)}
 .hero .lead{margin-top:var(--s5); max-width:64ch; font-size:16.5px; line-height:1.76; color:var(--fg-2)}
 .hero .lead strong{color:var(--fg); font-weight:600}
 .hero .lead b{color:var(--accent); font-weight:500}
