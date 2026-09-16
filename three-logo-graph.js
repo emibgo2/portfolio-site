@@ -1,14 +1,14 @@
 const canvas = document.getElementById("graph");
-const hero = canvas?.parentElement;
+const page = document.getElementById("top");
 
-if (canvas && hero) {
+if (canvas && page) {
   let loaded = false;
 
   const loadGraph = () => {
     if (loaded) return;
     loaded = true;
-    import("./three-logo-graph-core.js?v=scatter-v11")
-      .then(({ mountGraph }) => mountGraph(canvas, hero))
+    import("./three-logo-graph-core.js?v=scatter-v32")
+      .then(({ mountGraph }) => mountGraph(canvas))
       .catch((error) => console.warn("3D graph unavailable", error));
   };
 
@@ -27,7 +27,7 @@ if (canvas && hero) {
         schedule();
       }
     }, { rootMargin: "160px" });
-    observer.observe(hero);
+    observer.observe(page);
   } else {
     schedule();
   }

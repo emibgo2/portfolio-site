@@ -90,13 +90,14 @@ a:hover{color:var(--accent)}
 @media(max-width:760px){ .topbar .inner{padding:12px 20px; gap:var(--s3)} .topbar .who span{display:none} }
 
 /* ------------------------------------------------------------------- hero */
-main{padding-top:57px}
-.hero{position:relative; overflow:hidden; border-bottom:1px solid var(--line-2); min-height:640px; background:#030608}
-#graph{position:absolute; z-index:0; inset:0; width:100%; height:100%; opacity:1; pointer-events:auto; mix-blend-mode:screen; filter:brightness(1.28) saturate(1.12) contrast(1.04); cursor:grab}
+main{position:relative; padding-top:57px}
+#graph{position:fixed; z-index:0; inset:0; display:block; width:100%; height:100%; opacity:1; pointer-events:none; mix-blend-mode:screen; filter:brightness(1.28) saturate(1.12) contrast(1.04)}
+.hero,.shell{position:relative; z-index:1}
+.hero{overflow:hidden; border-bottom:1px solid var(--line-2); min-height:640px; background:rgba(3,6,8,.42)}
 .hero::before{content:""; position:absolute; z-index:1; inset:0; pointer-events:none; background:
   radial-gradient(circle at 28% 50%, rgba(0,143,174,.17), transparent 32%),
   radial-gradient(circle at 58% 46%, rgba(17,41,54,.20), transparent 48%);}
-.graph-label{position:absolute; z-index:3; top:0; left:0; padding:4px 8px; border:1px solid rgba(94,234,212,.48); background:rgba(3,9,12,.82); color:var(--accent); font:500 11px/1.2 var(--mono); letter-spacing:.05em; pointer-events:none; transform:translate3d(-999px,-999px,0); box-shadow:0 0 20px rgba(0,183,255,.16)}
+.graph-label{position:fixed; z-index:5; top:0; left:0; padding:4px 8px; border:1px solid rgba(94,234,212,.48); background:rgba(3,9,12,.82); color:var(--accent); font:500 11px/1.2 var(--mono); letter-spacing:.05em; pointer-events:none; transform:translate3d(-999px,-999px,0); box-shadow:0 0 20px rgba(0,183,255,.16)}
 .graph-label[hidden]{display:none}
 .graph-hint{display:none}
 .hero::after{
@@ -162,11 +163,13 @@ main{padding-top:57px}
 
 /* ------------------------------------------------------------------ shell */
 .shell{
+  position:relative;
   max-width:var(--shell); margin:0 auto; padding:0 40px;
   display:grid; grid-template-columns:var(--rail) minmax(0,1fr); gap:var(--s9);
   align-items:start;
 }
-.content{min-width:0; max-width:var(--read)}
+.shell::before{content:""; position:absolute; z-index:0; inset:0; pointer-events:none; background:rgba(10,11,12,.78)}
+.content{position:relative; z-index:1; min-width:0; max-width:var(--read)}
 @media(max-width:1000px){
   .shell{grid-template-columns:1fr; gap:0; padding:0 20px}
   .content{max-width:none}
@@ -174,6 +177,7 @@ main{padding-top:57px}
 
 /* rail */
 .rail{position:sticky; top:80px; padding:var(--s8) 0 var(--s9)}
+.rail{z-index:1}
 .rail .lbl{font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--fg-4); padding:0 var(--s2) var(--s3)}
 .rail ol{display:flex; flex-direction:column}
 .rail li a{
@@ -190,6 +194,7 @@ main{padding-top:57px}
 .rail .links{margin-top:var(--s5); padding:0 var(--s2); display:flex; flex-direction:column; gap:5px; font-family:var(--mono); font-size:11.5px}
 .rail .links a{color:var(--fg-3)}
 @media(max-width:1000px){
+  .shell::before{inset:0 -20px; background:rgba(10,11,12,.84)}
   .rail{position:sticky; top:53px; z-index:50; padding:8px 0 0; margin:0 -20px; padding-left:20px; padding-right:20px;
     background:linear-gradient(180deg,rgba(10,11,12,.97),rgba(10,11,12,.80) 65%,transparent); overflow-x:auto}
   .rail .lbl,.rail .blocks,.rail .links{display:none}

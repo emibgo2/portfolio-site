@@ -20,6 +20,18 @@ export function createScatterLayout(count) {
   });
 }
 
+export function getLoopedX(startX, elapsedMs, {
+  speed = 0.2,
+  left = -7.8,
+  right = 7.8
+} = {}) {
+  const span = right - left;
+  if (span <= 0) return left;
+
+  const travelledX = startX - (Math.max(0, elapsedMs) / 1000) * speed;
+  return ((travelledX - left) % span + span) % span + left;
+}
+
 export function projectScatterNode(node, {
   width,
   height,
@@ -58,6 +70,8 @@ export function getQualityProfile(width, height, devicePixelRatio = 1) {
     nodeCount: mobile ? 10 : 14,
     curveSegments: mobile ? 10 : 16,
     logoDepth: 5.8,
+    logoScale: 0.7,
+    layoutSpread: mobile ? 1.08 : 1.24,
     frontOpacity: .96,
     haloOpacity: .24
   };

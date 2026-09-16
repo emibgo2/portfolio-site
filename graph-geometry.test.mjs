@@ -1,6 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { createScatterLayout, projectScatterNode, getQualityProfile } from "./graph-geometry.mjs";
+import { readFile } from "node:fs/promises";
+import {
+  createScatterLayout,
+  projectScatterNode,
+  getQualityProfile,
+  getLoopedX
+} from "./graph-geometry.mjs";
 
 test("creates a stable scattered layout without forcing nodes onto a circle", () => {
   const nodes = createScatterLayout(8);
@@ -51,6 +57,8 @@ test("caps render quality for high-density screens and keeps mobile light", () =
     nodeCount: 14,
     curveSegments: 16,
     logoDepth: 5.8,
+    logoScale: 0.7,
+    layoutSpread: 1.24,
     frontOpacity: 0.96,
     haloOpacity: 0.24
   });
@@ -60,6 +68,8 @@ test("caps render quality for high-density screens and keeps mobile light", () =
     nodeCount: 10,
     curveSegments: 10,
     logoDepth: 5.8,
+    logoScale: 0.7,
+    layoutSpread: 1.08,
     frontOpacity: 0.96,
     haloOpacity: 0.24
   });
@@ -71,4 +81,29 @@ test("keeps scattered logos visibly extruded and bright enough on dark backgroun
   assert.equal(profile.logoDepth, 5.8);
   assert.equal(profile.frontOpacity, 0.96);
   assert.equal(profile.haloOpacity, 0.24);
+});
+
+test("moves logos from right to left and wraps them back into the right side", () => {
+  const bounds = { left: -6.8, right: 6.8 };
+
+  assert.ok(Math.abs(getLoopedX(1, 0, { speed: 0.2, ...bounds }) - 1) < 1e-9);
+  assert.ok(Math.abs(getLoopedX(1, 1000, { speed: 0.2, ...bounds }) - 0.8) < 1e-9);
+  assert.ok(Math.abs(getLoopedX(-6.7, 1000, { speed: 0.2, ...bounds }) - 6.7) < 1e-9);
+  assert.ok(Math.abs(getLoopedX(2, 68000, { speed: 0.2, ...bounds }) - 2) < 1e-9);
+});
+
+test("reduces logo scale and increases scatter spacing for a cleaner field", () => {
+  const profile = getQualityProfile(1440, 640, 2);
+
+  assert.equal(profile.logoScale, 0.7);
+  assert.equal(profile.layoutSpread, 1.24);
+  assert.ok(profile.logoScale < 1);
+  assert.ok(profile.layoutSpread > 1);
+});
+
+test("adds a dark content backdrop so moving logos do not reduce text contrast", async () => {
+  const css = await readFile(new URL("./styles.css", import.meta.url), "utf8");
+
+  assert.match(css, /\.shell::before\{/);
+  assert.match(css, /background:rgba\(10,11,12,\.78\)/);
 });

@@ -1,12 +1,13 @@
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.185.0/build/three.module.js";
 import { SVGLoader } from "https://cdn.jsdelivr.net/npm/three@0.185.0/examples/jsm/loaders/SVGLoader.js";
-import { createScatterLayout, getQualityProfile } from "./graph-geometry.mjs";
+import { createScatterLayout, getLoopedX, getQualityProfile } from "./graph-geometry.mjs";
 
 const GRAPH_KEYS = [
   "kotlin", "springboot", "typescript", "postgresql", "redis", "kubernetes",
   "argo", "docker", "amazonwebservices", "prometheus", "grafana",
   "githubactions", "nginx", "keycloak"
 ];
+const LOOP_BOUNDS = { left: -8.5, right: 8.5, speed: 0.2 };
 
 function makeGlowTexture() {
   const size = 96;
@@ -62,6 +63,7 @@ function makeLogo(definition, index, profile, loader, logoMeshes) {
       });
       geometry.translate(0, 0, -profile.logoDepth / 2);
       const mesh = new THREE.Mesh(geometry, [front, side]);
+      mesh.frustumCulled = false;
       mesh.userData.nodeIndex = index;
       mesh.renderOrder = 2;
       root.add(mesh);
@@ -72,7 +74,7 @@ function makeLogo(definition, index, profile, loader, logoMeshes) {
   const bounds = new THREE.Box3().setFromObject(root);
   const center = bounds.getCenter(new THREE.Vector3());
   const size = bounds.getSize(new THREE.Vector3());
-  const fit = .62 / Math.max(size.x, size.y, .01);
+  const fit = (.62 * profile.logoScale) / Math.max(size.x, size.y, .01);
   root.children.forEach((child) => child.geometry?.translate(-center.x, -center.y, -center.z));
   root.position.set(0, 0, 0);
   root.scale.set(fit, -fit, fit);
@@ -84,11 +86,10 @@ function makeLogo(definition, index, profile, loader, logoMeshes) {
   root.userData.front = front;
   root.userData.side = side;
   root.userData.nodeIndex = index;
-  root.userData.baseRotation = root.rotation.clone();
   return root;
 }
 
-export function mountGraph(canvas, hero) {
+export function mountGraph(canvas) {
   const logos = window.LOGOS || {};
   const definitions = GRAPH_KEYS.map((key) => {
     const logo = logos[key];
@@ -134,13 +135,22 @@ export function mountGraph(canvas, hero) {
 
   const logoMeshes = [];
   const loader = new SVGLoader();
-  const profileFor = () => getQualityProfile(
-    hero.getBoundingClientRect().width,
-    hero.getBoundingClientRect().height,
-    window.devicePixelRatio || 1
-  );
+  const viewportSize = () => {
+    const bounds = canvas.getBoundingClientRect();
+    return {
+      width: Math.max(1, Math.round(bounds.width)),
+      height: Math.max(1, Math.round(bounds.height))
+    };
+  };
+  const profileFor = () => {
+    const viewport = viewportSize();
+    return getQualityProfile(viewport.width, viewport.height, window.devicePixelRatio || 1);
+  };
   let profile = profileFor();
-  const layout = createScatterLayout(Math.min(profile.nodeCount, definitions.length));
+  const nodeCount = Math.min(profile.nodeCount, definitions.length);
+  const layout = createScatterLayout(nodeCount);
+  let { width, height } = viewportSize();
+  const animationStartedAt = performance.now();
   const nodes = definitions.slice(0, layout.length).map((definition, index) => ({
     ...definition,
     index,
@@ -150,12 +160,15 @@ export function mountGraph(canvas, hero) {
     active: false
   }));
   const positionFor = (node, now = 0) => {
-    const { x, y, z } = node.layout;
-    const layoutScale = profile.mobile ? .58 : 1;
+    const { y, z } = node.layout;
+    const layoutScale = profile.mobile ? .72 : .98;
+    const spread = profile.layoutSpread;
+    const elapsed = Math.max(0, now - animationStartedAt);
+    const x = getLoopedX(node.layout.x * spread, elapsed, LOOP_BOUNDS);
     const float = reduced.matches ? 0 : Math.sin(now * .0007 + node.phase) * .035;
     return new THREE.Vector3(
       x * layoutScale,
-      y * layoutScale + float,
+      y * layoutScale * spread + float,
       z + Math.cos(now * .00055 + node.phase) * .025
     );
   };
@@ -173,7 +186,7 @@ export function mountGraph(canvas, hero) {
       depthWrite: false,
       blending: THREE.AdditiveBlending
     }));
-    aura.scale.setScalar(.72);
+    aura.scale.setScalar(.72 * profile.logoScale);
     aura.position.copy(position);
     aura.renderOrder = 1;
     haloLayer.add(aura);
@@ -187,13 +200,9 @@ export function mountGraph(canvas, hero) {
   let focused = -1;
   let pointerInside = false;
   let running = false;
-  let visible = true;
+  let visible = !document.hidden;
   let frame = 0;
-  let lastTime = performance.now();
-  let rotation = -.2;
-  let targetRotation = rotation;
-  let width = 1;
-  let height = 1;
+  graph.rotation.set(.06, -.2, 0);
 
   function setNodeState(node, active) {
     const opacity = active ? (node.active ? 1 : .72) : profile.frontOpacity;
@@ -222,9 +231,7 @@ export function mountGraph(canvas, hero) {
   });
 
   function resize() {
-    const rect = hero.getBoundingClientRect();
-    width = Math.max(1, rect.width);
-    height = Math.max(1, rect.height);
+    ({ width, height } = viewportSize());
     profile = profileFor();
     renderer.setPixelRatio(profile.pixelRatio);
     renderer.setSize(width, height, false);
@@ -232,15 +239,13 @@ export function mountGraph(canvas, hero) {
     camera.fov = profile.mobile ? 46 : 41;
     camera.position.z = profile.mobile ? 9.2 : 8.6;
     camera.updateProjectionMatrix();
-    const desktop = width > 900;
-    graph.position.set(0, desktop ? .04 : 1.18, 0);
-    graph.scale.setScalar(desktop ? .92 : .68);
+    graph.position.set(0, 0, 0);
+    graph.scale.setScalar(width > 900 ? .92 : .68);
   }
 
   function localPointer(event) {
-    const rect = canvas.getBoundingClientRect();
-    pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-    pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+    pointer.x = (event.clientX / width) * 2 - 1;
+    pointer.y = -(event.clientY / height) * 2 + 1;
   }
 
   function hitTest() {
@@ -264,25 +269,11 @@ export function mountGraph(canvas, hero) {
 
   function render(now) {
     if (!running && !reduced.matches) return;
-    const dt = Math.min(.05, Math.max(.001, (now - lastTime) / 1000));
-    lastTime = now;
     hovered = hitTest();
     const active = hovered >= 0 ? hovered : focused;
-    if (!reduced.matches) {
-      rotation += dt * .035;
-      targetRotation = rotation + (pointerInside ? pointer.x * .14 : 0);
-      graph.rotation.y += (targetRotation - graph.rotation.y) * Math.min(1, dt * 2.4);
-      graph.rotation.x += ((pointerInside ? pointer.y * .08 : .06) - graph.rotation.x) * Math.min(1, dt * 2.4);
-    }
     nodes.forEach((node) => {
       const position = positionFor(node, now);
       node.root.position.copy(position);
-      if (!reduced.matches) {
-        const baseRotation = node.root.userData.baseRotation;
-        node.root.rotation.x = baseRotation.x + Math.sin(now * .00042 + node.phase) * .055;
-        node.root.rotation.y = baseRotation.y + Math.cos(now * .00036 + node.phase) * .08;
-        node.root.rotation.z = baseRotation.z + Math.sin(now * .00031 + node.phase) * .035;
-      }
       node.aura.position.copy(position);
     });
     updateEmphasis(active);
@@ -294,7 +285,6 @@ export function mountGraph(canvas, hero) {
   function start() {
     if (running || reduced.matches || !visible) return;
     running = true;
-    lastTime = performance.now();
     frame = requestAnimationFrame(render);
   }
 
@@ -304,17 +294,18 @@ export function mountGraph(canvas, hero) {
     frame = 0;
   }
 
-  hero.addEventListener("pointermove", (event) => {
+  document.addEventListener("pointermove", (event) => {
     localPointer(event);
     pointerInside = true;
     if (reduced.matches) render(performance.now());
   }, { passive: true });
-  hero.addEventListener("pointerleave", () => {
+  window.addEventListener("blur", () => {
     pointerInside = false;
     pointer.set(-10, -10);
     if (reduced.matches) render(performance.now());
   });
-  hero.addEventListener("pointerdown", (event) => {
+  document.addEventListener("pointerdown", (event) => {
+    if (event.target.closest?.("a,button,input,textarea,select,summary")) return;
     localPointer(event);
     pointerInside = true;
     const picked = hitTest();
@@ -343,14 +334,6 @@ export function mountGraph(canvas, hero) {
     if (document.hidden) stop();
     else start();
   });
-  const observer = "IntersectionObserver" in window
-    ? new IntersectionObserver(([entry]) => {
-      visible = entry.isIntersecting;
-      if (visible) { start(); render(performance.now()); }
-      else stop();
-    }, { rootMargin: "120px" })
-    : null;
-  observer?.observe(hero);
   window.addEventListener("resize", resize, { passive: true });
   resize();
   render(performance.now());
