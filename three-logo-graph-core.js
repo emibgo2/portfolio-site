@@ -150,27 +150,46 @@ export function mountGraph(canvas) {
   const nodeCount = Math.min(profile.nodeCount, definitions.length);
   const layout = createScatterLayout(nodeCount);
   let { width, height } = viewportSize();
-  const animationStartedAt = performance.now();
+  const hero = document.querySelector(".hero");
+  let heroBottom = 0;
+  let flowProgress = 0;
+  let flowMix = 0;
+  let flowElapsed = 0;
+  let previousTime = performance.now();
   const nodes = definitions.slice(0, layout.length).map((definition, index) => ({
     ...definition,
     index,
     layout: layout[index],
     root: makeLogo(definition, index, profile, loader, logoMeshes),
     phase: index * .57,
-    active: false
+    active: false,
+    offset: new THREE.Vector2(),
+    velocity: new THREE.Vector2()
   }));
   const positionFor = (node, now = 0) => {
     const { y, z } = node.layout;
     const layoutScale = profile.mobile ? .72 : .98;
     const spread = profile.layoutSpread;
-    const elapsed = Math.max(0, now - animationStartedAt);
-    const x = getLoopedX(node.layout.x * spread, elapsed, LOOP_BOUNDS);
+    const x = getLoopedX(node.layout.x * spread, flowElapsed, LOOP_BOUNDS);
     const float = reduced.matches ? 0 : Math.sin(now * .0007 + node.phase) * .035;
-    return new THREE.Vector3(
+    const flowing = new THREE.Vector3(
       x * layoutScale,
       y * layoutScale * spread + float,
-      z + Math.cos(now * .00055 + node.phase) * .025
+      z + (reduced.matches ? 0 : Math.cos(now * .00055 + node.phase) * .025)
     );
+    const viewHeight = 2 * camera.position.z * Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) / graph.scale.x;
+    const viewWidth = viewHeight * camera.aspect;
+    const compact = width <= 900;
+    const angle = node.index * 2.399963;
+    const radius = Math.sqrt((node.index + .7) / nodes.length);
+    const home = new THREE.Vector3(
+      (compact ? 0 : -viewWidth * .15) + Math.cos(angle) * radius * viewWidth * (compact ? .36 : .14),
+      (compact ? viewHeight * .27 : 0) + Math.sin(angle) * radius * viewHeight * (compact ? .12 : .34),
+      z
+    );
+    home.x += node.offset.x;
+    home.y += node.offset.y;
+    return home.lerp(flowing, flowMix);
   };
 
   const glowTexture = makeGlowTexture();
@@ -202,7 +221,7 @@ export function mountGraph(canvas) {
   let running = false;
   let visible = !document.hidden;
   let frame = 0;
-  graph.rotation.set(.06, -.2, 0);
+  graph.rotation.set(0, 0, 0);
 
   function setNodeState(node, active) {
     const opacity = active ? (node.active ? 1 : .72) : profile.frontOpacity;
@@ -241,11 +260,25 @@ export function mountGraph(canvas) {
     camera.updateProjectionMatrix();
     graph.position.set(0, 0, 0);
     graph.scale.setScalar(width > 900 ? .92 : .68);
+    heroBottom = hero ? hero.getBoundingClientRect().bottom + window.scrollY : height;
+    updateScroll();
+  }
+
+  function updateScroll() {
+    // Spread throughout the cover scroll, easing gently at both ends.
+    const progress = THREE.MathUtils.clamp(window.scrollY / Math.max(1, heroBottom), 0, 1);
+    flowProgress = THREE.MathUtils.smoothstep(progress, 0, 1);
+    canvas.dataset.mode = progress === 0 ? "cover" : progress === 1 ? "flow" : "transition";
+    if (reduced.matches) {
+      flowMix = flowProgress;
+      render(performance.now());
+    }
   }
 
   function localPointer(event) {
-    pointer.x = (event.clientX / width) * 2 - 1;
-    pointer.y = -(event.clientY / height) * 2 + 1;
+    const bounds = canvas.getBoundingClientRect();
+    pointer.x = ((event.clientX - bounds.left) / bounds.width) * 2 - 1;
+    pointer.y = -((event.clientY - bounds.top) / bounds.height) * 2 + 1;
   }
 
   function hitTest() {
@@ -261,7 +294,7 @@ export function mountGraph(canvas) {
       return;
     }
     const node = nodes[active];
-    const screenPosition = positionFor(node, performance.now()).applyMatrix4(graph.matrixWorld).project(camera);
+    const screenPosition = node.root.getWorldPosition(new THREE.Vector3()).project(camera);
     label.hidden = false;
     label.textContent = node.label;
     label.style.transform = `translate3d(${((screenPosition.x + 1) / 2) * width + 16}px, ${((-screenPosition.y + 1) / 2) * height - 14}px, 0)`;
@@ -269,9 +302,32 @@ export function mountGraph(canvas) {
 
   function render(now) {
     if (!running && !reduced.matches) return;
+    const dt = Math.min(.033, Math.max(0, (now - previousTime) / 1000));
+    previousTime = now;
+    if (!reduced.matches) flowElapsed += dt * 1000 * flowMix;
+    flowMix = reduced.matches ? flowProgress : THREE.MathUtils.damp(flowMix, flowProgress, 8, dt);
     hovered = hitTest();
     const active = hovered >= 0 ? hovered : focused;
     nodes.forEach((node) => {
+      if (!reduced.matches) {
+        if (flowMix < 1 && pointerInside) {
+          const projected = node.root.getWorldPosition(new THREE.Vector3()).project(camera);
+          const dx = (projected.x - pointer.x) * width / height;
+          const dy = projected.y - pointer.y;
+          const distance = Math.hypot(dx, dy);
+          if (distance < .30) {
+            const force = (1 - distance / .30) * 35 * (1 - flowMix);
+            node.velocity.x += (distance > .001 ? dx / distance : 1) * force * dt;
+            node.velocity.y += (distance > .001 ? dy / distance : 0) * force * dt;
+          }
+        }
+        node.velocity.addScaledVector(node.offset, -18 * dt).multiplyScalar(Math.exp(-5 * dt));
+        node.offset.addScaledVector(node.velocity, dt).clampLength(0, 1.2);
+      } else {
+        node.offset.set(0, 0);
+        node.velocity.set(0, 0);
+      }
+      node.root.rotation.z = (node.index % 4 - 1.5) * .09 + node.offset.x * .25;
       const position = positionFor(node, now);
       node.root.position.copy(position);
       node.aura.position.copy(position);
@@ -284,6 +340,7 @@ export function mountGraph(canvas) {
 
   function start() {
     if (running || reduced.matches || !visible) return;
+    previousTime = performance.now();
     running = true;
     frame = requestAnimationFrame(render);
   }
@@ -296,8 +353,15 @@ export function mountGraph(canvas) {
 
   document.addEventListener("pointermove", (event) => {
     localPointer(event);
-    pointerInside = true;
+    pointerInside = !event.target.closest?.(".topbar, a, button, input, textarea, select");
     if (reduced.matches) render(performance.now());
+  }, { passive: true });
+  document.addEventListener("pointerleave", () => {
+    pointerInside = false;
+    pointer.set(-10, -10);
+  });
+  document.addEventListener("pointerup", (event) => {
+    if (event.pointerType !== "mouse") pointerInside = false;
   }, { passive: true });
   window.addEventListener("blur", () => {
     pointerInside = false;
@@ -334,7 +398,9 @@ export function mountGraph(canvas) {
     if (document.hidden) stop();
     else start();
   });
+  window.addEventListener("scroll", updateScroll, { passive: true });
   window.addEventListener("resize", resize, { passive: true });
+  if (hero) new ResizeObserver(resize).observe(hero);
   resize();
   render(performance.now());
   start();

@@ -7,7 +7,7 @@ if (canvas && page) {
   const loadGraph = () => {
     if (loaded) return;
     loaded = true;
-    import("./three-logo-graph-core.js?v=scatter-v32")
+    import("./three-logo-graph-core.js?v=cover-v35")
       .then(({ mountGraph }) => mountGraph(canvas))
       .catch((error) => console.warn("3D graph unavailable", error));
   };
