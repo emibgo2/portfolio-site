@@ -7,7 +7,7 @@ ADR(의사결정 기록) + 인시던트 아카이브 + 3단 읽기 깊이 조합
 ```
 index.html    # 페이지 구조 + 렌더 엔진 (약 420줄)
 styles.css    # 디자인 시스템 (토큰 · 레이아웃 · 도식 · 인쇄)
-data.js       # 콘텐츠 전체 + SVG 도식 11개
+data.js       # 콘텐츠 전체 + SVG 도식 13개
 og-image.svg  # 공유 미리보기 (카카오톡 · 슬랙 · X)
 README.md     # 이 문서
 ```
@@ -46,9 +46,9 @@ ArgoCD Application을 추가하고, `/about`의 "이 페이지는 이렇게 동�
 |---|---|
 | `profile` | 이름, KPI 5개, 연락 링크 |
 | `sections` | 좌측 목차 |
-| `systems` | 프로젝트 9개 — `thesis`(한 줄 주장), `story`(문제/판단/실행/결과/남은 것), `metrics`, `diagram`(도식 + 질문 + 캡션), `tags`, `refs` |
-| `decisions` | ADR 12개 — `sum`, `context`, `alts`(마지막 항목이 채택안), `consequences`, `gave` |
-| `incidents` | 장애·예방 개선 팝업 4건 — `impact`, `detect`, `cause`, `action`, `result`, `prevent`, `verify` |
+| `systems` | 프로젝트 10개 — `thesis`(한 줄 주장), `story`(문제/판단/실행/결과/남은 것), `metrics`, `diagram`(도식 + 질문 + 캡션), `tags`, `refs` |
+| `decisions` | ADR 15개 — `sum`, `context`, `alts`(마지막 항목이 채택안), `consequences`, `gave` |
+| `incidents` | 장애·실험·예방 개선 팝업 7건 — `impact`, `detect`, `cause`, `action`, `result`, `prevent`, `verify` |
 | `runbooks` | 런북 5개 |
 | `stack` | 기술 스택 6그룹 (3번째 배열에 넣은 항목이 강조됨) |
 | `about` | 소개 문단, 경력, 활동·수상, 사이트 설명 |
@@ -123,7 +123,7 @@ ADR은 `맥락 → 대안(✕/→) → 결과 → 대가`, 인시던트는
 
 ## 검증한 것
 
-- 렌더링: 시스템 9 / 설계 판단 팝업 12 / 장애·예방 개선 팝업 4 / 런북 5 / 스택 6 / 도식 11, 콘솔 에러 0
+- 렌더링: 시스템 10 / 설계 판단 팝업 15 / 장애·실험·예방 개선 팝업 7 / 런북 5 / 스택 6 / 도식 13, 콘솔 에러 0
 - 3단 깊이 전환, 설계 판단·장애 팝업 열기·닫기, 목차 활성화, 진행률 동작 확인
 - 도식 13개 텍스트가 노드 밖으로 넘치지 않고 viewBox를 벗어나지 않음 (좌표 검사, 이슈 0)
 - 도식 라벨 실측 크기 11.2px (데스크톱) / 9.8px (390px, 가로 스크롤)

@@ -7,14 +7,14 @@
 <meta name="description" content="레거시를 걷어내고, 장애를 줄이고, 숫자로 남긴 백엔드 · 인프라 엔지니어 고지훈의 시스템 · 결정 · 장애 기록" />
 <meta name="color-scheme" content="dark" />
 <meta property="og:title" content="고지훈 · Backend & Infrastructure Engineer" />
-<meta property="og:description" content="시스템 9개, 아키텍처 결정 12개, 장애·예방 개선 기록 4건. 무엇을 왜 그렇게 결정했고 무엇을 막았는지의 기록." />
+<meta property="og:description" content="시스템 10개, 아키텍처 결정 15개, 장애·실험·예방 개선 기록 7건. 무엇을 왜 그렇게 결정했고 무엇을 막았는지의 기록." />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="og-image.svg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="고지훈 · Backend & Infrastructure Engineer" />
-<meta name="twitter:description" content="시스템 9개, 아키텍처 결정 12개, 장애·예방 개선 기록 4건. 무엇을 왜 그렇게 결정했고 무엇을 막았는지의 기록." />
+<meta name="twitter:description" content="시스템 10개, 아키텍처 결정 15개, 장애·실험·예방 개선 기록 7건. 무엇을 왜 그렇게 결정했고 무엇을 막았는지의 기록." />
 <meta name="twitter:image" content="og-image.svg" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230a0b0c'/><text x='16' y='22' font-size='15' font-family='monospace' fill='%235eead4' text-anchor='middle'>G</text></svg>" />
 <script type="importmap">
@@ -128,7 +128,7 @@
 </dialog>
 
 <script src="logos.js"></script>
-<script src="data.js?v=readable-diagrams-v2"></script>
+<script src="data.js?v=file-experiments-v4"></script>
 <script type="module">
 import { getFlowFrame, findEndpointNode, getPacketState } from "./diagram-flow.mjs?v=arrival-v2";
 /* ============================================================ 렌더 엔진 */
@@ -213,7 +213,7 @@ function initRecordDialog() {
     opener = trigger || document.activeElement;
     const isIncident = record.id.startsWith("INC-");
     dialog.dataset.kind = isIncident ? "incident" : "decision";
-    const category = isIncident ? (record.kind === "risk" ? "예방 개선 · 실제 사고 아님" : "장애 대응") : "설계 판단";
+    const category = isIncident ? (record.kind === "risk" ? "예방 개선 · 실제 사고 아님" : record.kind === "experiment" ? "실험 · 문제 해결" : "장애 대응") : "설계 판단";
     $("#recordId").textContent = `${category} · ${record.id}`;
     $("#recordContent").innerHTML = isIncident ? `
       <h2 id="recordTitle">${E(record.title)}</h2>

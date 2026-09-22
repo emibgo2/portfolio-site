@@ -23,7 +23,7 @@
   <text x="70" y="300" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif" font-size="58" font-weight="700" letter-spacing="-2" fill="#e8eaed">레거시를 걷어내고, 장애를 줄이고,</text>
   <text x="70" y="382" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif" font-size="58" font-weight="700" letter-spacing="-2" fill="#5eead4">숫자로 남깁니다.</text>
   <text x="72" y="466" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif" font-size="30" letter-spacing="-0.5" fill="#9aa0a6">고지훈 · Backend &amp; Infrastructure Engineer</text>
-  <text x="72" y="520" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="22" fill="#5f6368">시스템 9 · 아키텍처 결정 12 · 장애·예방 개선 4 · 런북 5</text>
+  <text x="72" y="520" font-family="ui-monospace,SFMono-Regular,Menlo,Consolas,monospace" font-size="22" fill="#5f6368">시스템 10 · 아키텍처 결정 15 · 장애·실험·예방 7 · 런북 5</text>
   <line x1="72" y1="556" x2="1128" y2="556" stroke="#1f2328" stroke-width="2"/>
   <text x="72" y="592" font-family="'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif" font-size="20" fill="#5f6368">무엇을 왜 그렇게 결정했고, 무엇을 막았는지의 기록입니다.</text>
 </svg>
