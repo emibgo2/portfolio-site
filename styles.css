@@ -15,9 +15,9 @@
   --line:#1e2124;
   --line-2:#15181a;
   --fg:#e9eaea;
-  --fg-2:#b3b9be;
-  --fg-3:#767c81;
-  --fg-4:#838a91;
+  --fg-2:#c7cdd2;
+  --fg-3:#adb6bf;
+  --fg-4:#9da8b2;
   --accent:#5eead4;
   --accent-2:rgba(94,234,212,.13);
   --bad:#f87171;
@@ -90,27 +90,36 @@ a:hover{color:var(--accent)}
 @media(max-width:760px){ .topbar .inner{padding:12px 20px; gap:var(--s3)} .topbar .who span{display:none} }
 
 /* ------------------------------------------------------------------- hero */
-main{padding-top:57px}
-.hero{position:relative; overflow:hidden; border-bottom:1px solid var(--line-2); min-height:640px}
-#graph{position:absolute; z-index:0; inset:0; width:100%; height:100%; opacity:1; pointer-events:none; mix-blend-mode:screen; filter:saturate(1.15) contrast(1.05)}
-.hero::before{content:""; position:absolute; z-index:1; inset:0; pointer-events:none; background:radial-gradient(ellipse 54% 88% at 78% 50%, rgba(35,76,76,.28), transparent 72%);}
+main{position:relative; padding-top:0}
+#graph{position:fixed; z-index:0; inset:0; display:block; width:100%; height:100%; opacity:1; pointer-events:none; mix-blend-mode:screen; filter:brightness(1.28) saturate(1.12) contrast(1.04)}
+.hero,.shell{position:relative; z-index:1}
+.hero{overflow:hidden; border-bottom:1px solid var(--line-2); min-height:100svh; background:rgba(3,6,8,.18)}
+.hero::before{content:""; position:absolute; z-index:1; inset:0; pointer-events:none; background:
+  radial-gradient(circle at 28% 50%, rgba(0,143,174,.17), transparent 32%),
+  radial-gradient(circle at 58% 46%, rgba(17,41,54,.20), transparent 48%);}
+.graph-label{position:fixed; z-index:5; top:0; left:0; padding:4px 8px; border:1px solid rgba(94,234,212,.48); background:rgba(3,9,12,.82); color:var(--accent); font:500 11px/1.2 var(--mono); letter-spacing:.05em; pointer-events:none; transform:translate3d(-999px,-999px,0); box-shadow:0 0 20px rgba(0,183,255,.16)}
+.graph-label[hidden]{display:none}
 .graph-hint{display:none}
 .hero::after{
   content:""; position:absolute; z-index:1; inset:0; pointer-events:none;
   background:linear-gradient(90deg,
-    rgba(10,11,12,.98) 0%, rgba(10,11,12,.96) 34%, rgba(10,11,12,.76) 49%,
-    rgba(10,11,12,.16) 66%, rgba(10,11,12,0) 82%, rgba(10,11,12,.16) 100%);
+    rgba(3,6,8,.02) 0%, rgba(3,6,8,.02) 40%, rgba(3,6,8,.12) 54%,
+    rgba(3,6,8,.3) 72%, rgba(3,6,8,.42) 100%);
 }
-.hero-in{position:relative; z-index:2; max-width:var(--shell); margin:0 auto; padding:var(--s9) 40px var(--s7)}
+.hero-in{position:relative; z-index:2; max-width:var(--shell); min-height:100svh; display:flex; align-items:center; margin:0 auto; padding:calc(57px + var(--s8)) 40px var(--s8); pointer-events:none}
+.hero-copy{width:50%; margin-left:auto; transform:translateX(clamp(24px,3vw,56px)); pointer-events:auto}
+.hero-copy .kpis{max-width:none}
+.hero-copy .kpi .v{font-size:13px; white-space:normal; line-height:1.35}
 .hero .lead{margin-top:var(--s5); max-width:38ch; font-size:16.5px; line-height:1.7; color:var(--fg-2)}
 .kpis{margin-bottom:var(--s4)}
 @media(max-width:900px){
-  .hero{min-height:0}
-  .hero::after{background:linear-gradient(180deg, rgba(10,11,12,.96) 0%, rgba(10,11,12,.90) 38%, rgba(10,11,12,.70) 68%, rgba(10,11,12,.40) 100%)}
+  .hero{min-height:100svh}
+  .hero::after{background:linear-gradient(180deg, rgba(3,6,8,.08) 0%, rgba(3,6,8,.10) 34%, rgba(3,6,8,.65) 56%, rgba(3,6,8,.98) 82%, rgba(3,6,8,1) 100%)}
   #graph{opacity:.84}
   .graph-hint{right:20px; bottom:18px}
   .hero .lead{max-width:none}
-  .hero-in{padding:var(--s8) 20px 0}
+  .hero-in{min-height:100svh; align-items:flex-end; padding:42svh 20px var(--s7)}
+  .hero-copy{width:100%; margin:0; transform:none}
 }
 .eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--accent)}
 .hero h1{
@@ -118,7 +127,8 @@ main{padding-top:57px}
   font-size:clamp(32px,4.6vw,54px); line-height:1.14; letter-spacing:-.035em; font-weight:650;
   max-width:22ch;
 }
-.hero h1 em{font-style:normal; color:var(--fg-3); font-weight:500}
+.hero h1 em{font-style:normal; color:var(--fg-2); font-weight:500}
+.hero-copy h1,.hero-copy .lead,.hero-copy .kpis,.hero-copy .depth-hint{text-shadow:0 3px 18px rgba(0,0,0,.82)}
 .hero .lead{margin-top:var(--s5); max-width:64ch; font-size:16.5px; line-height:1.76; color:var(--fg-2)}
 .hero .lead strong{color:var(--fg); font-weight:600}
 .hero .lead b{color:var(--accent); font-weight:500}
@@ -145,7 +155,12 @@ main{padding-top:57px}
   .kpi:nth-child(n+3){border-top:1px solid var(--line-2)}
 }
 @media(max-width:520px){
-  .hero-in{padding:var(--s8) 20px var(--s7)}
+  .hero-in{padding:38svh 20px var(--s7)}
+  .hero .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .hero .kpi{padding:10px 8px}
+  .hero .kpi:nth-child(odd){padding-left:0}
+  .hero h1{font-size:clamp(26px,7vw,36px)}
+  .hero .lead{font-size:14px}
   .kpis{grid-template-columns:1fr}
   .kpi + .kpi{border-left:0; border-top:1px solid var(--line-2); padding-left:0}
   .graph-hint{display:none}
@@ -153,11 +168,13 @@ main{padding-top:57px}
 
 /* ------------------------------------------------------------------ shell */
 .shell{
+  position:relative;
   max-width:var(--shell); margin:0 auto; padding:0 40px;
   display:grid; grid-template-columns:var(--rail) minmax(0,1fr); gap:var(--s9);
   align-items:start;
 }
-.content{min-width:0; max-width:var(--read)}
+.shell::before{content:""; position:absolute; z-index:0; inset:0; pointer-events:none; background:rgba(10,11,12,.92)}
+.content{position:relative; z-index:1; min-width:0; max-width:var(--read)}
 @media(max-width:1000px){
   .shell{grid-template-columns:1fr; gap:0; padding:0 20px}
   .content{max-width:none}
@@ -165,6 +182,7 @@ main{padding-top:57px}
 
 /* rail */
 .rail{position:sticky; top:80px; padding:var(--s8) 0 var(--s9)}
+.rail{z-index:1}
 .rail .lbl{font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--fg-4); padding:0 var(--s2) var(--s3)}
 .rail ol{display:flex; flex-direction:column}
 .rail li a{
@@ -181,6 +199,7 @@ main{padding-top:57px}
 .rail .links{margin-top:var(--s5); padding:0 var(--s2); display:flex; flex-direction:column; gap:5px; font-family:var(--mono); font-size:11.5px}
 .rail .links a{color:var(--fg-3)}
 @media(max-width:1000px){
+  .shell::before{inset:0 -20px}
   .rail{position:sticky; top:53px; z-index:50; padding:8px 0 0; margin:0 -20px; padding-left:20px; padding-right:20px;
     background:linear-gradient(180deg,rgba(10,11,12,.97),rgba(10,11,12,.80) 65%,transparent); overflow-x:auto}
   .rail .lbl,.rail .blocks,.rail .links{display:none}
@@ -261,34 +280,27 @@ section + section{border-top:1px solid var(--line-2); margin-top:var(--s9)}
 .plate figcaption{font-size:12.5px}
 
 /* svg diagram */
-.dg{width:100%; height:auto; display:block; overflow:visible}
-.plate-hint{display:none; margin-top:var(--s3); font-family:var(--mono); font-size:10.5px; color:var(--fg-4)}
+.diagram-viewport{overflow-x:auto; overscroll-behavior-x:contain; -webkit-overflow-scrolling:touch}
+.dg{width:100%; min-width:0; height:auto; display:block; overflow:visible}
+.plate-hint{display:block; margin-top:var(--s3); font-family:var(--mono); font-size:10.5px; color:var(--fg-4)}
 @media(max-width:900px){
   /* 좌은 화면에서 도식 글자가 작아지지 않도록 가로 스크롤로 전환 */
-  .plate{overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch}
-  .plate svg.dg{min-width:640px}
   .plate-hint{display:block}
 }
-.dg text{font-family:var(--mono); font-size:12px; fill:var(--fg-2); letter-spacing:-.01em}
+.dg text{font-family:var(--sans); font-size:12px; fill:var(--fg-2); letter-spacing:-.01em}
 .dg .nd rect{fill:var(--bg-3); stroke:var(--line); stroke-width:1}
 .dg .nd text{fill:var(--fg-2)}
-.dg .nd.t-accent rect{stroke:rgba(94,234,212,.42); fill:rgba(94,234,212,.06)}
-.dg .nd.t-accent text{fill:var(--accent)}
 .dg .nd.t-dim rect{stroke:var(--line-2); fill:#0b0d0e}
 .dg .nd.t-dim text{fill:var(--fg-4)}
-.dg .nd.t-bad rect{stroke:rgba(248,113,113,.45); fill:rgba(248,113,113,.06)}
-.dg .nd.t-bad text{fill:#f6a6a6}
-.dg .nd.t-ok rect{stroke:rgba(74,222,128,.38); fill:rgba(74,222,128,.05)}
-.dg .nd.t-ok text{fill:#9ae6b4}
 .dg .grp rect{fill:none; stroke:var(--line); stroke-dasharray:4 4}
-.dg .grp text{fill:var(--fg-4); font-size:10px; letter-spacing:.1em; text-transform:uppercase}
+.dg .grp text{fill:var(--fg-3); font-size:9.75px; letter-spacing:.04em; text-transform:uppercase}
 .dg .e{fill:none; stroke:#33383d; stroke-width:1; marker-end:url(#ar)}
-.dg .e-a{fill:none; stroke:rgba(94,234,212,.65); stroke-width:1.2; marker-end:url(#ar-a)}
-.dg .e-d{fill:none; stroke:#3a2224; stroke-width:1.2; stroke-dasharray:5 4; marker-end:url(#ar-d)}
-.dg .e-a2{fill:none; stroke:rgba(94,234,212,.3); stroke-width:1; marker-end:url(#ar-a)}
-.dg .elab{fill:var(--fg-4); font-size:9.5px; letter-spacing:.02em}
-.dg .anno{fill:var(--fg-4); font-size:9.5px}
-.dg .anno-w{fill:var(--fg-3); font-size:10px}
+.dg .e-a{fill:none; stroke:#33383d; stroke-width:1.2; marker-end:url(#ar)}
+.dg .e-d{fill:none; stroke:#33383d; stroke-width:1.2; stroke-dasharray:5 4; marker-end:url(#ar)}
+.dg .e-a2{fill:none; stroke:#33383d; stroke-width:1; marker-end:url(#ar)}
+.dg .elab{fill:var(--fg-3); font-size:9.75px; letter-spacing:.02em}
+.dg .anno{fill:var(--fg-3); font-size:9.75px}
+.dg .anno-w{fill:var(--fg-3); font-size:9.75px}
 .dg .bar-bg{fill:#15181a}
 .dg .bar-old{fill:#3d3f42}
 .dg .bar-new{fill:rgba(94,234,212,.75)}
@@ -298,15 +310,19 @@ section + section{border-top:1px solid var(--line-2); margin-top:var(--s9)}
 .dg .pkt{
   fill:var(--accent); opacity:0; pointer-events:none;
   filter:drop-shadow(0 0 6px rgba(94,234,212,.95));
-  will-change:transform, opacity; transition:opacity .18s var(--ease);
+  will-change:transform, opacity;
 }
+.dg .pkt.error{fill:var(--bad); filter:drop-shadow(0 0 6px rgba(248,113,113,.95))}
 .dg path.flowing{
   stroke:rgba(94,234,212,.9); stroke-width:1.7;
-  stroke-dasharray:none; opacity:1;
+  stroke-dasharray:none; opacity:1; marker-end:url(#ar-a);
 }
-.dg path.flowing.e-d{stroke:rgba(248,113,113,.9)}
+.dg path.flowing.e-d{stroke:rgba(248,113,113,.9); marker-end:url(#ar-d)}
 .dg g.nd.act > rect{stroke:rgba(94,234,212,.7); fill:rgba(94,234,212,.10)}
 .dg g.nd.act > text{fill:#ccfbf1}
+.dg g.grp.act > rect{stroke:rgba(94,234,212,.7)}
+.dg g.nd.t-bad.act > rect{stroke:var(--bad); fill:rgba(248,113,113,.12)}
+.dg g.nd.t-bad.act > text{fill:#fecaca}
 @media (prefers-reduced-motion:reduce){
   .dg .pkt{display:none}
 }
@@ -324,6 +340,27 @@ section + section{border-top:1px solid var(--line-2); margin-top:var(--s9)}
 .ref:hover{background:rgba(94,234,212,.16); color:var(--accent)}
 .flash{animation:flash 1.8s var(--ease)}
 @keyframes flash{0%,22%{background:rgba(94,234,212,.10)}100%{background:transparent}}
+
+/* ------------------------------------------------------- decision dialog */
+body.dialog-open{overflow:hidden}
+.record-trigger{cursor:pointer; text-align:left; line-height:1.6}
+.record-dialog{width:min(760px,calc(100% - 32px)); max-height:calc(100dvh - 48px); margin:auto; padding:28px; overflow:auto; overscroll-behavior:contain; color:var(--fg); background:var(--bg-2); border:1px solid #39434a; border-radius:14px; box-shadow:0 24px 90px rgba(0,0,0,.6)}
+.record-dialog::backdrop{background:rgba(0,0,0,.76); backdrop-filter:blur(5px)}
+.record-toolbar{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:24px}
+.record-close{flex-shrink:0; padding:8px 12px; border:1px solid #46515a; border-radius:6px; color:var(--fg); background:var(--bg-3); font:inherit; font-size:13px; cursor:pointer}
+.record-close:hover{border-color:var(--accent); color:var(--accent)}
+.record-dialog h2{font-size:clamp(20px,3vw,26px); line-height:1.45; letter-spacing:-.025em}
+.record-summary{padding-left:16px; border-left:2px solid var(--accent); margin:24px 0; color:var(--fg-2); line-height:1.75}
+.record-dialog .kv{row-gap:24px; grid-template-columns:80px minmax(0,1fr)}
+.record-dialog .alt:first-child{margin-top:0}
+.record-dialog .alt b{font-weight:500; color:var(--fg)}
+.record-dialog .alt.win b{color:var(--accent)}
+.record-dialog .foot{margin-top:28px}
+@media(max-width:620px){
+  .record-dialog{padding:20px; max-height:calc(100dvh - 24px)}
+  .record-dialog .kv{grid-template-columns:1fr; row-gap:10px}
+  .record-dialog .kv dt:not(:first-child){margin-top:14px}
+}
 
 /* ------------------------------------------------------------ adr / inc */
 .entry{padding-top:var(--s7); border-top:1px solid var(--line-2); margin-top:var(--s7)}
@@ -442,3 +479,14 @@ footer{margin-top:var(--s10); border-top:1px solid var(--line-2); padding:var(--
   .dg text{fill:#333}
   .plate{border-color:#ddd}
 }
+
+/* Incident references remain distinct from design decisions. */
+.ref.incident-trigger{color:#fca5a5; border-color:rgba(248,113,113,.4); background:rgba(248,113,113,.08)}
+.ref.incident-trigger:hover{color:#fecaca; background:rgba(248,113,113,.16)}
+.record-dialog[data-kind="incident"] .entry-id{color:#fca5a5}
+.record-dialog[data-kind="incident"] .record-summary{border-left-color:var(--bad)}
+.record-dialog[data-kind="incident"] .steps.accent li::before{color:#fca5a5}
+
+@media(max-width:1200px){.dg{min-width:800px}}
+@media(min-width:1201px){.plate-hint{display:none}}
+@media print{.diagram-viewport{overflow:visible}.dg{min-width:0}.plate-hint{display:none}}
