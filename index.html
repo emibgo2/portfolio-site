@@ -26,7 +26,7 @@
 </script>
 <link rel="stylesheet" href="styles.css" />
 </head>
-<body data-depth="3">
+<body data-depth="30">
 <canvas id="graph" role="img" aria-label="Kotlin, Spring Boot, MariaDB, PostgreSQL, Redis, Kubernetes, Argo CD, Docker, Istio, Sentry, AWS, Prometheus, Grafana, GitHub Actions, NGINX, Keycloak로 구성된 3D 기술 스택 그래프"></canvas>
 <div class="graph-label" id="graphLabel" aria-hidden="true" hidden></div>
 <a class="skip" href="#about">본문으로 건너뛰기</a>
@@ -44,8 +44,8 @@
     <div class="sp"></div>
     <div class="seg" role="group" aria-label="읽기 깊이">
       <button type="button" data-d="1" aria-pressed="false">30초</button>
-      <button type="button" data-d="3" aria-pressed="true">3분</button>
-      <button type="button" data-d="30" aria-pressed="false">30분</button>
+      <button type="button" data-d="3" aria-pressed="false">3분</button>
+      <button type="button" data-d="30" aria-pressed="true">30분</button>
     </div>
   </div>
   <div class="progress" id="progress"></div>
@@ -350,8 +350,8 @@ function initInteraction() {
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  let saved = "3";
-  try { saved = localStorage.getItem("pf-depth") || "3"; } catch (e) {}
+  let saved = "30";
+  try { saved = localStorage.getItem("pf-depth") || "30"; } catch (e) {}
   setDepth(saved, false);
 }
 
