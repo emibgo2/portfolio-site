@@ -3,8 +3,8 @@ import { SVGLoader } from "https://cdn.jsdelivr.net/npm/three@0.185.0/examples/j
 import { createScatterLayout, getLoopedX, getQualityProfile } from "./graph-geometry.mjs";
 
 const GRAPH_KEYS = [
-  "kotlin", "springboot", "typescript", "postgresql", "redis", "kubernetes",
-  "argo", "docker", "amazonwebservices", "prometheus", "grafana",
+  "kotlin", "springboot", "mariadb", "postgresql", "redis", "kubernetes",
+  "argo", "docker", "istio", "sentry", "amazonwebservices", "prometheus", "grafana",
   "githubactions", "nginx", "keycloak"
 ];
 const LOOP_BOUNDS = { left: -8.5, right: 8.5, speed: 0.2 };
@@ -187,6 +187,21 @@ export function mountGraph(canvas) {
       (compact ? viewHeight * .27 : 0) + Math.sin(angle) * radius * viewHeight * (compact ? .12 : .34),
       z
     );
+    if (!compact && (node.key === "amazonwebservices" || node.key === "keycloak")) {
+      home.x = viewWidth * (node.key === "amazonwebservices" ? -.055 : -.11);
+      home.y = -viewHeight * .26;
+    }
+    if (!compact && node.key === "githubactions") {
+      home.x = -viewWidth * .035;
+      home.y = viewHeight * .23;
+    }
+    if (!compact && (node.key === "redis" || node.key === "kubernetes")) {
+      home.x += viewWidth * .015;
+    }
+    if (!compact && (node.key === "mariadb" || node.key === "kubernetes")) {
+      home.x += viewWidth * .012;
+      home.y += viewHeight * .025;
+    }
     home.x += node.offset.x;
     home.y += node.offset.y;
     return home.lerp(flowing, flowMix);

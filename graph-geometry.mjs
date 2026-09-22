@@ -4,7 +4,8 @@ const SCATTER_SEEDS = [
   [-4.15, 1.82, .42], [-2.35, 2.54, -.20], [-.72, 1.58, .16],
   [1.05, 2.22, -.42], [2.82, 1.42, .48], [4.16, 2.46, -.16],
   [-3.78, .18, .38], [-1.72, .55, -.22], [.08, .12, .44], [1.92, .62, -.34],
-  [3.78, .08, .26], [-3.94, -1.62, .30], [-1.92, -1.08, -.46], [.34, -1.82, .10]
+  [3.78, .08, .26], [-3.94, -1.62, .30], [-1.92, -1.08, -.46], [.34, -1.82, .10],
+  [2.52, -1.48, -.20], [4.15, -1.80, .30]
 ];
 
 export function createScatterLayout(count) {
@@ -67,7 +68,7 @@ export function getQualityProfile(width, height, devicePixelRatio = 1) {
   return {
     mobile,
     pixelRatio: mobile ? 1 : Math.min(1.5, Math.max(1, devicePixelRatio)),
-    nodeCount: mobile ? 10 : 14,
+    nodeCount: mobile ? 10 : 16,
     curveSegments: mobile ? 10 : 16,
     logoDepth: 5.8,
     logoScale: 0.7,

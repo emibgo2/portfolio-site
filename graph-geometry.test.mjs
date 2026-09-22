@@ -54,7 +54,7 @@ test("caps render quality for high-density screens and keeps mobile light", () =
   assert.deepEqual(getQualityProfile(1440, 640, 3), {
     mobile: false,
     pixelRatio: 1.5,
-    nodeCount: 14,
+    nodeCount: 16,
     curveSegments: 16,
     logoDepth: 5.8,
     logoScale: 0.7,
@@ -105,5 +105,7 @@ test("adds a dark content backdrop so moving logos do not reduce text contrast",
   const css = await readFile(new URL("./styles.css", import.meta.url), "utf8");
 
   assert.match(css, /\.shell::before\{/);
-  assert.match(css, /background:rgba\(10,11,12,\.78\)/);
+  const backdrop = css.match(/\.shell::before\{[^}]*background:rgba\(10,11,12,([.\d]+)\)/);
+  assert.ok(backdrop, "content has a dark backdrop");
+  assert.ok(Number(backdrop[1]) >= .9, "backdrop blocks at least 90% of moving logo brightness");
 });

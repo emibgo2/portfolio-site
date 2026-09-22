@@ -7,14 +7,14 @@
 <meta name="description" content="레거시를 걷어내고, 장애를 줄이고, 숫자로 남긴 백엔드 · 인프라 엔지니어 고지훈의 시스템 · 결정 · 장애 기록" />
 <meta name="color-scheme" content="dark" />
 <meta property="og:title" content="고지훈 · Backend & Infrastructure Engineer" />
-<meta property="og:description" content="시스템 12개, 아키텍처 결정 12개, 장애 기록 6건. 무엇을 왜 그렇게 결정했고 무엇을 막았는지의 기록." />
+<meta property="og:description" content="시스템 9개, 아키텍처 결정 12개, 장애·예방 개선 기록 4건. 무엇을 왜 그렇게 결정했고 무엇을 막았는지의 기록." />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="og-image.svg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="고지훈 · Backend & Infrastructure Engineer" />
-<meta name="twitter:description" content="시스템 12개, 아키텍처 결정 12개, 장애 기록 6건. 무엇을 왜 그렇게 결정했고 무엇을 막았는지의 기록." />
+<meta name="twitter:description" content="시스템 9개, 아키텍처 결정 12개, 장애·예방 개선 기록 4건. 무엇을 왜 그렇게 결정했고 무엇을 막았는지의 기록." />
 <meta name="twitter:image" content="og-image.svg" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230a0b0c'/><text x='16' y='22' font-size='15' font-family='monospace' fill='%235eead4' text-anchor='middle'>G</text></svg>" />
 <script type="importmap">
@@ -27,9 +27,9 @@
 <link rel="stylesheet" href="styles.css" />
 </head>
 <body data-depth="3">
-<canvas id="graph" role="img" aria-label="Kotlin, Spring Boot, TypeScript, PostgreSQL, Redis, Kubernetes, Argo CD, Docker, AWS, Prometheus, Grafana, GitHub Actions, NGINX, Keycloak로 구성된 3D 기술 스택 그래프"></canvas>
+<canvas id="graph" role="img" aria-label="Kotlin, Spring Boot, MariaDB, PostgreSQL, Redis, Kubernetes, Argo CD, Docker, Istio, Sentry, AWS, Prometheus, Grafana, GitHub Actions, NGINX, Keycloak로 구성된 3D 기술 스택 그래프"></canvas>
 <div class="graph-label" id="graphLabel" aria-hidden="true" hidden></div>
-<a class="skip" href="#systems">본문으로 건너뛰기</a>
+<a class="skip" href="#about">본문으로 건너뛰기</a>
 
 <!-- 공용 화살촉 정의 (모든 도식이 참조) -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
@@ -75,8 +75,17 @@
     </nav>
 
     <div class="content">
+      <section id="about">
+        <div class="sec-head"><span class="n">01</span><h2>소개</h2><span class="sub">about</span></div>
+        <p class="sec-intro" id="aboutIntro"></p>
+        <div class="about-grid">
+          <div><h4>경력</h4><ul id="careerList"></ul></div>
+          <div class="d30"><h4>활동 · 수상 · 학력</h4><ul id="extraList"></ul></div>
+        </div>
+      </section>
+
       <section id="systems">
-        <div class="sec-head"><span class="n">01</span><h2>시스템</h2><span class="sub">담당 프로젝트 최신순</span></div>
+        <div class="sec-head"><span class="n">02</span><h2>시스템</h2><span class="sub">담당 프로젝트 최신순</span></div>
         <p class="sec-intro">
           각 항목은 <b>주장 한 줄 → 문제 → 판단 → 실행 → 결과 → 남은 것</b> 순서로 씁니다.
           잘한 것만 남기면 다음 사람이 같은 판단을 할 수 없기 때문에 <b>버린 대안과 감수한 대가</b>를 함께 적었습니다.
@@ -84,45 +93,19 @@
         <div id="systemsList"></div>
       </section>
 
-      <section id="decisions">
-        <div class="sec-head"><span class="n">02</span><h2>결정</h2><span class="sub">ADR · Architecture Decision Record</span></div>
-        <p class="sec-intro">
-          채택한 결정만이 아니라 <b>고려했다가 버린 대안</b>과 <b>그 대가로 포기한 것</b>을 함께 남깁니다.
-          결정은 나중에 뒤집힐 수 있어도 기록은 고치지 않습니다.
-        </p>
-        <div id="decisionsList"></div>
-      </section>
-
-      <section id="incidents">
-        <div class="sec-head"><span class="n">03</span><h2>장애</h2><span class="sub">incident archive</span></div>
-        <p class="sec-intro">
-          장애를 숨기지 않고 <b>탐지 → 직접 원인 → 조치 → 결과 → 재발 방지 → 검증</b>까지 남깁니다.
-          원인을 한 문장으로 끝내지 않고, 사람이 아니라 구조가 왜 그렇게 만들었는지를 씁니다.
-        </p>
-        <div id="incidentsList"></div>
-      </section>
-
       <section id="runbooks">
-        <div class="sec-head"><span class="n">04</span><h2>런북</h2><span class="sub">operational standards</span></div>
+        <div class="sec-head"><span class="n">03</span><h2>런북</h2><span class="sub">operational standards</span></div>
         <p class="sec-intro">팀에 남긴 운영 표준입니다. 새로 들어온 사람이 읽고 그대로 따라 할 수 있는 수준을 목표로 썼습니다.</p>
         <div class="rb" id="runbooksList"></div>
       </section>
 
       <section id="stack">
-        <div class="sec-head"><span class="n">05</span><h2>다루는 것</h2><span class="sub">실무에서 써 본 범위</span></div>
+        <div class="sec-head"><span class="n">04</span><h2>스킬</h2><span class="sub">실무에서 써 본 범위</span></div>
         <p class="sec-intro">강조된 항목은 실무에서 <b>설계와 운영까지</b> 맡아본 것입니다.</p>
         <div class="stack" id="stackList"></div>
       </section>
 
-      <section id="about">
-        <div class="sec-head"><span class="n">06</span><h2>소개</h2><span class="sub">about</span></div>
-        <p class="sec-intro" id="aboutIntro"></p>
-        <div class="about-grid">
-          <div><h4>경력</h4><ul id="careerList"></ul></div>
-          <div class="d30"><h4>활동 · 수상 · 학력</h4><ul id="extraList"></ul></div>
-          <div><h4>이 페이지는 이렇게 동작합니다</h4><ul id="howList"></ul></div>
-        </div>
-      </section>
+
 
       <footer>
         <div class="frow" id="footLinks"></div>
@@ -136,13 +119,23 @@
   </div>
 </main>
 
+<dialog class="record-dialog" id="recordDialog" aria-labelledby="recordTitle">
+  <div class="record-toolbar">
+    <span class="entry-id" id="recordId"></span>
+    <button type="button" class="record-close" autofocus aria-label="상세 기록 팝업 닫기">닫기 ×</button>
+  </div>
+  <div id="recordContent"></div>
+</dialog>
+
 <script src="logos.js"></script>
-<script src="data.js?v=three-logo-3d"></script>
-<script>
+<script src="data.js?v=readable-diagrams-v2"></script>
+<script type="module">
+import { getFlowFrame, findEndpointNode, getPacketState } from "./diagram-flow.mjs?v=arrival-v2";
 /* ============================================================ 렌더 엔진 */
 const E = (s) => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const $ = (s, r) => (r || document).querySelector(s);
 const D = window.PF;
+const records = new Map([...D.decisions, ...D.incidents].map(record => [record.id, record]));
 
 const DEPTH_COPY = {
   "1": "30초 보기 — 결과와 한 줄 요약만",
@@ -160,8 +153,6 @@ function renderHead() {
     `<li><a href="#${id}" data-sec="${id}"><span class="n">${n}</span>${E(label)}</a></li>`).join("");
   $("#railBlocks").innerHTML = [
     `${D.systems.length} systems`,
-    `${D.decisions.length} decisions`,
-    `${D.incidents.length} incidents`,
     `${D.runbooks.length} runbooks`
   ].map(x => `<div>${E(x)}</div>`).join("");
   $("#railLinks").innerHTML = D.profile.links.map(([, href, label]) =>
@@ -175,7 +166,7 @@ function diagram(p, idx) {
   if (!p) return "";
   return `<figure class="plate d${idx === 0 ? "3" : "30"} rv">
     <div class="cap-top"><span class="qn">도식 ${idx + 1}</span><span>${E(p.q)}</span></div>
-    ${p.svg}
+    <div class="diagram-viewport" tabindex="0" role="region" aria-label="${E(p.q)}">${p.svg}</div>
     <div class="plate-hint">↔ 도식은 좌우로 스크롤해서 볼 수 있습니다</div>
     <figcaption class="cap-bot">${E(p.cap)}</figcaption>
   </figure>`;
@@ -183,8 +174,11 @@ function diagram(p, idx) {
 
 function refChips(ids) {
   if (!ids || !ids.length) return "";
-  return `<span class="sep"></span>` + ids.map(id =>
-    `<a class="ref" href="#${id.toLowerCase()}">${E(id)}</a>`).join("");
+  return `<span class="sep"></span>` + ids.map(id => {
+    const record = records.get(id);
+    if (!record) return "";
+    return `<button type="button" class="ref record-trigger${id.startsWith("INC-") ? " incident-trigger" : ""}" data-record="${E(id)}" aria-haspopup="dialog" aria-controls="recordDialog">${E(record.linkLabel)} ↗</button>`;
+  }).join("");
 }
 
 function renderSystems() {
@@ -212,56 +206,68 @@ function renderSystems() {
   }).join("");
 }
 
-function renderDecisions() {
-  $("#decisionsList").innerHTML = D.decisions.map(d => `<article class="entry" id="${d.id.toLowerCase()}">
-    <div class="entry-head">
-      <span class="entry-id">${E(d.id)}</span>
-      <h3>${E(d.title)}</h3>
-      <span class="pill ok">${E(d.status)}</span>
-    </div>
-    <p class="sum">${E(d.sum)}</p>
-    <div class="kv d3">
-      <dt>맥락</dt><dd>${E(d.context)}</dd>
-    </div>
-    <div class="kv d30" style="margin-top:var(--s5)">
-      <dt>대안</dt><dd>
-        ${d.alts.map(([a, why], i) => {
-          const win = i === d.alts.length - 1;
-          return `<div class="alt ${win ? "win" : ""}"><span class="x">${win ? "→" : "✕"}</span><span>${E(a)}<span class="why">${E(why)}</span></span></div>`;
-        }).join("")}
-      </dd>
-    </div>
-    <div class="kv d3">
-      <dt>결과</dt><dd>${E(d.consequences)}</dd>
-      <dt>대가</dt><dd class="dim">${E(d.gave)}</dd>
-    </div>
-    <div class="foot d3">${d.tags.map(t => `<span class="tag">${E(t)}</span>`).join("")}</div>
-  </article>`).join("");
+function initRecordDialog() {
+  const dialog = $("#recordDialog");
+  let opener = null;
+  const open = (record, trigger) => {
+    opener = trigger || document.activeElement;
+    const isIncident = record.id.startsWith("INC-");
+    dialog.dataset.kind = isIncident ? "incident" : "decision";
+    const category = isIncident ? (record.kind === "risk" ? "예방 개선 · 실제 사고 아님" : "장애 대응") : "설계 판단";
+    $("#recordId").textContent = `${category} · ${record.id}`;
+    $("#recordContent").innerHTML = isIncident ? `
+      <h2 id="recordTitle">${E(record.title)}</h2>
+      <p class="record-summary">${E(record.impact)}</p>
+      <dl class="kv">
+        <dt>기간</dt><dd>${E(record.period)}</dd>
+        <dt>탐지</dt><dd>${E(record.detect)}</dd>
+        <dt>원인</dt><dd>${E(record.cause)}</dd>
+        <dt>조치</dt><dd><ol class="steps accent">${record.action.map(action => `<li>${E(action)}</li>`).join("")}</ol></dd>
+        <dt>결과</dt><dd>${E(record.result)}</dd>
+        <dt>재발 방지</dt><dd>${E(record.prevent)}</dd>
+        <dt>검증</dt><dd>${E(record.verify)}</dd>
+      </dl>` : `
+      <h2 id="recordTitle">${E(record.title)}</h2>
+      <p class="record-summary">${E(record.sum)}</p>
+      <dl class="kv">
+        <dt>배경</dt><dd>${E(record.context)}</dd>
+        <dt>검토한 대안</dt><dd>${record.alts.map(([title, why], i) => {
+          const chosen = i === record.alts.length - 1;
+          return `<div class="alt ${chosen ? "win" : ""}"><span class="x" aria-hidden="true">${chosen ? "→" : "✕"}</span><span><b>${chosen ? "선택: " : ""}${E(title)}</b><span class="why">${E(why)}</span></span></div>`;
+        }).join("")}</dd>
+        <dt>결과</dt><dd>${E(record.consequences)}</dd>
+        <dt>감수한 점</dt><dd>${E(record.gave)}</dd>
+      </dl>
+      <div class="foot">${record.tags.map(tag => `<span class="tag">${E(tag)}</span>`).join("")}</div>`;
+    if (!dialog.open) dialog.showModal();
+    dialog.scrollTop = 0;
+    document.body.classList.add("dialog-open");
+  };
+  document.addEventListener("click", event => {
+    const trigger = event.target.closest("[data-record]");
+    if (!trigger) return;
+    const record = records.get(trigger.dataset.record);
+    if (record) open(record, trigger);
+  });
+  $(".record-close", dialog).addEventListener("click", () => dialog.close());
+  dialog.addEventListener("click", event => {
+    if (event.target !== dialog) return;
+    const rect = dialog.getBoundingClientRect();
+    if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close();
+  });
+  dialog.addEventListener("close", () => {
+    document.body.classList.remove("dialog-open");
+    if (opener?.isConnected) opener.focus({ preventScroll: true });
+  });
+  // Preserve links to retained ADR / INC records.
+  const openFromHash = () => {
+    const record = records.get(location.hash.slice(1).toUpperCase());
+    if (record) open(record, document.querySelector(`[data-record="${record.id}"]`));
+  };
+  window.addEventListener("hashchange", openFromHash);
+  openFromHash();
 }
 
-function renderIncidents() {
-  $("#incidentsList").innerHTML = D.incidents.map(n => `<article class="entry" id="${n.id.toLowerCase()}">
-    <div class="entry-head">
-      <span class="entry-id">${E(n.id)}</span>
-      <h3>${E(n.title)}</h3>
-      <span class="pill ${n.sev}">${E(n.sevLabel)}</span>
-    </div>
-    <p class="sum">${E(n.impact)}</p>
-    <div class="kv d3">
-      <dt>기간</dt><dd>${E(n.period)}</dd>
-      <dt>직접 원인</dt><dd>${E(n.cause)}</dd>
-    </div>
-    <div class="kv d30" style="margin-top:var(--s5)">
-      <dt>탐지</dt><dd>${E(n.detect)}</dd>
-      <dt>조치</dt><dd><ol class="steps accent" style="margin-top:4px">${n.action.map(a => `<li>${E(a)}</li>`).join("")}</ol></dd>
-      <dt>검증</dt><dd>${E(n.verify)}</dd>
-      <dt>재발 방지</dt><dd>${E(n.prevent)}</dd>
-    </div>
-    <div class="kv d3">
-      <dt>결과</dt><dd>${E(n.result)}</dd>
-    </div>
-  </article>`).join("");
-}
 
 function renderRunbooks() {
   $("#runbooksList").innerHTML = D.runbooks.map(r => `<article>
@@ -294,7 +300,6 @@ function renderAbout() {
   $("#careerList").innerHTML = D.about.career.map(([who, when, what]) =>
     `<li><b>${E(who)}</b><br />${E(when)} · ${E(what)}</li>`).join("");
   $("#extraList").innerHTML = D.about.extra.map(x => `<li>${E(x)}</li>`).join("");
-  $("#howList").innerHTML = D.about.how.map(x => `<li>${x}</li>`).join("");
 }
 
 /* ============================================================ 인터랙션 */
@@ -310,18 +315,6 @@ function setDepth(d, persist) {
 function initInteraction() {
   document.querySelectorAll(".seg button").forEach(b =>
     b.addEventListener("click", () => setDepth(b.dataset.d)));
-
-  // ADR / INC 칩 → 해당 기록으로 이동 후 강조
-  document.addEventListener("click", (e) => {
-    const a = e.target.closest("a.ref");
-    if (!a) return;
-    const el = document.getElementById(a.getAttribute("href").slice(1));
-    if (!el) return;
-    e.preventDefault();
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
-    el.classList.remove("flash"); void el.offsetWidth; el.classList.add("flash");
-    history.replaceState(null, "", a.getAttribute("href"));
-  });
 
   // 목차 현재 위치
   const links = [...document.querySelectorAll(".rail a[data-sec]")];
@@ -377,20 +370,28 @@ function initDiagramFlow() {
   document.querySelectorAll("svg.dg").forEach((svg) => {
     const paths = [...svg.querySelectorAll("path.e, path.e-a, path.e-a2, path.e-d")];
     if (!paths.length) return;
-    const nodes = [...svg.querySelectorAll("g.nd")].map((g) => {
+    const nodes = [...svg.querySelectorAll("g.nd, g.grp")].map((g) => {
       const r = g.querySelector("rect");
       if (!r) return null;
       return {
-        g,
-        cx: (+r.getAttribute("x")) + (+r.getAttribute("width")) / 2,
-        cy: (+r.getAttribute("y")) + (+r.getAttribute("height")) / 2
+        g, group: g.classList.contains("grp"),
+        x: +r.getAttribute("x"), y: +r.getAttribute("y"),
+        width: +r.getAttribute("width"), height: +r.getAttribute("height")
       };
     }).filter(Boolean);
-    const steps = paths.map((p) => {
+    const routes = [...new Set(paths.map(p => p.dataset.flowRoute).filter(Boolean))];
+    const orderedPaths = routes.length
+      ? routes.flatMap(route => paths.filter(p => !p.dataset.flowRoute || p.dataset.flowRoute === route))
+      : paths;
+    const steps = orderedPaths.map((p) => {
       let len = 120;
       try { len = p.getTotalLength() || 120; } catch (e) {}
-      // 한 단계가 눈으로 읽히는 속도: 700~1400ms. 긴 경로는 조금 더 오래 걸리게 한다.
-      return { p, len, ms: Math.max(700, Math.min(1400, Math.round(690 + len * 0.8))) };
+      // 이동 1400~2800ms를 유지하고, 단계의 마지막 20%는 도착 강조에 사용한다.
+      const a = p.getPointAtLength(0), b = p.getPointAtLength(len);
+      return { p, len,
+        source: findEndpointNode(nodes, a.x, a.y),
+        target: findEndpointNode(nodes, b.x, b.y),
+        ms: 2 * Math.max(700, Math.min(1400, Math.round(690 + len * 0.8))) / .8 };
     });
     const pkt = document.createElementNS(NS, "circle");
     pkt.setAttribute("class", "pkt");
@@ -398,7 +399,7 @@ function initDiagramFlow() {
     pkt.setAttribute("cx", "0");
     pkt.setAttribute("cy", "0");
     svg.appendChild(pkt);
-    const gap = 150, rest = 2000;
+    const gap = 300, rest = 4000;
     flows.push({
       svg, nodes, steps, pkt, gap, rest,
       total: steps.reduce((s, x) => s + x.ms + gap, 0) + rest,
@@ -407,18 +408,10 @@ function initDiagramFlow() {
   });
   if (!flows.length) return;
 
-  const clearStep = (f) => {
+  const clearStep = (f, resetNodes = false) => {
     if (f.cur >= 0 && f.steps[f.cur]) f.steps[f.cur].p.classList.remove("flowing");
-    f.svg.querySelectorAll("g.nd.act").forEach((n) => n.classList.remove("act"));
+    if (resetNodes) f.svg.querySelectorAll("g.act").forEach((n) => n.classList.remove("act"));
     f.cur = -1;
-  };
-  const nearest = (f, x, y) => {
-    let best = 1e9, hit = null;
-    for (const n of f.nodes) {
-      const d = (n.cx - x) * (n.cx - x) + (n.cy - y) * (n.cy - y);
-      if (d < best) { best = d; hit = n; }
-    }
-    return hit;
   };
   const setStep = (f, idx) => {
     if (f.cur === idx) return;
@@ -426,33 +419,27 @@ function initDiagramFlow() {
     const s = f.steps[idx];
     if (!s) return;
     s.p.classList.add("flowing");
-    try {
-      const a = s.p.getPointAtLength(0), b = s.p.getPointAtLength(s.len);
-      const na = nearest(f, a.x, a.y), nb = nearest(f, b.x, b.y);
-      if (na) na.g.classList.add("act");
-      if (nb && nb !== na) nb.g.classList.add("act");
-    } catch (e) {}
+    f.pkt.classList.toggle("error", s.p.classList.contains("e-d"));
     f.cur = idx;
   };
   const update = (f, now) => {
     if (!f.t0) f.t0 = now;
     const e = (now - f.t0) % f.total;
-    let acc = 0, idx = -1, prog = 0;
-    for (let i = 0; i < f.steps.length; i++) {
-      const s = f.steps[i];
-      if (e < acc + s.ms) { idx = i; prog = (e - acc) / s.ms; break; }
-      acc += s.ms + f.gap;
-    }
-    if (idx < 0) {                              // 한 바퀴 후 휴식
+    const { index: idx, progress: prog } = getFlowFrame(f.steps, e, f.gap);
+    if (idx < 0) {                              // 단계 사이 대기 또는 한 바퀴 후 휴식
       if (!f.resting) { clearStep(f); f.pkt.style.opacity = "0"; f.resting = true; }
+      if (e >= f.total - f.rest) clearStep(f, true);
       return;
     }
     f.resting = false;
     f.pkt.style.opacity = "1";
     setStep(f, idx);
     const s = f.steps[idx];
+    const packet = getPacketState(prog);
+    const activeNode = packet.arrived ? s.target : s.source;
+    f.nodes.forEach(node => node.g.classList.toggle("act", node === activeNode));
     try {
-      const pt = s.p.getPointAtLength(prog * s.len);
+      const pt = s.p.getPointAtLength(packet.progress * s.len);
       f.pkt.setAttribute("transform", "translate(" + pt.x.toFixed(2) + "," + pt.y.toFixed(2) + ")");
     } catch (e) {}
   };
@@ -466,7 +453,7 @@ function initDiagramFlow() {
     running = false;
     if (raf) cancelAnimationFrame(raf);
     raf = null;
-    flows.forEach((f) => { f.t0 = 0; f.resting = false; f.pkt.style.opacity = "0"; clearStep(f); });
+    flows.forEach((f) => { f.t0 = 0; f.resting = false; f.pkt.style.opacity = "0"; clearStep(f, true); });
   };
 
   if ("IntersectionObserver" in window) {
@@ -475,7 +462,7 @@ function initDiagramFlow() {
       if (!f) return;
       if (en.isIntersecting && !f.visible) { f.visible = true; f.t0 = 0; }
       else if (!en.isIntersecting && f.visible) {
-        f.visible = false; f.pkt.style.opacity = "0"; clearStep(f);
+        f.visible = false; f.pkt.style.opacity = "0"; clearStep(f, true);
       }
     }), { rootMargin: "90px 0px" });
     flows.forEach((f) => io.observe(f.svg));
@@ -485,8 +472,9 @@ function initDiagramFlow() {
 
   const apply = () => {
     if (isReduce()) stop();
-    else start();
+    else if (!document.hidden) start();
   };
+  document.addEventListener("visibilitychange", () => document.hidden ? stop() : apply());
   apply();
   if (mq.addEventListener) mq.addEventListener("change", apply);
   else if (mq.addListener) mq.addListener(apply);
@@ -495,12 +483,11 @@ function initDiagramFlow() {
 /* ================================================================ 부트 */
 renderHead();
 renderSystems();
-renderDecisions();
-renderIncidents();
 renderRunbooks();
 renderStack();
 renderAbout();
 initInteraction();
+initRecordDialog();
 initDiagramFlow();
 
 try {

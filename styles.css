@@ -15,9 +15,9 @@
   --line:#1e2124;
   --line-2:#15181a;
   --fg:#e9eaea;
-  --fg-2:#b3b9be;
-  --fg-3:#767c81;
-  --fg-4:#838a91;
+  --fg-2:#c7cdd2;
+  --fg-3:#adb6bf;
+  --fg-4:#9da8b2;
   --accent:#5eead4;
   --accent-2:rgba(94,234,212,.13);
   --bad:#f87171;
@@ -127,7 +127,7 @@ main{position:relative; padding-top:0}
   font-size:clamp(32px,4.6vw,54px); line-height:1.14; letter-spacing:-.035em; font-weight:650;
   max-width:22ch;
 }
-.hero h1 em{font-style:normal; color:var(--fg-3); font-weight:500}
+.hero h1 em{font-style:normal; color:var(--fg-2); font-weight:500}
 .hero-copy h1,.hero-copy .lead,.hero-copy .kpis,.hero-copy .depth-hint{text-shadow:0 3px 18px rgba(0,0,0,.82)}
 .hero .lead{margin-top:var(--s5); max-width:64ch; font-size:16.5px; line-height:1.76; color:var(--fg-2)}
 .hero .lead strong{color:var(--fg); font-weight:600}
@@ -173,7 +173,7 @@ main{position:relative; padding-top:0}
   display:grid; grid-template-columns:var(--rail) minmax(0,1fr); gap:var(--s9);
   align-items:start;
 }
-.shell::before{content:""; position:absolute; z-index:0; inset:0; pointer-events:none; background:rgba(10,11,12,.78)}
+.shell::before{content:""; position:absolute; z-index:0; inset:0; pointer-events:none; background:rgba(10,11,12,.92)}
 .content{position:relative; z-index:1; min-width:0; max-width:var(--read)}
 @media(max-width:1000px){
   .shell{grid-template-columns:1fr; gap:0; padding:0 20px}
@@ -199,7 +199,7 @@ main{position:relative; padding-top:0}
 .rail .links{margin-top:var(--s5); padding:0 var(--s2); display:flex; flex-direction:column; gap:5px; font-family:var(--mono); font-size:11.5px}
 .rail .links a{color:var(--fg-3)}
 @media(max-width:1000px){
-  .shell::before{inset:0 -20px; background:rgba(10,11,12,.84)}
+  .shell::before{inset:0 -20px}
   .rail{position:sticky; top:53px; z-index:50; padding:8px 0 0; margin:0 -20px; padding-left:20px; padding-right:20px;
     background:linear-gradient(180deg,rgba(10,11,12,.97),rgba(10,11,12,.80) 65%,transparent); overflow-x:auto}
   .rail .lbl,.rail .blocks,.rail .links{display:none}
@@ -280,34 +280,27 @@ section + section{border-top:1px solid var(--line-2); margin-top:var(--s9)}
 .plate figcaption{font-size:12.5px}
 
 /* svg diagram */
-.dg{width:100%; height:auto; display:block; overflow:visible}
-.plate-hint{display:none; margin-top:var(--s3); font-family:var(--mono); font-size:10.5px; color:var(--fg-4)}
+.diagram-viewport{overflow-x:auto; overscroll-behavior-x:contain; -webkit-overflow-scrolling:touch}
+.dg{width:100%; min-width:0; height:auto; display:block; overflow:visible}
+.plate-hint{display:block; margin-top:var(--s3); font-family:var(--mono); font-size:10.5px; color:var(--fg-4)}
 @media(max-width:900px){
   /* 좌은 화면에서 도식 글자가 작아지지 않도록 가로 스크롤로 전환 */
-  .plate{overflow-x:auto; overflow-y:hidden; -webkit-overflow-scrolling:touch}
-  .plate svg.dg{min-width:640px}
   .plate-hint{display:block}
 }
-.dg text{font-family:var(--mono); font-size:12px; fill:var(--fg-2); letter-spacing:-.01em}
+.dg text{font-family:var(--sans); font-size:12px; fill:var(--fg-2); letter-spacing:-.01em}
 .dg .nd rect{fill:var(--bg-3); stroke:var(--line); stroke-width:1}
 .dg .nd text{fill:var(--fg-2)}
-.dg .nd.t-accent rect{stroke:rgba(94,234,212,.42); fill:rgba(94,234,212,.06)}
-.dg .nd.t-accent text{fill:var(--accent)}
 .dg .nd.t-dim rect{stroke:var(--line-2); fill:#0b0d0e}
 .dg .nd.t-dim text{fill:var(--fg-4)}
-.dg .nd.t-bad rect{stroke:rgba(248,113,113,.45); fill:rgba(248,113,113,.06)}
-.dg .nd.t-bad text{fill:#f6a6a6}
-.dg .nd.t-ok rect{stroke:rgba(74,222,128,.38); fill:rgba(74,222,128,.05)}
-.dg .nd.t-ok text{fill:#9ae6b4}
 .dg .grp rect{fill:none; stroke:var(--line); stroke-dasharray:4 4}
-.dg .grp text{fill:var(--fg-4); font-size:10px; letter-spacing:.1em; text-transform:uppercase}
+.dg .grp text{fill:var(--fg-3); font-size:9.75px; letter-spacing:.04em; text-transform:uppercase}
 .dg .e{fill:none; stroke:#33383d; stroke-width:1; marker-end:url(#ar)}
-.dg .e-a{fill:none; stroke:rgba(94,234,212,.65); stroke-width:1.2; marker-end:url(#ar-a)}
-.dg .e-d{fill:none; stroke:#3a2224; stroke-width:1.2; stroke-dasharray:5 4; marker-end:url(#ar-d)}
-.dg .e-a2{fill:none; stroke:rgba(94,234,212,.3); stroke-width:1; marker-end:url(#ar-a)}
-.dg .elab{fill:var(--fg-4); font-size:9.5px; letter-spacing:.02em}
-.dg .anno{fill:var(--fg-4); font-size:9.5px}
-.dg .anno-w{fill:var(--fg-3); font-size:10px}
+.dg .e-a{fill:none; stroke:#33383d; stroke-width:1.2; marker-end:url(#ar)}
+.dg .e-d{fill:none; stroke:#33383d; stroke-width:1.2; stroke-dasharray:5 4; marker-end:url(#ar)}
+.dg .e-a2{fill:none; stroke:#33383d; stroke-width:1; marker-end:url(#ar)}
+.dg .elab{fill:var(--fg-3); font-size:9.75px; letter-spacing:.02em}
+.dg .anno{fill:var(--fg-3); font-size:9.75px}
+.dg .anno-w{fill:var(--fg-3); font-size:9.75px}
 .dg .bar-bg{fill:#15181a}
 .dg .bar-old{fill:#3d3f42}
 .dg .bar-new{fill:rgba(94,234,212,.75)}
@@ -317,15 +310,19 @@ section + section{border-top:1px solid var(--line-2); margin-top:var(--s9)}
 .dg .pkt{
   fill:var(--accent); opacity:0; pointer-events:none;
   filter:drop-shadow(0 0 6px rgba(94,234,212,.95));
-  will-change:transform, opacity; transition:opacity .18s var(--ease);
+  will-change:transform, opacity;
 }
+.dg .pkt.error{fill:var(--bad); filter:drop-shadow(0 0 6px rgba(248,113,113,.95))}
 .dg path.flowing{
   stroke:rgba(94,234,212,.9); stroke-width:1.7;
-  stroke-dasharray:none; opacity:1;
+  stroke-dasharray:none; opacity:1; marker-end:url(#ar-a);
 }
-.dg path.flowing.e-d{stroke:rgba(248,113,113,.9)}
+.dg path.flowing.e-d{stroke:rgba(248,113,113,.9); marker-end:url(#ar-d)}
 .dg g.nd.act > rect{stroke:rgba(94,234,212,.7); fill:rgba(94,234,212,.10)}
 .dg g.nd.act > text{fill:#ccfbf1}
+.dg g.grp.act > rect{stroke:rgba(94,234,212,.7)}
+.dg g.nd.t-bad.act > rect{stroke:var(--bad); fill:rgba(248,113,113,.12)}
+.dg g.nd.t-bad.act > text{fill:#fecaca}
 @media (prefers-reduced-motion:reduce){
   .dg .pkt{display:none}
 }
@@ -343,6 +340,27 @@ section + section{border-top:1px solid var(--line-2); margin-top:var(--s9)}
 .ref:hover{background:rgba(94,234,212,.16); color:var(--accent)}
 .flash{animation:flash 1.8s var(--ease)}
 @keyframes flash{0%,22%{background:rgba(94,234,212,.10)}100%{background:transparent}}
+
+/* ------------------------------------------------------- decision dialog */
+body.dialog-open{overflow:hidden}
+.record-trigger{cursor:pointer; text-align:left; line-height:1.6}
+.record-dialog{width:min(760px,calc(100% - 32px)); max-height:calc(100dvh - 48px); margin:auto; padding:28px; overflow:auto; overscroll-behavior:contain; color:var(--fg); background:var(--bg-2); border:1px solid #39434a; border-radius:14px; box-shadow:0 24px 90px rgba(0,0,0,.6)}
+.record-dialog::backdrop{background:rgba(0,0,0,.76); backdrop-filter:blur(5px)}
+.record-toolbar{display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:24px}
+.record-close{flex-shrink:0; padding:8px 12px; border:1px solid #46515a; border-radius:6px; color:var(--fg); background:var(--bg-3); font:inherit; font-size:13px; cursor:pointer}
+.record-close:hover{border-color:var(--accent); color:var(--accent)}
+.record-dialog h2{font-size:clamp(20px,3vw,26px); line-height:1.45; letter-spacing:-.025em}
+.record-summary{padding-left:16px; border-left:2px solid var(--accent); margin:24px 0; color:var(--fg-2); line-height:1.75}
+.record-dialog .kv{row-gap:24px; grid-template-columns:80px minmax(0,1fr)}
+.record-dialog .alt:first-child{margin-top:0}
+.record-dialog .alt b{font-weight:500; color:var(--fg)}
+.record-dialog .alt.win b{color:var(--accent)}
+.record-dialog .foot{margin-top:28px}
+@media(max-width:620px){
+  .record-dialog{padding:20px; max-height:calc(100dvh - 24px)}
+  .record-dialog .kv{grid-template-columns:1fr; row-gap:10px}
+  .record-dialog .kv dt:not(:first-child){margin-top:14px}
+}
 
 /* ------------------------------------------------------------ adr / inc */
 .entry{padding-top:var(--s7); border-top:1px solid var(--line-2); margin-top:var(--s7)}
@@ -461,3 +479,14 @@ footer{margin-top:var(--s10); border-top:1px solid var(--line-2); padding:var(--
   .dg text{fill:#333}
   .plate{border-color:#ddd}
 }
+
+/* Incident references remain distinct from design decisions. */
+.ref.incident-trigger{color:#fca5a5; border-color:rgba(248,113,113,.4); background:rgba(248,113,113,.08)}
+.ref.incident-trigger:hover{color:#fecaca; background:rgba(248,113,113,.16)}
+.record-dialog[data-kind="incident"] .entry-id{color:#fca5a5}
+.record-dialog[data-kind="incident"] .record-summary{border-left-color:var(--bad)}
+.record-dialog[data-kind="incident"] .steps.accent li::before{color:#fca5a5}
+
+@media(max-width:1200px){.dg{min-width:800px}}
+@media(min-width:1201px){.plate-hint{display:none}}
+@media print{.diagram-viewport{overflow:visible}.dg{min-width:0}.plate-hint{display:none}}
