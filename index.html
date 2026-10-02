@@ -24,7 +24,7 @@
   }
 }
 </script>
-<link rel="stylesheet" href="styles.css" />
+<link rel="stylesheet" href="styles.css?v=fit-diagrams-v2" />
 </head>
 <body data-depth="30">
 <canvas id="graph" role="img" aria-label="Kotlin, Spring Boot, MariaDB, PostgreSQL, Redis, Kubernetes, Argo CD, Docker, Istio, Sentry, AWS, Prometheus, Grafana, GitHub Actions, NGINX, Keycloak로 구성된 3D 기술 스택 그래프"></canvas>
@@ -128,7 +128,7 @@
 </dialog>
 
 <script src="logos.js"></script>
-<script src="data.js?v=file-experiments-v4"></script>
+<script src="data.js?v=aws-cost-v5"></script>
 <script type="module">
 import { getFlowFrame, findEndpointNode, getPacketState } from "./diagram-flow.mjs?v=arrival-v2";
 /* ============================================================ 렌더 엔진 */
@@ -166,8 +166,7 @@ function diagram(p, idx) {
   if (!p) return "";
   return `<figure class="plate d${idx === 0 ? "3" : "30"} rv">
     <div class="cap-top"><span class="qn">도식 ${idx + 1}</span><span>${E(p.q)}</span></div>
-    <div class="diagram-viewport" tabindex="0" role="region" aria-label="${E(p.q)}">${p.svg}</div>
-    <div class="plate-hint">↔ 도식은 좌우로 스크롤해서 볼 수 있습니다</div>
+    <div class="diagram-viewport" role="region" aria-label="${E(p.q)}">${p.svg}</div>
     <figcaption class="cap-bot">${E(p.cap)}</figcaption>
   </figure>`;
 }
