@@ -73,7 +73,6 @@ export function getQualityProfile(width, height, devicePixelRatio = 1) {
     logoDepth: 5.8,
     logoScale: 0.7,
     layoutSpread: mobile ? 1.08 : 1.24,
-    frontOpacity: .96,
     haloOpacity: .24
   };
 }

@@ -32,6 +32,7 @@ function makeLogo(definition, index, profile, loader, logoMeshes) {
   const root = new THREE.Group();
   const brand = new THREE.Color(definition.color);
   const displayBrand = brand.clone().lerp(new THREE.Color("#ffffff"), .18);
+  if (definition.key === "argo") displayBrand.multiplyScalar(.82);
   const front = new THREE.MeshStandardMaterial({
     color: displayBrand,
     emissive: displayBrand,
@@ -183,8 +184,8 @@ export function mountGraph(canvas) {
     const angle = node.index * 2.399963;
     const radius = Math.sqrt((node.index + .7) / nodes.length);
     const home = new THREE.Vector3(
-      (compact ? 0 : -viewWidth * .15) + Math.cos(angle) * radius * viewWidth * (compact ? .36 : .14),
-      (compact ? viewHeight * .27 : 0) + Math.sin(angle) * radius * viewHeight * (compact ? .12 : .34),
+      (compact ? 0 : -viewWidth * .15) + Math.cos(angle) * radius * viewWidth * (compact ? .40 : .14),
+      (compact ? viewHeight * .27 : 0) + Math.sin(angle) * radius * viewHeight * (compact ? .14 : .34),
       z
     );
     if (!compact && (node.key === "amazonwebservices" || node.key === "keycloak")) {
@@ -201,6 +202,10 @@ export function mountGraph(canvas) {
     if (!compact && (node.key === "mariadb" || node.key === "kubernetes")) {
       home.x += viewWidth * .012;
       home.y += viewHeight * .025;
+    }
+    if (!compact) {
+      home.x = (home.x + viewWidth * .15) * 1.2 - viewWidth * .184;
+      home.y *= 1.1;
     }
     home.x += node.offset.x;
     home.y += node.offset.y;
@@ -239,11 +244,6 @@ export function mountGraph(canvas) {
   graph.rotation.set(0, 0, 0);
 
   function setNodeState(node, active) {
-    const opacity = active ? (node.active ? 1 : .72) : profile.frontOpacity;
-    node.root.userData.front.opacity = opacity;
-    node.root.userData.front.transparent = opacity < 1;
-    node.root.userData.side.opacity = opacity;
-    node.root.userData.side.transparent = opacity < 1;
     node.root.userData.front.emissiveIntensity = active && node.active ? .78 : active ? .28 : .42;
     node.root.userData.side.emissiveIntensity = active && node.active ? .34 : .2;
     node.aura.material.opacity = active ? (node.active ? .58 : .1) : profile.haloOpacity;

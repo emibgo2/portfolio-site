@@ -4,17 +4,17 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>고지훈 · Backend &amp; Infrastructure Engineer</title>
-<meta name="description" content="레거시를 걷어내고, 장애를 줄이고, 숫자로 남긴 백엔드 · 인프라 엔지니어 고지훈의 시스템 · 결정 · 장애 기록" />
+<meta name="description" content="복잡한 시스템을 단순하게, 서비스는 더 안정적으로. 백엔드 · 인프라 엔지니어 고지훈의 설계 · 성능 개선 · 운영 경험" />
 <meta name="color-scheme" content="dark" />
 <meta property="og:title" content="고지훈 · Backend & Infrastructure Engineer" />
-<meta property="og:description" content="시스템 10개, 아키텍처 결정 15개, 장애·실험·예방 개선 기록 7건. 무엇을 왜 그렇게 결정했고 무엇을 막았는지의 기록." />
+<meta property="og:description" content="시스템 9개, 아키텍처 결정 13개, 장애·실험·예방 개선 기록 7건. 무엇을 왜 그렇게 결정했고 무엇을 막았는지의 기록." />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="og-image.svg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="고지훈 · Backend & Infrastructure Engineer" />
-<meta name="twitter:description" content="시스템 10개, 아키텍처 결정 15개, 장애·실험·예방 개선 기록 7건. 무엇을 왜 그렇게 결정했고 무엇을 막았는지의 기록." />
+<meta name="twitter:description" content="시스템 9개, 아키텍처 결정 13개, 장애·실험·예방 개선 기록 7건. 무엇을 왜 그렇게 결정했고 무엇을 막았는지의 기록." />
 <meta name="twitter:image" content="og-image.svg" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230a0b0c'/><text x='16' y='22' font-size='15' font-family='monospace' fill='%235eead4' text-anchor='middle'>G</text></svg>" />
 <script type="importmap">
@@ -24,7 +24,7 @@
   }
 }
 </script>
-<link rel="stylesheet" href="styles.css?v=fit-diagrams-v2" />
+<link rel="stylesheet" href="styles.css?v=reading-modes-v14" />
 </head>
 <body data-depth="30">
 <canvas id="graph" role="img" aria-label="Kotlin, Spring Boot, MariaDB, PostgreSQL, Redis, Kubernetes, Argo CD, Docker, Istio, Sentry, AWS, Prometheus, Grafana, GitHub Actions, NGINX, Keycloak로 구성된 3D 기술 스택 그래프"></canvas>
@@ -43,7 +43,6 @@
     <div class="who"><b>고지훈</b><span>system · decision · incident archive</span></div>
     <div class="sp"></div>
     <div class="seg" role="group" aria-label="읽기 깊이">
-      <button type="button" data-d="1" aria-pressed="false">30초</button>
       <button type="button" data-d="3" aria-pressed="false">3분</button>
       <button type="button" data-d="30" aria-pressed="true">30분</button>
     </div>
@@ -56,12 +55,12 @@
     <div class="hero-in">
       <div class="hero-copy">
       <div class="eyebrow">System · Decision · Incident Archive</div>
-      <h1>레거시를 걷어내고, 장애를 줄이고,<br /><em>숫자로 남깁니다.</em></h1>
+      <h1>복잡한 시스템을 단순하게,<br /><em>서비스는 더 안정적으로.</em></h1>
       <p class="lead">
-        인증 · 배포 · 복구 · 데이터베이스를 다뤄온 3년 6개월 차 백엔드 엔지니어입니다.
+        서비스 구조 설계부터 성능 개선, 인증 통합, 배포와 장애 복구까지<br />
+        맡아온 <span id="careerDuration"></span>백엔드 엔지니어 고지훈입니다.
       </p>
       <div class="kpis" id="kpis"></div>
-      <p class="depth-hint" id="depthBanner"></p>
       </div>
     </div>
   </div>
@@ -79,23 +78,19 @@
         <div class="sec-head"><span class="n">01</span><h2>소개</h2><span class="sub">about</span></div>
         <p class="sec-intro" id="aboutIntro"></p>
         <div class="about-grid">
-          <div><h4>경력</h4><ul id="careerList"></ul></div>
+          <div class="career-column"><h4>경력</h4><ul id="careerList"></ul></div>
           <div class="d30"><h4>활동 · 수상 · 학력</h4><ul id="extraList"></ul></div>
         </div>
       </section>
 
       <section id="systems">
         <div class="sec-head"><span class="n">02</span><h2>시스템</h2><span class="sub">담당 프로젝트 최신순</span></div>
-        <p class="sec-intro">
-          각 항목은 <b>주장 한 줄 → 문제 → 판단 → 실행 → 결과 → 남은 것</b> 순서로 씁니다.
-          잘한 것만 남기면 다음 사람이 같은 판단을 할 수 없기 때문에 <b>버린 대안과 감수한 대가</b>를 함께 적었습니다.
-        </p>
         <div id="systemsList"></div>
       </section>
 
       <section id="runbooks">
         <div class="sec-head"><span class="n">03</span><h2>런북</h2><span class="sub">operational standards</span></div>
-        <p class="sec-intro">팀에 남긴 운영 표준입니다. 새로 들어온 사람이 읽고 그대로 따라 할 수 있는 수준을 목표로 썼습니다.</p>
+        <p class="sec-intro">배포·장애 복구·쿼리 개선·권한 관리를 팀 공통 절차로 표준화했습니다.</p>
         <div class="rb" id="runbooksList"></div>
       </section>
 
@@ -109,11 +104,6 @@
 
       <footer>
         <div class="frow" id="footLinks"></div>
-        <p class="note">
-          회사와 관련된 내용은 공개 가능한 범위 안에서 재구성했고, 수치는 본인이 수행한 작업의 측정값입니다.
-          회사 자산(코드 · 내부 문서 · 고객 데이터)은 포함하지 않았습니다.
-          개인 연락처는 이메일과 GitHub, 블로그만 공개합니다.
-        </p>
       </footer>
     </div>
   </div>
@@ -128,22 +118,18 @@
 </dialog>
 
 <script src="logos.js"></script>
-<script src="data.js?v=aws-cost-v5"></script>
+<script src="data.js?v=dr-copy-v24"></script>
 <script type="module">
 import { getFlowFrame, findEndpointNode, getPacketState } from "./diagram-flow.mjs?v=arrival-v2";
+import { formatCareerDuration } from "./career-duration.mjs";
 /* ============================================================ 렌더 엔진 */
 const E = (s) => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
 const $ = (s, r) => (r || document).querySelector(s);
 const D = window.PF;
 const records = new Map([...D.decisions, ...D.incidents].map(record => [record.id, record]));
 
-const DEPTH_COPY = {
-  "1": "30초 보기 — 결과와 한 줄 요약만",
-  "3": "3분 보기 — 요약 · 맥락 · 결과",
-  "30": "30분 보기 — 도식 · 대안 · 재발 방지까지"
-};
-
 function renderHead() {
+  $("#careerDuration").textContent = `${formatCareerDuration(D.profile.careerStartMonth)}차 `;
   $("#kpis").innerHTML = D.profile.kpis.map(([v, k]) => {
     const m = String(v).match(/^(.*?)\s*(→.*)$/);
     const html = m ? `${E(m[1])} <i>${E(m[2])}</i>` : E(v);
@@ -181,17 +167,17 @@ function refChips(ids) {
 }
 
 function renderSystems() {
-  $("#systemsList").innerHTML = D.systems.map(s => {
-    const story = s.story.map(([k, p], i) => {
-      const last = i === s.story.length - 1;
-      return `<div class="row ${last ? "d30 mark" : "d3"}"><div class="k">${E(k)}</div><div class="p">${p}</div></div>`;
+  $("#systemsList").innerHTML = D.systems.map((s, index) => {
+    const story = s.story.map(([k, p]) => {
+      const remaining = k === "남은 것";
+      return `<div class="row ${remaining ? "d30 mark" : "d3"}"><div class="k">${E(k)}</div><div class="p">${p}</div></div>`;
     }).join("");
     return `<article class="rec" id="sys-${s.no}">
       <header class="rec-head">
-        <div class="rec-title"><span class="rec-no">${E(s.no)}</span><h3>${E(s.title)}</h3></div>
-        <div class="rec-meta"><b>${E(s.org)}</b><span>${E(s.period)}</span><span>${E(s.role)}</span></div>
+        <div class="rec-title"><span class="rec-no">${String(index + 1).padStart(2, "0")}</span><h3>${E(s.title)}</h3></div>
+        <div class="rec-meta"><b>${E(s.org)}</b>${s.period ? `<span>${E(s.period)}</span>` : ""}<span>${E(s.role)}</span></div>
       </header>
-      <p class="thesis"><span class="thesis-k">이 프로젝트가 말하는 것</span>${E(s.thesis)}</p>
+      <p class="thesis">${E(s.thesis)}</p>
       <div class="story">${story}</div>
       <div class="metrics d3">${s.metrics.map(([v, k]) =>
         `<div class="metric"><div class="v">${E(v)}</div><div class="k">${E(k)}</div></div>`).join("")}</div>
@@ -296,19 +282,20 @@ function renderStack() {
 
 function renderAbout() {
   $("#aboutIntro").innerHTML = E(D.about.intro);
-  $("#careerList").innerHTML = D.about.career.map(([who, when, what]) =>
-    `<li><b>${E(who)}</b><br />${E(when)} · ${E(what)}</li>`).join("");
+  $("#careerList").innerHTML = D.about.career.map(([who, when, duties]) =>
+    `<li><b>${E(who)}</b><span class="career-period">${E(when)}</span>
+      <ul class="career-duties">${duties.map(duty => `<li>${E(duty)}</li>`).join("")}</ul>
+    </li>`).join("");
   $("#extraList").innerHTML = D.about.extra.map(x => `<li>${E(x)}</li>`).join("");
 }
 
 /* ============================================================ 인터랙션 */
 function setDepth(d, persist) {
-  document.body.dataset.depth = d;
+  const depth = d === "3" || d === "1" ? "3" : "30";
+  document.body.dataset.depth = depth;
   document.querySelectorAll(".seg button").forEach(b =>
-    b.setAttribute("aria-pressed", String(b.dataset.d === d)));
-  const banner = $("#depthBanner");
-  if (banner) banner.textContent = DEPTH_COPY[d] || "";
-  if (persist !== false) { try { localStorage.setItem("pf-depth", d); } catch (e) {} }
+    b.setAttribute("aria-pressed", String(b.dataset.d === depth)));
+  if (persist !== false || depth !== d) { try { localStorage.setItem("pf-depth", depth); } catch (e) {} }
 }
 
 function initInteraction() {
@@ -491,9 +478,9 @@ initDiagramFlow();
 
 try {
   console.log("%c고지훈 · Backend & Infrastructure Engineer", "color:#5eead4;font-weight:600");
-  console.log("콘텐츠는 data.js 한 파일에 있습니다. 30초 / 3분 / 30분 토글은 같은 데이터의 밀도만 바꿉니다.");
+  console.log("콘텐츠는 data.js 한 파일에 있습니다. 3분 / 30분 토글은 같은 데이터의 밀도만 바꿉니다.");
 } catch (e) {}
 </script>
-<script type="module" src="three-logo-graph.js"></script>
+<script type="module" src="three-logo-graph.js?v=cover-v49"></script>
 </body>
 </html>

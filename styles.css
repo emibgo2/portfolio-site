@@ -91,7 +91,7 @@ a:hover{color:var(--accent)}
 
 /* ------------------------------------------------------------------- hero */
 main{position:relative; padding-top:0}
-#graph{position:fixed; z-index:0; inset:0; display:block; width:100%; height:100%; opacity:1; pointer-events:none; mix-blend-mode:screen; filter:brightness(1.28) saturate(1.12) contrast(1.04)}
+#graph{position:fixed; z-index:0; inset:0; display:block; width:100%; height:100%; opacity:1; pointer-events:none; filter:brightness(1.28) saturate(1.12) contrast(1.04)}
 .hero,.shell{position:relative; z-index:1}
 .hero{overflow:hidden; border-bottom:1px solid var(--line-2); min-height:100svh; background:rgba(3,6,8,.18)}
 .hero::before{content:""; position:absolute; z-index:1; inset:0; pointer-events:none; background:
@@ -109,19 +109,18 @@ main{position:relative; padding-top:0}
 .hero-in{position:relative; z-index:2; max-width:var(--shell); min-height:100svh; display:flex; align-items:center; margin:0 auto; padding:calc(57px + var(--s8)) 40px var(--s8); pointer-events:none}
 .hero-copy{width:50%; margin-left:auto; transform:translateX(clamp(24px,3vw,56px)); pointer-events:auto}
 .hero-copy .kpis{max-width:none}
-.hero-copy .kpi .v{font-size:13px; white-space:normal; line-height:1.35}
+.hero-copy .kpi .v{font-size:13px; white-space:normal; word-break:keep-all; line-height:1.35}
 .hero .lead{margin-top:var(--s5); max-width:38ch; font-size:16.5px; line-height:1.7; color:var(--fg-2)}
 .kpis{margin-bottom:var(--s4)}
 @media(max-width:900px){
   .hero{min-height:100svh}
   .hero::after{background:linear-gradient(180deg, rgba(3,6,8,.08) 0%, rgba(3,6,8,.10) 34%, rgba(3,6,8,.65) 56%, rgba(3,6,8,.98) 82%, rgba(3,6,8,1) 100%)}
-  #graph{opacity:.84}
   .graph-hint{right:20px; bottom:18px}
   .hero .lead{max-width:none}
-  .hero-in{min-height:100svh; align-items:flex-end; padding:42svh 20px var(--s7)}
+  .hero-in{min-height:100svh; align-items:flex-end; padding:45.8svh 20px var(--s7)}
   .hero-copy{width:100%; margin:0; transform:none}
 }
-.eyebrow{font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--accent)}
+.eyebrow{padding-left:2px; font-family:var(--mono); font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--accent)}
 .hero h1{
   margin-top:var(--s5);
   font-size:clamp(32px,4.6vw,54px); line-height:1.14; letter-spacing:-.035em; font-weight:650;
@@ -135,34 +134,25 @@ main{position:relative; padding-top:0}
 
 .kpis{
   margin-top:var(--s7); display:grid; gap:0;
-  grid-template-columns:repeat(5,minmax(0,1fr));
+  grid-template-columns:repeat(2,minmax(0,1fr));
   border-top:1px solid var(--line); border-bottom:1px solid var(--line);
 }
 .kpi{padding:var(--s4) var(--s4) var(--s4) 0}
 .kpi + .kpi{border-left:1px solid var(--line-2); padding-left:var(--s4)}
+.kpi:nth-child(odd){border-left:0; padding-left:0}
+.kpi:nth-child(n+3){border-top:1px solid var(--line-2)}
 .kpi .v{font-family:var(--mono); font-size:15px; color:var(--fg); letter-spacing:-.015em; white-space:nowrap}
 .kpi .v i{color:var(--accent); font-style:normal}
-.kpi .k{margin-top:6px; font-size:12px; color:var(--fg-4); line-height:1.55}
+.kpi .k{margin-top:6px; font-size:12px; color:var(--fg-4); line-height:1.55; word-break:keep-all}
 .depth-hint{margin-top:var(--s5); font-family:var(--mono); font-size:11.5px; line-height:1.85; color:var(--fg-4); max-width:72ch}
 
-@media(min-width:901px){
-  .kpis{max-width:68%}
-}
-
-@media(max-width:920px){
-  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .kpi:nth-child(odd){padding-left:0; border-left:0}
-  .kpi:nth-child(n+3){border-top:1px solid var(--line-2)}
-}
 @media(max-width:520px){
-  .hero-in{padding:38svh 20px var(--s7)}
+  .hero-in{padding:43.8svh 20px var(--s7)}
   .hero .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
   .hero .kpi{padding:10px 8px}
   .hero .kpi:nth-child(odd){padding-left:0}
   .hero h1{font-size:clamp(26px,7vw,36px)}
   .hero .lead{font-size:14px}
-  .kpis{grid-template-columns:1fr}
-  .kpi + .kpi{border-left:0; border-top:1px solid var(--line-2); padding-left:0}
   .graph-hint{display:none}
 }
 
@@ -241,7 +231,7 @@ section + section{border-top:1px solid var(--line-2); margin-top:var(--s9)}
 .thesis{
   margin-top:var(--s5); padding-left:var(--s4); border-left:2px solid var(--accent);
   font-size:20px; line-height:1.66; letter-spacing:-.012em; color:var(--fg);
-  max-width:56ch;
+  max-width:100%; word-break:keep-all; overflow-wrap:break-word;
 }
 .thesis-k{font-family:var(--mono); font-size:13px; letter-spacing:.14em; text-transform:uppercase; color:var(--fg-4); display:block; margin-bottom:6px}
 
@@ -284,11 +274,17 @@ section + section{border-top:1px solid var(--line-2); margin-top:var(--s9)}
 
 /* svg diagram */
 .diagram-viewport{min-width:0}
+#sys-01 .diagram-viewport,#sys-03 .plate:first-of-type .diagram-viewport{overflow-x:auto}
+#sys-01 .dg,#sys-03 .plate:first-of-type .dg{min-width:640px}
+#sys-01 .cap-top,#sys-01 .cap-bot{word-break:keep-all}
+#sys-01 .cap-top .qn,#sys-03 .plate:first-of-type .cap-top .qn{white-space:nowrap; flex-shrink:0}
 .dg{width:100%; min-width:0; height:auto; display:block; overflow:visible}
 @media(max-width:620px){.plate{padding:var(--s4) var(--s3)}}
 .dg text{font-family:var(--sans); font-size:14px; fill:var(--fg-2); letter-spacing:-.01em}
 .dg .nd rect{fill:var(--bg-3); stroke:var(--line); stroke-width:1}
 .dg .nd text{fill:var(--fg-2)}
+.dg .nd.category text{font-size:15px; font-weight:600}
+.dg .diagram-logo{cursor:help}
 .dg .nd.t-dim rect{stroke:var(--line-2); fill:#0b0d0e}
 .dg .nd.t-dim text{fill:var(--fg-4)}
 .dg .grp rect{fill:none; stroke:var(--line); stroke-dasharray:4 4}
@@ -296,6 +292,7 @@ section + section{border-top:1px solid var(--line-2); margin-top:var(--s9)}
 .dg .e{fill:none; stroke:#33383d; stroke-width:1; marker-end:url(#ar)}
 .dg .e-a{fill:none; stroke:#33383d; stroke-width:1.2; marker-end:url(#ar)}
 .dg .e-d{fill:none; stroke:#33383d; stroke-width:1.2; stroke-dasharray:5 4; marker-end:url(#ar)}
+.dg .diagram-control{fill:none; stroke:#64727b; stroke-width:1.2; stroke-dasharray:4 4; marker-end:url(#ar)}
 .dg .e-a2{fill:none; stroke:#33383d; stroke-width:1; marker-end:url(#ar)}
 .dg .elab{fill:var(--fg-3); font-size:11.5px; letter-spacing:.02em}
 .dg .anno{fill:var(--fg-3); font-size:11.5px}
@@ -443,9 +440,20 @@ body.dialog-open{overflow:hidden}
 .about-grid li{font-size:17px; line-height:1.72; color:var(--fg-2); padding-left:14px; position:relative}
 .about-grid li::before{content:""; position:absolute; left:0; top:.72em; width:5px; height:1px; background:var(--fg-4)}
 .about-grid li b{color:var(--fg); font-weight:600}
+.career-column{container:career / inline-size}
+#careerList{gap:24px}
+#careerList > li{padding-left:0}
+#careerList > li::before{content:none}
+#careerList .career-period{display:block; margin:3px 0 8px; font-size:14px; color:var(--fg-3)}
+#careerList .career-duties{gap:2px}
+#careerList .career-duties li{font-size:15px}
+@container career (min-width:464px){
+  #careerList{display:grid; grid-template-columns:repeat(2,minmax(0,1fr))}
+  #careerList > li:last-child{grid-column:1 / -1}
+  #careerList > li:last-child .career-duties{flex-direction:row; flex-wrap:wrap; column-gap:16px}
+}
 
 /* visibility by depth (데이터는 하나, 밀도만 바꿈) */
-body[data-depth="1"] .d3, body[data-depth="1"] .d30{display:none !important}
 body[data-depth="3"] .d30{display:none !important}
 
 /* reveal */

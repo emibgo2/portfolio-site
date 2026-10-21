@@ -59,7 +59,6 @@ test("caps render quality for high-density screens and keeps mobile light", () =
     logoDepth: 5.8,
     logoScale: 0.7,
     layoutSpread: 1.24,
-    frontOpacity: 0.96,
     haloOpacity: 0.24
   });
   assert.deepEqual(getQualityProfile(390, 760, 3), {
@@ -70,7 +69,6 @@ test("caps render quality for high-density screens and keeps mobile light", () =
     logoDepth: 5.8,
     logoScale: 0.7,
     layoutSpread: 1.08,
-    frontOpacity: 0.96,
     haloOpacity: 0.24
   });
 });
@@ -79,7 +77,6 @@ test("keeps scattered logos visibly extruded and bright enough on dark backgroun
   const profile = getQualityProfile(1440, 640, 2);
 
   assert.equal(profile.logoDepth, 5.8);
-  assert.equal(profile.frontOpacity, 0.96);
   assert.equal(profile.haloOpacity, 0.24);
 });
 
