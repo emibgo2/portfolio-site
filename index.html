@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>고지훈 · Backend &amp; Infrastructure Engineer</title>
-<meta name="description" content="복잡한 시스템을 단순하게, 서비스는 더 안정적으로. 백엔드 · 인프라 엔지니어 고지훈의 설계 · 성능 개선 · 운영 경험" />
+<title>고지훈 · Software Engineer</title>
+<meta name="description" content="복잡한 시스템을 단순하게, 서비스는 더 안정적으로. 소프트웨어 엔지니어 고지훈의 설계 · 성능 개선 · 운영 경험" />
 <meta name="color-scheme" content="dark" />
-<meta property="og:title" content="고지훈 · Backend & Infrastructure Engineer" />
+<meta property="og:title" content="고지훈 · Software Engineer" />
 <meta property="og:description" content="시스템 9개, 아키텍처 결정 13개, 장애·실험·예방 개선 기록 7건. 무엇을 왜 그렇게 결정했고 무엇을 막았는지의 기록." />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="og-image.svg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="고지훈 · Backend & Infrastructure Engineer" />
+<meta name="twitter:title" content="고지훈 · Software Engineer" />
 <meta name="twitter:description" content="시스템 9개, 아키텍처 결정 13개, 장애·실험·예방 개선 기록 7건. 무엇을 왜 그렇게 결정했고 무엇을 막았는지의 기록." />
 <meta name="twitter:image" content="og-image.svg" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='7' fill='%230a0b0c'/><text x='16' y='22' font-size='15' font-family='monospace' fill='%235eead4' text-anchor='middle'>G</text></svg>" />
@@ -24,7 +24,7 @@
   }
 }
 </script>
-<link rel="stylesheet" href="styles.css?v=reading-modes-v14" />
+<link rel="stylesheet" href="styles.css?v=sidebar-cleanup-v20" />
 </head>
 <body data-depth="30">
 <canvas id="graph" role="img" aria-label="Kotlin, Spring Boot, MariaDB, PostgreSQL, Redis, Kubernetes, Argo CD, Docker, Istio, Sentry, AWS, Prometheus, Grafana, GitHub Actions, NGINX, Keycloak로 구성된 3D 기술 스택 그래프"></canvas>
@@ -57,8 +57,8 @@
       <div class="eyebrow">System · Decision · Incident Archive</div>
       <h1>복잡한 시스템을 단순하게,<br /><em>서비스는 더 안정적으로.</em></h1>
       <p class="lead">
-        서비스 구조 설계부터 성능 개선, 인증 통합, 배포와 장애 복구까지<br />
-        맡아온 <span id="careerDuration"></span>백엔드 엔지니어 고지훈입니다.
+        <span class="sentence">서비스 구조 설계부터 성능 개선, 인증 통합, 배포와 장애 복구까지</span>
+        <span class="sentence">맡아온 <span id="careerDuration"></span>소프트웨어 엔지니어 고지훈입니다.</span>
       </p>
       <div class="kpis" id="kpis"></div>
       </div>
@@ -69,7 +69,6 @@
     <nav class="rail" aria-label="목차">
       <div class="lbl">목차</div>
       <ol id="railList"></ol>
-      <div class="blocks" id="railBlocks"></div>
       <div class="links" id="railLinks"></div>
     </nav>
 
@@ -79,12 +78,12 @@
         <p class="sec-intro" id="aboutIntro"></p>
         <div class="about-grid">
           <div class="career-column"><h4>경력</h4><ul id="careerList"></ul></div>
-          <div class="d30"><h4>활동 · 수상 · 학력</h4><ul id="extraList"></ul></div>
+          <div><h4>활동 · 수상 · 학력</h4><ul id="extraList"></ul></div>
         </div>
       </section>
 
       <section id="systems">
-        <div class="sec-head"><span class="n">02</span><h2>시스템</h2><span class="sub">담당 프로젝트 최신순</span></div>
+        <div class="sec-head"><span class="n">02</span><h2>프로젝트</h2><span class="sub">담당 프로젝트 최신순</span></div>
         <div id="systemsList"></div>
       </section>
 
@@ -118,12 +117,16 @@
 </dialog>
 
 <script src="logos.js"></script>
-<script src="data.js?v=dr-copy-v24"></script>
+<script src="data.js?v=natural-copy-v51"></script>
 <script type="module">
 import { getFlowFrame, findEndpointNode, getPacketState } from "./diagram-flow.mjs?v=arrival-v2";
 import { formatCareerDuration } from "./career-duration.mjs";
 /* ============================================================ 렌더 엔진 */
 const E = (s) => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const sentenceBreaks = (html) => html
+  .replace(/(\.(?:<\/(?:b|em|strong|a)>)*)(?:\s+)(?=\S)/g, "$1<br>")
+  .split(/<br\s*\/?>/i)
+  .map(sentence => `<span class="sentence">${sentence}</span>`).join("");
 const $ = (s, r) => (r || document).querySelector(s);
 const D = window.PF;
 const records = new Map([...D.decisions, ...D.incidents].map(record => [record.id, record]));
@@ -137,10 +140,6 @@ function renderHead() {
   }).join("");
   $("#railList").innerHTML = D.sections.map(([id, n, label]) =>
     `<li><a href="#${id}" data-sec="${id}"><span class="n">${n}</span>${E(label)}</a></li>`).join("");
-  $("#railBlocks").innerHTML = [
-    `${D.systems.length} systems`,
-    `${D.runbooks.length} runbooks`
-  ].map(x => `<div>${E(x)}</div>`).join("");
   $("#railLinks").innerHTML = D.profile.links.map(([, href, label]) =>
     `<a href="${E(href)}" target="_blank" rel="noopener noreferrer">${E(label)}</a>`).join("");
   $("#footLinks").innerHTML = D.profile.links.map(([, href, label]) =>
@@ -153,7 +152,7 @@ function diagram(p, idx) {
   return `<figure class="plate d${idx === 0 ? "3" : "30"} rv">
     <div class="cap-top"><span class="qn">도식 ${idx + 1}</span><span>${E(p.q)}</span></div>
     <div class="diagram-viewport" role="region" aria-label="${E(p.q)}">${p.svg}</div>
-    <figcaption class="cap-bot">${E(p.cap)}</figcaption>
+    <figcaption class="cap-bot">${sentenceBreaks(E(p.cap))}</figcaption>
   </figure>`;
 }
 
@@ -167,18 +166,19 @@ function refChips(ids) {
 }
 
 function renderSystems() {
+  const renderStory = rows => rows.map(([k, p]) => {
+    const content = Array.isArray(p) ? `<ul>${p.map(item => `<li>${sentenceBreaks(item)}</li>`).join("")}</ul>` : sentenceBreaks(p);
+    return `<div class="row d3"><div class="k">${E(k)}</div><div class="p">${content}</div></div>`;
+  }).join("");
   $("#systemsList").innerHTML = D.systems.map((s, index) => {
-    const story = s.story.map(([k, p]) => {
-      const remaining = k === "남은 것";
-      return `<div class="row ${remaining ? "d30 mark" : "d3"}"><div class="k">${E(k)}</div><div class="p">${p}</div></div>`;
-    }).join("");
     return `<article class="rec" id="sys-${s.no}">
       <header class="rec-head">
         <div class="rec-title"><span class="rec-no">${String(index + 1).padStart(2, "0")}</span><h3>${E(s.title)}</h3></div>
         <div class="rec-meta"><b>${E(s.org)}</b>${s.period ? `<span>${E(s.period)}</span>` : ""}<span>${E(s.role)}</span></div>
       </header>
-      <p class="thesis">${E(s.thesis)}</p>
-      <div class="story">${story}</div>
+      <p class="thesis">${sentenceBreaks(E(s.thesis))}</p>
+      <div class="story story-summary">${renderStory(s.story)}</div>
+      <div class="story story-detail d30">${renderStory(s.storyDetail)}</div>
       <div class="metrics d3">${s.metrics.map(([v, k]) =>
         `<div class="metric"><div class="v">${E(v)}</div><div class="k">${E(k)}</div></div>`).join("")}</div>
       ${diagram(s.diagram, 0)}
@@ -202,26 +202,25 @@ function initRecordDialog() {
     $("#recordId").textContent = `${category} · ${record.id}`;
     $("#recordContent").innerHTML = isIncident ? `
       <h2 id="recordTitle">${E(record.title)}</h2>
-      <p class="record-summary">${E(record.impact)}</p>
+      <p class="record-summary">${sentenceBreaks(E(record.impact))}</p>
       <dl class="kv">
         <dt>기간</dt><dd>${E(record.period)}</dd>
-        <dt>탐지</dt><dd>${E(record.detect)}</dd>
-        <dt>원인</dt><dd>${E(record.cause)}</dd>
-        <dt>조치</dt><dd><ol class="steps accent">${record.action.map(action => `<li>${E(action)}</li>`).join("")}</ol></dd>
-        <dt>결과</dt><dd>${E(record.result)}</dd>
-        <dt>재발 방지</dt><dd>${E(record.prevent)}</dd>
-        <dt>검증</dt><dd>${E(record.verify)}</dd>
+        <dt>탐지</dt><dd>${sentenceBreaks(E(record.detect))}</dd>
+        <dt>원인</dt><dd>${sentenceBreaks(E(record.cause))}</dd>
+        <dt>조치</dt><dd><ol class="steps accent">${record.action.map(action => `<li>${sentenceBreaks(E(action))}</li>`).join("")}</ol></dd>
+        <dt>결과</dt><dd>${sentenceBreaks(E(record.result))}</dd>
+        <dt>재발 방지</dt><dd>${sentenceBreaks(E(record.prevent))}</dd>
+        <dt>검증</dt><dd>${sentenceBreaks(E(record.verify))}</dd>
       </dl>` : `
       <h2 id="recordTitle">${E(record.title)}</h2>
-      <p class="record-summary">${E(record.sum)}</p>
+      <p class="record-summary">${sentenceBreaks(E(record.sum))}</p>
       <dl class="kv">
-        <dt>배경</dt><dd>${E(record.context)}</dd>
+        <dt>배경</dt><dd>${sentenceBreaks(E(record.context))}</dd>
         <dt>검토한 대안</dt><dd>${record.alts.map(([title, why], i) => {
           const chosen = i === record.alts.length - 1;
-          return `<div class="alt ${chosen ? "win" : ""}"><span class="x" aria-hidden="true">${chosen ? "→" : "✕"}</span><span><b>${chosen ? "선택: " : ""}${E(title)}</b><span class="why">${E(why)}</span></span></div>`;
+          return `<div class="alt ${chosen ? "win" : ""}"><span class="x" aria-hidden="true">${chosen ? "→" : "✕"}</span><span><b>${chosen ? "선택: " : ""}${E(title)}</b><span class="why">${sentenceBreaks(E(why))}</span></span></div>`;
         }).join("")}</dd>
-        <dt>결과</dt><dd>${E(record.consequences)}</dd>
-        <dt>감수한 점</dt><dd>${E(record.gave)}</dd>
+        <dt>결과</dt><dd>${sentenceBreaks(E(record.consequences))}</dd>
       </dl>
       <div class="foot">${record.tags.map(tag => `<span class="tag">${E(tag)}</span>`).join("")}</div>`;
     if (!dialog.open) dialog.showModal();
@@ -257,9 +256,8 @@ function initRecordDialog() {
 function renderRunbooks() {
   $("#runbooksList").innerHTML = D.runbooks.map(r => `<article>
     <h3>${E(r.title)}</h3><div class="k">${E(r.k)}</div>
-    <ol class="steps">${r.steps.map(s => `<li>${E(s)}</li>`).join("")}</ol>
+    <ol class="steps">${r.steps.map(s => `<li>${sentenceBreaks(E(s))}</li>`).join("")}</ol>
   </article>`).join("");
-  $("#runbooks").classList.add("d3");
 }
 
 function renderStack() {
@@ -277,11 +275,10 @@ function renderStack() {
     <ul class="logo-grid">${g.logos.map(tile).join("")}</ul>
     ${g.text.length ? `<div class="chips">${g.text.map(t => `<span class="chip">${E(t)}</span>`).join("")}</div>` : ""}
   </div>`).join("");
-  $("#stack").classList.add("d3");
 }
 
 function renderAbout() {
-  $("#aboutIntro").innerHTML = E(D.about.intro);
+  $("#aboutIntro").innerHTML = sentenceBreaks(E(D.about.intro));
   $("#careerList").innerHTML = D.about.career.map(([who, when, duties]) =>
     `<li><b>${E(who)}</b><span class="career-period">${E(when)}</span>
       <ul class="career-duties">${duties.map(duty => `<li>${E(duty)}</li>`).join("")}</ul>
@@ -477,8 +474,8 @@ initRecordDialog();
 initDiagramFlow();
 
 try {
-  console.log("%c고지훈 · Backend & Infrastructure Engineer", "color:#5eead4;font-weight:600");
-  console.log("콘텐츠는 data.js 한 파일에 있습니다. 3분 / 30분 토글은 같은 데이터의 밀도만 바꿉니다.");
+  console.log("%c고지훈 · Software Engineer", "color:#5eead4;font-weight:600");
+  console.log("콘텐츠는 data.js 한 파일에 있습니다. 3분은 핵심 정리, 30분은 상세 설명을 보여줍니다.");
 } catch (e) {}
 </script>
 <script type="module" src="three-logo-graph.js?v=cover-v49"></script>
