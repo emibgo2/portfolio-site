@@ -77,6 +77,13 @@ a:hover{color:var(--accent)}
 .topbar .who b{font-size:15px; letter-spacing:-.01em}
 .topbar .who span{font-family:var(--mono); font-size:11px; color:var(--fg-4); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 .topbar .sp{flex:1}
+.topbar .pdf-download{
+  display:inline-flex; align-items:center; gap:6px; flex:none;
+  min-height:30px; padding:5px 8px; border:1px solid var(--line); border-radius:6px; background:var(--bg-2);
+  color:var(--fg-3); font-family:var(--mono); font-size:11px; white-space:nowrap;
+}
+.topbar .pdf-download svg{width:14px; height:14px; flex:none}
+.topbar .pdf-download:hover{color:var(--accent)}
 .progress{position:absolute; left:0; bottom:-1px; height:1px; width:0; background:var(--accent); opacity:.7}
 
 .seg{display:flex; align-items:center; gap:1px; padding:3px; border:1px solid var(--line); border-radius:8px; background:var(--bg-2)}
@@ -88,7 +95,18 @@ a:hover{color:var(--accent)}
 }
 .seg button:hover{color:var(--fg-2)}
 .seg button[aria-pressed="true"]{background:var(--accent-2); color:var(--accent)}
-@media(max-width:760px){ .topbar .inner{padding:12px 20px; gap:var(--s3)} .topbar .who span{display:none} }
+@media(max-width:760px){
+  .topbar .inner{padding:12px 20px; gap:var(--s3)}
+  .topbar .who span{display:none}
+}
+@media(max-width:380px){
+  .topbar .inner{padding-inline:12px; gap:8px}
+  .topbar .who b{font-size:14px}
+  .topbar .seg{padding:2px}
+  .topbar .seg button{padding-inline:7px; font-size:10px}
+  .topbar .pdf-download{gap:4px; font-size:10px}
+  .topbar .pdf-download svg{width:13px; height:13px}
+}
 
 /* ------------------------------------------------------------------- hero */
 main{position:relative; padding-top:0}
@@ -479,19 +497,74 @@ footer{margin-top:var(--s10); border-top:1px solid var(--line-2); padding:var(--
 
 /* ----------------------------------------------------------------- print */
 @media print{
-  :root{--bg:#fff; --bg-2:#fff; --bg-3:#fff; --fg:#111; --fg-2:#2c2c2c; --fg-3:#555; --fg-4:#777; --line:#ddd; --line-2:#e8e8e8; --accent:#0a7d6b; --accent-2:rgba(10,125,107,.08)}
-  body::before,#graph,.topbar,.rail,.skip{display:none !important}
-  body[data-depth] #systems .d3, body[data-depth] #systems .d30{display:block !important}
-  #systems .story-summary{display:none !important}
+  @page{size:A4; margin:15mm 14mm}
+  :root{color-scheme:light; --bg:#fff; --bg-2:#fff; --bg-3:#fff; --fg:#111; --fg-2:#2c2c2c; --fg-3:#555; --fg-4:#777; --line:#ddd; --line-2:#e8e8e8; --accent:#0a7d6b; --accent-2:rgba(10,125,107,.08)}
+  body{font-size:10pt; line-height:1.55; print-color-adjust:exact; -webkit-print-color-adjust:exact}
+  body::before,#graph,.graph-label,.topbar,.rail,.skip,.hero::before,.hero::after,.shell::before,
+  .record-dialog,.record-trigger,.foot .sep,.dg .pkt,.logo .tip{display:none !important}
+  body[data-depth] #systems .story-detail{display:block !important}
+  body[data-depth] #systems .row,body[data-depth] #systems .metrics{display:grid !important}
+  body[data-depth] #systems .foot{display:flex !important}
+  body[data-depth] #systems .plate{display:block !important}
+  body[data-depth] #systems .story-summary{display:none !important}
   .rv{opacity:1 !important; transform:none !important}
+  *{text-shadow:none !important; animation:none !important; transition:none !important}
   main{padding-top:0}
+  .hero{min-height:0; background:none; overflow:visible}
+  .hero-in{min-height:0; display:block; padding:0 0 18px}
+  .hero-copy{width:100%; margin:0; transform:none}
+  .hero .eyebrow{font-size:8pt}
+  .hero h1{font-size:24pt; margin-top:12px; max-width:none}
+  .hero .lead{font-size:11pt; margin-top:14px}
+  .hero .kpis{margin:18px 0 0}
+  .hero .kpi{padding:8px 12px}
+  .hero .kpi .v{font-size:9pt}
+  .hero .kpi .k{font-size:8pt; margin-top:3px}
   .shell{display:block; padding:0}
-  .content{max-width:none}
-  section{padding-top:24px}
-  .entry,.rec,.plate{break-inside:avoid; page-break-inside:avoid}
-  .dg .nd rect,.dg .grp rect{stroke:#bbb}
-  .dg text{fill:#333}
-  .plate{border-color:#ddd}
+  .content{max-width:none; font-size:10pt}
+  section{padding-top:18px}
+  section + section{margin-top:0; border:0; break-before:page}
+  .sec-head{break-after:avoid}
+  .sec-head h2{font-size:11pt}
+  .sec-head .n,.sec-head .sub{font-size:8pt}
+  .sec-intro{font-size:10pt; margin-top:10px; max-width:none}
+  .about-grid{grid-template-columns:1fr 1fr; gap:22px; margin-top:16px}
+  .about-grid h4{font-size:9pt; margin-bottom:8px}
+  .about-grid li,#careerList .career-duties li{font-size:9pt; line-height:1.6}
+  #careerList{gap:14px}
+  #careerList .career-period{font-size:8pt}
+  .rec{break-before:page; break-inside:auto; padding:0; margin:0; border:0}
+  .rec:first-child{break-before:auto; margin-top:20px}
+  .rec-head{break-inside:avoid; break-after:avoid}
+  .rec h3{font-size:17pt}
+  .rec-meta,.rec-no{font-size:8pt}
+  .thesis{font-size:12pt; margin:16px 0; padding-left:12px; break-inside:avoid}
+  .story{margin-top:18px; gap:12px}
+  .row{grid-template-columns:76px minmax(0,1fr); gap:12px; break-inside:avoid}
+  .row + .row{margin-top:12px}
+  .row .k{font-size:8pt; padding-top:3px}
+  .row .p{font-size:10pt; line-height:1.6}
+  .metrics{margin-top:18px; padding-top:10px; break-inside:avoid}
+  .metric .v{font-size:11pt}
+  .metric .k{font-size:8pt}
+  .plate{border-color:#ddd; padding:14px; margin-top:18px; break-inside:avoid}
+  .plate .cap-top{font-size:8pt; margin-bottom:8px}
+  .plate .cap-bot{font-size:8pt; line-height:1.5; margin-top:8px; padding-top:6px}
+  .plate:last-of-type{break-after:avoid}
+  #systems .dg{min-width:0}
+  #systems .diagram-viewport{overflow:visible}
+  .dg .nd rect,.dg .nd.t-dim rect{fill:#fff; stroke:#bbb}
+  .dg .grp rect{stroke:#bbb}
+  .dg text,.dg .nd text,.dg .nd.t-dim text,.dg g.nd.act > text{fill:#333}
+  .foot{margin-top:10px; padding-top:6px; break-inside:avoid}
+  .tag,.chip{font-size:8pt}
+  .rb{grid-template-columns:1fr 1fr; gap:24px; margin-top:18px}
+  .rb article,.stack > div{break-inside:avoid}
+  .rb article h3{font-size:11pt}
+  .rb article .k,.stack .g-head h4,.stack .g-head .note{font-size:8pt}
+  .steps li{font-size:10pt}
+  .stack{grid-template-columns:1fr 1fr; gap:24px; margin-top:18px}
+  footer{margin-top:24px; padding:12px 0; font-size:9pt}
 }
 
 /* Incident references remain distinct from design decisions. */
