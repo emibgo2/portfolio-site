@@ -24,7 +24,7 @@
   }
 }
 </script>
-<link rel="stylesheet" href="styles.css?v=pdf-menu-v1" />
+<link rel="stylesheet" href="styles.css?v=pdf-print-v2" />
 </head>
 <body data-depth="30">
 <canvas id="graph" role="img" aria-label="Kotlin, Spring Boot, MariaDB, PostgreSQL, Redis, Kubernetes, Argo CD, Docker, Istio, Sentry, AWS, Prometheus, Grafana, GitHub Actions, NGINX, Keycloak로 구성된 3D 기술 스택 그래프"></canvas>
@@ -55,7 +55,7 @@
         <a class="pdf-option" href="output/pdf/go-jihoon-resume.pdf?v=resume-v19" download="고지훈_이력서.pdf">
           <strong>이력서 PDF</strong><span>주요 업무 · 성과</span>
         </a>
-        <a class="pdf-option" href="output/pdf/go-jihoon-portfolio.pdf?v=pdf-v2" download="고지훈_포트폴리오.pdf">
+        <a class="pdf-option" href="output/pdf/go-jihoon-portfolio.pdf?v=pdf-v3" download="고지훈_포트폴리오.pdf">
           <strong>포트폴리오 PDF</strong><span>프로젝트 상세 · 도식</span>
         </a>
       </div>
@@ -185,12 +185,16 @@ function renderSystems() {
     return `<div class="row d3"><div class="k">${E(k)}</div><div class="p">${content}</div></div>`;
   }).join("");
   $("#systemsList").innerHTML = D.systems.map((s, index) => {
+    const thesis = sentenceBreaks(E(s.thesis)).replace(
+      /[\p{L}\p{N}]+(?:·[\p{L}\p{N}]+)+/gu,
+      term => `<span class="print-keep-term">${term}</span>`
+    );
     return `<article class="rec" id="sys-${s.no}">
       <header class="rec-head">
         <div class="rec-title"><span class="rec-no">${String(index + 1).padStart(2, "0")}</span><h3>${E(s.title)}</h3></div>
         <div class="rec-meta"><b>${E(s.org)}</b>${s.period ? `<span>${E(s.period)}</span>` : ""}<span>${E(s.role)}</span></div>
       </header>
-      <p class="thesis">${sentenceBreaks(E(s.thesis))}</p>
+      <p class="thesis">${thesis}</p>
       <div class="story story-summary">${renderStory(s.story)}</div>
       <div class="story story-detail d30">${renderStory(s.storyDetail)}</div>
       <div class="metrics d3">${s.metrics.map(([v, k]) =>
