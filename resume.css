@@ -43,11 +43,12 @@ address{display:flex; flex-direction:column; gap:4px; font-style:normal; font-si
 .career-meta .period{margin:6px 0 3px}
 h4{font-size:9.5pt; margin-bottom:8px}
 .career-body li{line-height:1.6}
-.career-body li + li{margin-top:9px}
+.career-body li + li,.project li + li{margin-top:12px}
+.career-body li p + p,.project li p + p{margin-top:12px}
 .work-group + .work-group{margin-top:14px}
 .work-group h4{color:var(--text)}
 .outcome-heading{margin-top:15px; color:var(--accent)}
-.outcomes li + li{margin-top:7px}
+.outcomes li + li{margin-top:12px}
 .note{font-size:8pt; color:var(--muted); font-weight:400}
 .continued{margin-top:0}
 .project + .project{margin-top:14px}
@@ -76,16 +77,17 @@ h4{font-size:9.5pt; margin-bottom:8px}
   :root{background:#fff}
   body{print-color-adjust:exact; -webkit-print-color-adjust:exact}
   .resume{width:auto; margin:0; box-shadow:none}
-  .page{padding:0; min-height:0; break-after:page}
+  .page{padding:0; min-height:0}
   .page:last-child{break-after:auto}
-  .page + .page{border:0}
+  .page + .page{border:0; margin-top:24px}
+  .continued > h2{display:none}
   .career{display:block}
-  .career-meta{display:flex; align-items:baseline; gap:12px; margin-bottom:12px}
+  .career-meta{display:flex; align-items:baseline; gap:12px; margin-bottom:12px; break-after:avoid}
   .career-meta .period{margin:0 0 0 auto}
   .career-meta p{white-space:nowrap}
   .career-body li{line-height:1.5}
-  .career-body li + li,.outcomes li + li{margin-top:4px}
-  .work-group + .work-group{margin-top:8px}
+  .work-group + .work-group{margin-top:16px}
+  .work-group,.outcomes{break-inside:avoid}
   h4{margin-bottom:5px}
   .outcome-heading{margin-top:12px}
   .project li{line-height:1.5}
