@@ -10,6 +10,9 @@ styles.css    # 디자인 시스템 (토큰 · 레이아웃 · 도식 · 인쇄)
 data.js       # 콘텐츠 전체 + SVG 도식 12개
 og-image.svg  # 공유 미리보기 (카카오톡 · 슬랙 · X)
 output/pdf/go-jihoon-portfolio.pdf # 다운로드용 30분 상세본
+resume.html   # 주요 업무·성과 중심 이력서 원본
+resume.css    # 이력서 화면·A4 인쇄 양식
+output/pdf/go-jihoon-resume.pdf # 다운로드용 이력서
 README.md     # 이 문서
 ```
 
@@ -42,7 +45,7 @@ git push origin main
 
 ## 콘텐츠 수정
 
-`data.js` 한 파일만 고치면 됩니다. HTML을 건드릴 필요가 없습니다.
+웹 포트폴리오 본문은 `data.js`에서 수정합니다. 요약 이력서는 `resume.html`에서 별도로 편집하며, PDF 갱신 방법은 아래를 참고하세요.
 
 | 객체 | 내용 |
 |---|---|
@@ -71,7 +74,16 @@ git push origin main
 
 ## PDF 다운로드
 
-상단의 **PDF 다운로드**는 `output/pdf/go-jihoon-portfolio.pdf`에 저장한 30분 정적 PDF를 내려받습니다. 콘텐츠를 수정한 뒤에는 브라우저에서 페이지를 열고 `Cmd/Ctrl+P` → 용지 `A4` → `배경 그래픽` 켜기 → `PDF로 저장`을 선택해 같은 경로에 덮어씁니다. 인쇄 스타일이 프로젝트의 상세 설명과 도식을 모두 펼칩니다. PDF를 교체할 때는 다운로드 링크의 버전 값도 올려 이전 파일이 캐시에 남지 않게 합니다.
+상단의 **PDF 다운로드**를 누르면 이력서와 포트폴리오를 선택할 수 있습니다.
+
+| 선택 | 원본 | 다운로드 파일 |
+|---|---|---|
+| **이력서** | `resume.html` · `resume.css` | `output/pdf/go-jihoon-resume.pdf` |
+| **포트폴리오** | `index.html` · `data.js` · `styles.css` | `output/pdf/go-jihoon-portfolio.pdf` |
+
+이력서는 기본 정보·기술 스택·회사별 주요 업무와 성과·사이드 프로젝트·학력·활동으로 정리한 2쪽 문서입니다. 철도시설 성능평가 통합 시스템 업무는 네모시스 경력에 포함합니다. 포트폴리오는 상세 설명과 도식을 담은 30분 버전입니다.
+
+내용을 변경하면 해당 원본을 브라우저에서 열고 `Cmd/Ctrl+P` → 용지 `A4` → `배경 그래픽` 켜기 → `PDF로 저장`으로 다운로드 파일도 갱신합니다. 이력서 문구는 `data.js`의 확인된 경력·성과를 기준으로 `resume.html`에 요약합니다. PDF를 교체할 때는 `index.html`의 해당 다운로드 링크 버전 값도 올려 이전 파일이 캐시에 남지 않게 합니다.
 
 ## 서사 구조
 

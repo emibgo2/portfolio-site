@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>고지훈 · 소프트웨어 엔지니어 이력서</title>
+  <link rel="stylesheet" href="resume.css?v=resume-v1">
+</head>
+<body>
+<main class="resume">
+  <section class="page">
+    <header class="identity">
+      <div><h1>고지훈</h1><p class="role">Software Engineer · 소프트웨어 엔지니어</p></div>
+      <address>
+        <a href="mailto:emibgo2@naver.com">emibgo2@naver.com</a>
+        <a href="https://emibgo2.github.io/portfolio-site/">포트폴리오 · emibgo2.github.io/portfolio-site</a>
+      </address>
+    </header>
+
+    <p class="intro">서비스 구조 설계부터 성능 개선, 인증 통합, 배포와 장애 복구까지 담당해 왔습니다.<br>
+      대량 파일 처리와 데이터베이스 성능을 개선하고, 운영 비용과 반복 작업을 줄이는 시스템을 만듭니다.</p>
+
+    <section class="skills section">
+      <h2>기술 스택</h2>
+      <dl>
+        <div><dt>개발</dt><dd>Kotlin · Java · Spring Boot · Spring Security · JPA · TypeScript · NestJS</dd></div>
+        <div><dt>데이터</dt><dd>PostgreSQL · MariaDB · MySQL · Oracle · Redis · Kafka · PgBouncer</dd></div>
+        <div><dt>인프라·운영</dt><dd>AWS · Kubernetes · Docker · ArgoCD · Istio · Prometheus · Grafana · Loki</dd></div>
+      </dl>
+    </section>
+
+    <section class="section experience">
+      <h2>경력</h2>
+      <article class="career">
+        <header class="career-meta">
+          <h3>메디컬아이피</h3>
+          <p class="period">2025.06 - 현재</p>
+          <p>소프트웨어 엔지니어</p>
+        </header>
+        <div class="career-body">
+          <h4>주요 업무</h4>
+          <ul>
+            <li><b>대량 파일 처리 구조 설계</b><br>Presigned URL 직접 업로드와 Kafka 비동기 검증·후처리 구성.<br>KEDA 워커 확장과 PgBouncer 연결 풀링으로 처리 부하 제어.</li>
+            <li><b>인프라·배포·모니터링 통합</b><br>Kubernetes·Rancher 운영 환경 구축, ArgoCD GitOps 배포 자동화.<br>Prometheus·Loki 관측 체계와 헤더 기반 카나리 배포로 스테이징 환경 구성.</li>
+            <li><b>통합 인증 및 접근 정책 구축</b><br>Naver Works를 IdP로 연동해 기존 계정으로 Keycloak에 로그인하도록 구성.<br>Keycloak SSO로 사내 시스템 접근을 연결하고 MFA·속성 기반 권한 정책 적용.</li>
+            <li><b>라이선스 정책 서버 재설계</b><br>정책 데이터와 검증 실행 흐름을 분리하고, DB 설계 및 핵심 API 테스트 개선.</li>
+          </ul>
+          <h4 class="outcome-heading">주요 성과</h4>
+          <ul class="outcomes">
+            <li>72.94GB·150,205개 입력 파일 기준 업로더 실행 시간<br><strong>22분 18.0초 → 15분 28.3초</strong>, 재시도 <strong>3,574 → 187회</strong>로 감소.</li>
+            <li>온프레미스 이관과 AWS DR 구성으로 월 비용 <strong>89.7% 절감</strong>.<br><span class="note">$448.19 → $46.22 · 2026.01 → 2026.09</span></li>
+            <li>라이선스 정책 조회 <strong>800ms → 400ms</strong>, 핵심 API 테스트 커버리지 <strong>80%</strong> 달성.</li>
+            <li>SSO로 반복 로그인을 줄이고, 사내 시스템의 접근 권한·세션 관리를 중앙화.</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+  </section>
+
+  <section class="page">
+    <section class="section experience continued">
+      <h2>경력</h2>
+      <article class="career">
+        <header class="career-meta">
+          <h3>네모시스</h3>
+          <p class="period">2023.02 - 2025.05</p>
+          <p>소프트웨어 엔지니어</p>
+        </header>
+        <div class="career-body">
+          <h4>주요 업무</h4>
+          <ul>
+            <li>철도시설 성능평가 통합 시스템의 API·ERD·DB 설계 및 개발.<br>ClipReport 문서 출력, Redis 공유 세션과 Blue/Green 무중단 배포 구성.</li>
+            <li>AWS Active-Standby 구성과 Route53·Lambda·Step Functions를 활용한 재해 복구 자동화.</li>
+            <li>테스트 세미나를 주도하고 Testcontainers·GitLab Runner·Jenkins로 단계별 CI 검증 구성.</li>
+          </ul>
+          <h4 class="outcome-heading">주요 성과</h4>
+          <ul class="outcomes">
+            <li>실행 계획 기반 쿼리·인덱스 개선으로 분석 쿼리 <strong>33,600ms → 444ms</strong>로 단축.<br>수백 장의 평가 문서를 <strong>5~30초</strong> 내 생성.</li>
+            <li>장애 감지·복구·DNS 전환을 자동화해 복구 시간 <strong>10분 → 3분 이내</strong>로 단축.<br>월 <strong>100달러 미만</strong>으로 재해 복구 체계 구축.</li>
+            <li>MR 단계의 빠른 단위 테스트와 Merge 후 통합 테스트로<br>코드 리뷰·배포 전 검증 절차 정착.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="career">
+        <header class="career-meta">
+          <h3>피플</h3>
+          <p class="period">2022.02 - 2023.11</p>
+          <p>코파운더 · 개발 총괄</p>
+        </header>
+        <div class="career-body">
+          <h4>주요 업무</h4>
+          <ul>
+            <li>헌혈 매칭 서비스 기획·DB 설계, 백엔드와 Flutter 앱 개발 및 AWS 운영.</li>
+            <li>환자 사연·지정헌혈 응답·헌혈증 인증과 캘린더·뱃지·포인트 샵 구현.</li>
+          </ul>
+          <h4 class="outcome-heading">주요 성과</h4>
+          <ul class="outcomes">
+            <li>사용자 <strong>5,758명</strong>, 헌혈 참여 <strong>3,736회</strong>, 지정헌혈 참여 <strong>1,250회</strong> 기록.<br><span class="note">서비스 성과 · 2024.11 기준</span></li>
+            <li><strong>2023년 예비사회적 기업 선정</strong> 및 서비스 수익화 경험.</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <section class="section projects">
+      <h2>주요 프로젝트</h2>
+      <article class="project">
+        <header><h3>Mongle · 이미지 처리 파이프라인</h3><span>2024.04 - 2024.05 · 사이드 프로젝트</span></header>
+        <ul>
+          <li>Presigned URL 직접 업로드, CloudFront·Lambda@Edge·Sharp 이미지 변환·캐싱 구현.<br>이미지 응답 시간 <strong>60ms → 20ms</strong>, 콘텐츠 다운로드 <strong>2.1ms → 0.8ms</strong>로 개선.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="section education">
+      <h2>학력</h2>
+      <p><b>평택대학교 융합소프트웨어학과 졸업</b><span class="note">학점 4.27 / 4.5</span></p>
+    </section>
+    <section class="section activities">
+      <h2>활동·수상</h2>
+      <ul>
+        <li><b>토스 Learner's High 1기</b> · 개발자 멘토링에서 커리어 점검과 실무 개선 과제 수행 <span class="note">2024.12 - 2025.01</span></li>
+        <li><b>2022 한이음 공모전 한국정보산업연합회 회장상</b> · 과학기술정보통신부</li>
+        <li><b>2022 신한 스퀘어 브릿지 대학생 부문 우수상</b></li>
+        <li>철도 시설물 성능평가 관련 프로그램 특허 출원 경험</li>
+      </ul>
+    </section>
+  </section>
+</main>
+</body>
+</html>

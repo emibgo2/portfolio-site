@@ -24,7 +24,7 @@
   }
 }
 </script>
-<link rel="stylesheet" href="styles.css?v=pdf-download-v1" />
+<link rel="stylesheet" href="styles.css?v=pdf-menu-v1" />
 </head>
 <body data-depth="30">
 <canvas id="graph" role="img" aria-label="Kotlin, Spring Boot, MariaDB, PostgreSQL, Redis, Kubernetes, Argo CD, Docker, Istio, Sentry, AWS, Prometheus, Grafana, GitHub Actions, NGINX, Keycloak로 구성된 3D 기술 스택 그래프"></canvas>
@@ -46,10 +46,20 @@
       <button type="button" data-d="3" aria-pressed="false">3분</button>
       <button type="button" data-d="30" aria-pressed="true">30분</button>
     </div>
-    <a class="pdf-download" href="output/pdf/go-jihoon-portfolio.pdf?v=pdf-v1" download="고지훈_포트폴리오.pdf" aria-label="고지훈 포트폴리오 PDF 다운로드">
-      <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 1.5v8.25m0 0 3-3m-3 3-3-3M2 11.5v2h12v-2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35" /></svg>
-      <span>PDF 다운로드</span>
-    </a>
+    <details class="pdf-menu">
+      <summary class="pdf-download" aria-label="PDF 다운로드 선택">
+        <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path d="M8 1.5v8.25m0 0 3-3m-3 3-3-3M2 11.5v2h12v-2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.35" /></svg>
+        <span>PDF 다운로드</span><span class="pdf-caret" aria-hidden="true">⌄</span>
+      </summary>
+      <div class="pdf-menu-panel" role="group" aria-label="다운로드할 PDF 선택">
+        <a class="pdf-option" href="output/pdf/go-jihoon-resume.pdf?v=resume-v1" download="고지훈_이력서.pdf">
+          <strong>이력서 PDF</strong><span>주요 업무 · 성과</span>
+        </a>
+        <a class="pdf-option" href="output/pdf/go-jihoon-portfolio.pdf?v=pdf-v1" download="고지훈_포트폴리오.pdf">
+          <strong>포트폴리오 PDF</strong><span>프로젝트 상세 · 도식</span>
+        </a>
+      </div>
+    </details>
   </div>
   <div class="progress" id="progress"></div>
 </header>
@@ -298,6 +308,29 @@ function setDepth(d) {
     b.setAttribute("aria-pressed", String(b.dataset.d === depth)));
 }
 
+function initPdfMenu() {
+  const menu = $(".pdf-menu");
+  if (!menu) return;
+  const summary = $("summary", menu);
+  const close = (restoreFocus = false) => {
+    if (!menu.open) return;
+    menu.open = false;
+    if (restoreFocus) summary.focus({ preventScroll: true });
+  };
+  menu.addEventListener("click", event => {
+    if (event.target.closest(".pdf-option")) close();
+  });
+  document.addEventListener("click", event => {
+    if (!menu.contains(event.target)) close();
+  });
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && menu.open) {
+      event.preventDefault();
+      close(true);
+    }
+  });
+}
+
 function initInteraction() {
   document.querySelectorAll(".seg button").forEach(b =>
     b.addEventListener("click", () => setDepth(b.dataset.d)));
@@ -470,6 +503,7 @@ renderSystems();
 renderRunbooks();
 renderStack();
 renderAbout();
+initPdfMenu();
 initInteraction();
 initRecordDialog();
 initDiagramFlow();
