@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
   <title>고지훈 · 소프트웨어 엔지니어 이력서</title>
-  <link rel="stylesheet" href="resume.css?v=resume-v16">
+  <link rel="stylesheet" href="resume.css?v=resume-v17">
 </head>
 <body>
 <main class="resume">
@@ -87,7 +87,7 @@
   <section class="page">
     <section class="section experience continued">
       <h2>경력</h2>
-      <article class="career">
+      <article class="career company-boundary">
         <header class="career-meta">
           <h3>네모시스</h3>
           <p class="period">2023.02 - 2025.05</p>
@@ -141,7 +141,7 @@
   <section class="page">
     <section class="section experience continued">
       <h2>경력</h2>
-      <article class="career">
+      <article class="career company-boundary">
         <header class="career-meta">
           <h3><a href="https://pple.link/">피플</a></h3>
           <p class="period">2022.02 - 2023.11</p>
@@ -171,7 +171,7 @@
           </div>
           <h4 class="outcome-heading">주요 성과</h4>
           <ul class="outcomes">
-            <li>2024년 11월 기준 사용자 <strong>5,758명</strong>, 헌혈 참여 <strong>3,736회</strong>, 지정헌혈 참여 <strong>1,250회</strong> 기록.</li>
+            <li>2024년 11월 기준 사용자 <strong>5,758명</strong>, 헌혈 참여 <strong>3,736회</strong>,<br>지정헌혈 참여 <strong>1,250회</strong> 기록.</li>
             <li><strong>2023년 예비사회적 기업</strong> 선정, 서비스 운영·수익화 경험.</li>
             <li>펄어비스 및 기타 기관과 협력 관계 형성.</li>
           </ul>
@@ -185,7 +185,8 @@
     <section class="section projects">
       <h2>프로젝트</h2>
       <article class="project">
-        <header><h3><a href="https://emibgo2.github.io/portfolio-site/#sys-01">파일 데이터센터 성능 개선 및 비동기 처리 아키텍처 구축</a></h3><span>메디컬아이피 · 설계 · 구축 · 성능 검증</span></header>
+        <div class="project-lead">
+        <header><span class="project-company">메디컬아이피</span><h3><a href="https://emibgo2.github.io/portfolio-site/#sys-01">파일 데이터센터 성능 개선 및<br>비동기 처리 아키텍처 구축</a></h3><span class="project-contribution">설계 · 구축 · 성능 검증</span></header>
         <p class="project-summary">대량 파일 업로드와 검증·후처리를 분리해 처리 성능과 DB 연결 부하를 개선한 비동기 처리 구조.</p>
         <div class="work-group">
           <h4>주요 업무</h4>
@@ -197,6 +198,7 @@
             <li>AIMD 기반 전송 동시성 조절과 메타데이터 조회·인덱스 최적화.</li>
           </ul>
         </div>
+        </div>
         <h4 class="outcome-heading">주요 성과</h4>
         <ul class="outcomes">
           <li>72.94GB·150,205개 입력 파일 기준 업로더 전체 실행 시간 <strong>22분 18.0초 → 15분 28.3초</strong>, 평균 처리량 <strong>54.5 → 78.6 MB/s</strong>, 재시도 <strong>3,574회 → 187회</strong>로 개선 (2026.08 측정).</li>
@@ -204,7 +206,8 @@
         </ul>
       </article>
       <article class="project">
-        <header><h3><a href="https://emibgo2.github.io/portfolio-site/#sys-02">사내 SSO 시스템 구축</a></h3><span>2026.02 - 2026.03 · 메디컬아이피 · 설계 · 구축</span></header>
+        <div class="project-lead">
+        <header><span class="project-company">메디컬아이피</span><h3><a href="https://emibgo2.github.io/portfolio-site/#sys-02">사내 SSO 시스템 구축</a></h3><span class="project-period">2026.02 - 2026.03</span><span class="project-contribution">설계 · 구축</span></header>
         <p class="project-summary">분산된 로그인·세션과 접근 권한을 Keycloak 기반 SSO로 중앙화한 인증 시스템.</p>
         <div class="work-group">
           <h4>주요 업무</h4>
@@ -215,6 +218,7 @@
             <li>MFA 적용과 RBAC에서 ABAC로의 권한 판단 전환, Keycloak 분산 배포.</li>
           </ul>
         </div>
+        </div>
         <h4 class="outcome-heading">주요 성과</h4>
         <ul class="outcomes">
           <li>Keycloak 로그인 후 사내 시스템 SSO 접근 및 반복 로그인 감소.</li>
@@ -223,7 +227,8 @@
         </ul>
       </article>
       <article class="project">
-        <header><h3><a href="https://emibgo2.github.io/portfolio-site/#sys-03">온프레미스 Kubernetes 및 DR 환경 구축</a></h3><span>2025.11 - 2026.02 · 메디컬아이피 · 설계 · 구축 · 운영</span></header>
+        <div class="project-lead">
+        <header><span class="project-company">메디컬아이피</span><h3><a href="https://emibgo2.github.io/portfolio-site/#sys-03">온프레미스 Kubernetes 및 DR 환경 구축</a></h3><span class="project-period">2025.11 - 2026.02</span><span class="project-contribution">설계 · 구축 · 운영</span></header>
         <p class="project-summary">GitOps·모니터링·트래픽 제어를 통합한 온프레미스 Kubernetes와 AWS DR 환경.</p>
         <div class="work-group">
           <h4>주요 업무</h4>
@@ -235,6 +240,7 @@
             <li>Route53 HealthCheck→SQS→KEDA DR Pod 기동과 DB Replication·복구 시나리오 검증.</li>
           </ul>
         </div>
+        </div>
         <h4 class="outcome-heading">주요 성과</h4>
         <ul class="outcomes">
           <li>GitOps 배포·메트릭/로그 모니터링·트래픽 제어의 공통 운영 체계 구성.</li>
@@ -243,7 +249,8 @@
         </ul>
       </article>
       <article class="project">
-        <header><h3><a href="https://emibgo2.github.io/portfolio-site/#sys-04">라이선스 서버 재설계</a></h3><span>2025.08 - 2025.10 · 메디컬아이피 · 설계 · 개발</span></header>
+        <div class="project-lead">
+        <header><span class="project-company">메디컬아이피</span><h3><a href="https://emibgo2.github.io/portfolio-site/#sys-04">라이선스 서버 재설계</a></h3><span class="project-period">2025.08 - 2025.10</span><span class="project-contribution">설계 · 개발</span></header>
         <p class="project-summary">상품별 라이선스 정책을 DB로 분리하고 실행 흐름을 표준화한 라이선스 서버 재설계.</p>
         <div class="work-group">
           <h4>주요 업무</h4>
@@ -254,6 +261,7 @@
             <li>Unit·Integration·E2E 테스트 기반 핵심 API 검증.</li>
           </ul>
         </div>
+        </div>
         <h4 class="outcome-heading">주요 성과</h4>
         <ul class="outcomes">
           <li>정책 조회 시간 <strong>800ms → 400ms</strong> 단축.</li>
@@ -262,7 +270,8 @@
         </ul>
       </article>
       <article class="project">
-        <header><h3>메디컬아이피 서버 및 인프라 개편</h3><span>2025.06 - 2025.08 · 메디컬아이피 · BE 1명 · 기여도 100%</span></header>
+        <div class="project-lead">
+        <header><span class="project-company">메디컬아이피</span><h3>메디컬아이피 서버 및 인프라 개편</h3><span class="project-period">2025.06 - 2025.08</span><span class="project-contribution">BE 1명 · 기여도 100%</span></header>
         <p class="project-summary">서비스 가용성과 성능을 높이기 위한 서버·인프라 개편.</p>
         <div class="work-group">
           <h4>주요 업무</h4>
@@ -274,6 +283,7 @@
             <li>인덱스·쿼리 튜닝을 통한 조회 성능 개선.</li>
           </ul>
         </div>
+        </div>
         <h4 class="outcome-heading">주요 성과</h4>
         <ul class="outcomes">
           <li>쿼리 튜닝으로 기존 <strong>7~20초 → 200ms</strong>로 단축.</li>
@@ -282,7 +292,8 @@
         </ul>
       </article>
       <article class="project">
-        <header><h3><a href="https://emibgo2.github.io/portfolio-site/#sys-05">NDRS · 재해 복구 시스템</a></h3><span>2024.11 - 2025.01 · 네모시스 · 설계 · 개발</span></header>
+        <div class="project-lead">
+        <header><span class="project-company">네모시스</span><h3><a href="https://emibgo2.github.io/portfolio-site/#sys-05">NDRS · 재해 복구 시스템</a></h3><span class="project-period">2024.11 - 2025.01</span><span class="project-contribution">설계 · 개발</span></header>
         <p class="project-summary">온프레미스 장애 감지와 AWS 기반 DB·DNS 자동 복구 시스템.</p>
         <div class="work-group">
           <h4>주요 업무</h4>
@@ -293,6 +304,7 @@
             <li>복구 코드 관리와 주기적 검증 절차 구성.</li>
           </ul>
         </div>
+        </div>
         <h4 class="outcome-heading">주요 성과</h4>
         <ul class="outcomes">
           <li>복구 시간 <strong>10분 → 3분 이내</strong>, RTA <strong>70%</strong> 감소.</li>
@@ -300,7 +312,8 @@
         </ul>
       </article>
       <article class="project">
-        <header><h3><a href="https://emibgo2.github.io/portfolio-site/#sys-07">테스트 코드 문화 도입 및 CI 파이프라인</a></h3><span>2024.12 - 2025.01 · 네모시스 · 주도 · 세미나</span></header>
+        <div class="project-lead">
+        <header><span class="project-company">네모시스</span><h3><a href="https://emibgo2.github.io/portfolio-site/#sys-07">테스트 코드 문화 도입 및 CI 파이프라인</a></h3><span class="project-period">2024.12 - 2025.01</span><span class="project-contribution">주도 · 세미나</span></header>
         <p class="project-summary">테스트 기준을 정립하고 MR·Merge 후 단계별 자동 검증을 CI에 도입한 개발 문화 개선.</p>
         <div class="work-group">
           <h4>주요 업무</h4>
@@ -311,6 +324,7 @@
             <li>테스트 통과 조건과 배포 전 검증 절차 구성.</li>
           </ul>
         </div>
+        </div>
         <h4 class="outcome-heading">주요 성과</h4>
         <ul class="outcomes">
           <li>테스트를 코드 리뷰·배포 확인 절차에 포함.</li>
@@ -318,13 +332,15 @@
         </ul>
       </article>
       <article class="project">
-        <header><h3><a href="https://github.com/PBTP/mongle-server">Mongle · 반려견 출장 목욕·미용 플랫폼</a></h3><span>2024.04 - 2024.05 · 사이드 프로젝트 · 6인 팀 · BE 총괄 · 기여도 90%</span></header>
+        <div class="project-lead">
+        <header><span class="project-company">사이드 프로젝트</span><h3><a href="https://github.com/PBTP/mongle-server">Mongle · 반려견 출장 목욕·미용 플랫폼</a></h3><span class="project-period">2024.04 - 2024.05</span><span class="project-contribution">6인 팀 · BE 총괄 · 기여도 90%</span></header>
         <div class="work-group">
           <h4>설계·개발</h4>
           <ul>
             <li><a href="https://hoonco.tistory.com/46">Presigned URL을 활용한 클라이언트의 S3 직접 업로드 설계.</a><br>CloudFront·Lambda@Edge·Sharp 기반 이미지 리사이징·캐싱 파이프라인 구현.<br>S3 변경 이벤트로 교체된 이미지 경로의 CDN 캐시 갱신.</li>
             <li>EventBridge·SQS 이벤트 검증·저장, DB 저장 성공 후 메시지 삭제 처리.</li>
           </ul>
+        </div>
         </div>
         <div class="work-group">
           <h4>인프라·운영</h4>
@@ -341,11 +357,12 @@
         </div>
         <h4 class="outcome-heading">주요 성과</h4>
         <ul class="outcomes">
-          <li>이미지 응답 시간 <strong>60ms → 20ms</strong>, 콘텐츠 다운로드 시간 <strong>2.1ms → 0.8ms</strong>로 개선.</li>
+          <li>이미지 응답 시간 <strong>60ms → 20ms</strong>,<br>콘텐츠 다운로드 시간 <strong>2.1ms → 0.8ms</strong>로 개선.</li>
         </ul>
       </article>
       <article class="project">
-        <header><h3><a href="https://rams2.nemosys.ai/">WizRAMS 2.0 고도화</a></h3><span>2023.09 - 2024.02 · 네모시스 · PM 1명 · FullStack 6명 · 기여도 30%</span></header>
+        <div class="project-lead">
+        <header><span class="project-company">네모시스</span><h3><a href="https://rams2.nemosys.ai/">WizRAMS 2.0 고도화</a></h3><span class="project-period">2023.09 - 2024.02</span><span class="project-contribution">PM 1명 · FullStack 6명 · 기여도 30%</span></header>
         <p class="project-summary">시설물 고장을 분석해 유지보수 비용을 최적화하는 RAMS 기반 솔루션.</p>
         <div class="work-group">
           <h4>주요 업무</h4>
@@ -356,6 +373,7 @@
             <li>Spring Validation 도입 및 고도화.</li>
           </ul>
         </div>
+        </div>
         <h4 class="outcome-heading">주요 성과</h4>
         <ul class="outcomes">
           <li>Spring Boot·Thymeleaf 전환 적용.</li>
@@ -363,7 +381,8 @@
         </ul>
       </article>
       <article class="project">
-        <header><h3><a href="https://rfpe.nemosys.ai/">철도 시설물 성능평가 시스템</a></h3><span>2023.04 - 현재 · 네모시스 · 발주처 한국전기철도협회 · PM 1명 · FullStack 1명 · 기여도 90%</span></header>
+        <div class="project-lead">
+        <header><span class="project-company">네모시스</span><h3><a href="https://rfpe.nemosys.ai/">철도 시설물 성능평가 시스템</a></h3><span class="project-period">2023.04 - 현재</span><span class="project-contribution">발주처 한국전기철도협회 · PM 1명 · FullStack 1명 · 기여도 90%</span></header>
         <p class="project-summary">철도 시설물 성능평가를 위한 웹 시스템 개발.</p>
         <div class="work-group">
           <h4>주요 업무</h4>
@@ -375,6 +394,7 @@
             <li>Blue/Green 무중단 배포 환경 구성.</li>
           </ul>
         </div>
+        </div>
         <h4 class="outcome-heading">주요 성과</h4>
         <ul class="outcomes">
           <li>분석 쿼리 <strong>33,600ms → 444ms</strong>로 단축, 수백 장 평가 문서 <strong>5~30초</strong> 내 생성.</li>
@@ -383,7 +403,8 @@
         </ul>
       </article>
       <article class="project">
-        <header><h3><a href="https://pple.link/">피플 · 헌혈 매칭 플랫폼</a></h3><span>2022.02 - 2023.11 · (주)피플즈 · PM 1명 · 디자이너 1명 · Flutter 2명 · FE 2명 · BE 1명 · BE 개발 총괄</span></header>
+        <div class="project-lead">
+        <header><span class="project-company">(주)피플즈</span><h3><a href="https://pple.link/">피플 · 헌혈 매칭 플랫폼</a></h3><span class="project-period">2022.02 - 2023.11</span><span class="project-contribution">PM 1명 · 디자이너 1명 · Flutter 2명 · FE 2명 · BE 1명 · BE 개발 총괄</span></header>
         <p class="project-summary">피가 부족한 환자와 헌혈자를 연결하는 매칭 서비스.</p>
         <div class="work-group">
           <h4>주요 업무</h4>
@@ -396,9 +417,10 @@
             <li>AWS 기반 서비스 인프라 구축·운영.</li>
           </ul>
         </div>
+        </div>
         <h4 class="outcome-heading">주요 성과</h4>
         <ul class="outcomes">
-          <li>2024년 11월 기준 사용자 <strong>5,758명</strong>, 헌혈 참여 <strong>3,736회</strong>, 지정헌혈 참여 <strong>1,250회</strong> 기록.</li>
+          <li>2024년 11월 기준 사용자 <strong>5,758명</strong>, 헌혈 참여 <strong>3,736회</strong>,<br>지정헌혈 참여 <strong>1,250회</strong> 기록.</li>
           <li>700건 이상 사연에 헌혈 응답 <strong>2,000건</strong> 확보.</li>
           <li><strong>2023년 예비사회적 기업</strong> 선정, 서비스 운영·수익화 경험.</li>
           <li>2022 신한 스퀘어 브릿지 대학생 트랙 우수상 수상 및 펄어비스·기타 기관 협력 관계 형성.</li>
@@ -408,15 +430,15 @@
 
     <section class="section education">
       <h2>학력</h2>
-      <p><b>평택대학교 융합소프트웨어학과 졸업</b><span class="note">2019.03 - 2023.02 · 학점 4.27 / 4.5</span></p>
+      <p><b class="education-school">평택대학교</b><b class="education-degree">융합소프트웨어학과 졸업</b><span class="note education-period"><span>2019.03 - 2023.02</span><span>학점 4.27 / 4.5</span></span></p>
     </section>
     <section class="section activities">
       <h2>활동·수상</h2>
       <ul>
-        <li><b>토스 Learner's High 1기</b> · 실무 서버 개발자 멘토링에서 커리어 점검과 실무 개선 과제를 수행했습니다. <span class="note">2024.12 - 2025.01</span></li>
-        <li><b>2022 한이음 공모전 한국정보산업연합회 회장상</b> · 과학기술정보통신부 주관 ICT 기술 공모전</li>
-        <li><b>2022 신한 스퀘어 브릿지 대학생 부문 우수상</b> · 신한금융그룹 스타트업 육성 프로그램</li>
-        <li><b>철도 시설물 성능평가 관련 프로그램 특허 출원</b></li>
+        <li><span class="activity-organization">토스</span><span class="activity-content"><b>토스 Learner's High 1기</b> · 실무 서버 개발자 멘토링에서 커리어 점검과 실무 개선 과제를 수행했습니다.</span><span class="note activity-period">2024.12 - 2025.01</span></li>
+        <li><span class="activity-organization">과학기술정보통신부</span><span class="activity-content"><b>2022 한이음 공모전 한국정보산업연합회 회장상</b> · 과학기술정보통신부 주관 ICT 기술 공모전</span><span class="note activity-period"></span></li>
+        <li><span class="activity-organization">신한금융그룹</span><span class="activity-content"><b>2022 신한 스퀘어 브릿지 대학생 부문 우수상</b> · 신한금융그룹 스타트업 육성 프로그램</span><span class="note activity-period"></span></li>
+        <li><span class="activity-organization"></span><span class="activity-content"><b>철도 시설물 성능평가 관련 프로그램 특허 출원</b></span><span class="note activity-period"></span></li>
       </ul>
     </section>
   </section>
