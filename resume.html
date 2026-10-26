@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
   <title>고지훈 · 소프트웨어 엔지니어 이력서</title>
-  <link rel="stylesheet" href="resume.css?v=resume-v10">
+  <link rel="stylesheet" href="resume.css?v=resume-v11">
 </head>
 <body>
 <main class="resume">
@@ -45,33 +45,31 @@
         </header>
         <div class="career-body">
           <div class="work-group">
-            <h4>설계·개발</h4>
+            <h4>1. 클라우드 운영 및 관리</h4>
             <ul>
-              <li>Presigned URL 직접 업로드와 Kafka 비동기 검증·후처리 설계.</li>
-              <li>제품별 라이선스 제한을 DB 정책과 검증 흐름으로 분리하고, Strategy·Template Method로 검증 순서와 실패 처리 고정.</li>
-              <li>Naver Works를 IdP로 연동해 기존 업무 계정으로 Keycloak에 로그인하도록 구성.<br>Keycloak SSO로 Admin Console·Sentry·Rancher·VPN에 접근하도록 연결하고<br>MFA·속성 기반 권한 정책 적용.</li>
+              <li>AWS EC2·RDS 등 클라우드 인프라 운영 및 관리.</li>
+              <li>온프레미스 Kubernetes·Rancher 클러스터 구축 및 운영.</li>
+              <li>모니터링·로그 수집·장애 알림 시스템 구축 및 운영.</li>
+              <li>개발 환경 자동화와 인프라 비용 최적화.</li>
+              <li>인프라 구성 개선 및 네트워크·접근 제어 보안 관리.</li>
+              <li>CI/CD·GitOps 배포 환경 구성 및 관리.</li>
             </ul>
           </div>
           <div class="work-group">
-            <h4>DB·성능 개선</h4>
+            <h4>2. DB 설계 및 최적화</h4>
             <ul>
-              <li>서비스 중인 DB 재설계·마이그레이션, 인덱스·쿼리 튜닝·캐싱을 통한 조회 경로 개선.</li>
-              <li>AIMD 기반 파일 전송 동시성 조절과 메타데이터 조회·인덱스 최적화.<br>PgBouncer 연결 풀링으로 API·워커 DB 연결 부하 제어.</li>
+              <li>서비스 중인 DB 재설계 및 마이그레이션.</li>
+              <li>인덱스 설계, 쿼리 튜닝, 캐싱을 통한 성능 최적화.</li>
+              <li>DB 연결 풀 관리 및 연결 부하 개선.</li>
             </ul>
           </div>
           <div class="work-group">
-            <h4>인프라·운영</h4>
+            <h4>3. 백엔드 서버 개발</h4>
             <ul>
-              <li>Kubernetes·Rancher 운영 환경 구성.<br>Kafka Consumer Lag 기준 KEDA 워커 확장과 기본 Pod 2~3개 유지로 처리 용량·기동 부하 관리.</li>
-              <li>EC2와 Redis를 Private Subnet으로 이관하고 NACL 및 Redis IP·비밀번호 접근 제어 재편.<br>Prometheus·Loki, Actuator·Micrometer·CloudWatch 메트릭과 Lambda 알림 구성.</li>
-              <li>EventBridge·Lambda 기반 개발용 EC2 자동 종료·시작 스케줄링.</li>
-            </ul>
-          </div>
-          <div class="work-group">
-            <h4>배포·품질 관리</h4>
-            <ul>
-              <li>ArgoCD GitOps 배포와 Istio·헤더 기반 카나리 배포로 스테이징 환경 구성.</li>
-              <li>Unit·Integration·E2E 테스트와 CI/CD 적용.</li>
+              <li>대용량 파일 업로드·검증 시스템 및 백엔드 API 개발.</li>
+              <li>제품별 동적 라이선스 정책 제어 시스템 개발.</li>
+              <li>사내 통합 인증(SSO) 및 접근 권한 관리 시스템 구축.</li>
+              <li>Unit·Integration·E2E 테스트 코드 작성 및 자동 검증 적용.</li>
             </ul>
           </div>
           <h4 class="outcome-heading">주요 성과</h4>
@@ -97,32 +95,34 @@
         </header>
         <div class="career-body">
           <div class="work-group">
-            <h4>설계·개발</h4>
+            <h4>1. 소프트웨어 설계 및 개발</h4>
             <ul>
-              <li>요구사항 기반 Java/Spring API 설계·개발, KendoUI 기반 화면과 Excel 업로드·다운로드 기능 개발.</li>
-              <li>시설물 고장 분석 솔루션 <a href="https://rams2.nemosys.ai/">WizRAMS 2.0</a> 고도화(2023.09 - 2024.02)에서 Spring → Spring Boot, JSP → Thymeleaf 마이그레이션.</li>
-              <li><a href="https://rfpe.nemosys.ai/">철도 시설물 성능평가 시스템</a>의 요구사항 분석·통계 API 설계와 ClipReport 5.0 기반 PPT·Excel·PDF·한글 문서 자동 생성.</li>
+              <li>요구사항 분석과 Java/Spring API 설계·개발.</li>
+              <li>KendoUI 기반 화면과 Excel 업로드·다운로드 기능 개발.</li>
+              <li>시설물 고장 분석 솔루션 <a href="https://rams2.nemosys.ai/">WizRAMS 2.0</a> 고도화와 Spring Boot·Thymeleaf 마이그레이션.</li>
+              <li><a href="https://rfpe.nemosys.ai/">철도 시설물 성능평가 시스템</a> 통계 API 설계와 보고서 문서 자동화.</li>
             </ul>
           </div>
           <div class="work-group">
-            <h4>DB·성능 개선</h4>
+            <h4>2. DB 설계 및 성능 최적화</h4>
             <ul>
-              <li>Oracle·MySQL 관계형 데이터베이스 모델링과 ERD 설계.</li>
-              <li>인덱스 설계, 쿼리 튜닝, 캐싱을 통한 성능 최적화와 운영 중 버그·기능 개선.</li>
+              <li>Oracle·MySQL 데이터베이스 모델링·ERD 설계.</li>
+              <li>인덱스·쿼리·캐시 튜닝과 운영 중 버그·기능 개선.</li>
             </ul>
           </div>
           <div class="work-group">
-            <h4>인프라·운영</h4>
+            <h4>3. 클라우드 운영 및 장애 복구</h4>
             <ul>
-              <li>AWS EC2·RDS·Auto Scaling·CloudWatch 운영과 Redis 캐시·공유 세션 구성.</li>
-              <li>Route53 HealthCheck·CloudWatch·EventBridge·Lambda·Step Functions를 연결한 DB Active-Standby와 DNS 전환 경로 구성.<br>온프레미스와 AWS를 함께 사용하는 하이브리드 구조의 장애 감지·전환 자동화.</li>
+              <li>AWS EC2·RDS와 Redis 기반 클라우드 인프라 운영.</li>
+              <li>온프레미스·AWS 하이브리드 환경의 장애 감지·재해 복구 운영.</li>
             </ul>
           </div>
           <div class="work-group">
-            <h4>배포·품질 관리</h4>
+            <h4>4. 배포 및 품질 관리</h4>
             <ul>
-              <li>Nginx·Docker 기반 Blue/Green 무중단 배포 도입.</li>
-              <li>WizRAMS 2.0 고도화에서 Spring Validation을 도입하고 사내 세미나로 공유.<br>Testcontainers·테스트 DB 격리 환경과 GitLab Runner·Jenkins의 MR Unit Test, Merge 후 Unit·Integration Test CI 구성.</li>
+              <li>Blue/Green 무중단 배포 환경 구성·운영.</li>
+              <li>MR·병합 후 단위·통합 테스트 자동 검증 환경 구성.</li>
+              <li>Spring Validation 적용과 사내 세미나 공유를 통한 품질 개선.</li>
             </ul>
           </div>
           <h4 class="outcome-heading">주요 성과</h4>
@@ -149,23 +149,24 @@
         </header>
         <div class="career-body">
           <div class="work-group">
-            <h4>기획·설계</h4>
+            <h4>1. 서비스 기획 및 설계</h4>
             <ul>
-              <li>환자와 헌혈자를 연결하는 서비스 기획 참여, ERD와 백엔드 도메인 설계.</li>
+              <li>환자·헌혈자 연결 서비스 기획과 백엔드 도메인·ERD 설계.</li>
             </ul>
           </div>
           <div class="work-group">
-            <h4>서비스·앱 개발</h4>
+            <h4>2. 백엔드·앱 개발</h4>
             <ul>
-              <li>백엔드 개발 총괄과 Flutter 기반 앱 1.0 버전 개발 전담.<br>환자 사연 등록·지정헌혈 응답, 사연 3일 후 자동 삭제와 응답 시 연장 기능 구현.</li>
-              <li>OCR API 기반 실물 헌혈증 인증과 헌혈 캘린더·뱃지 기능 구현.</li>
-              <li>헌혈의 집 리뷰와 정보를 나누는 커뮤니티, 앱 내 포인트 적립과 기프티콘 구매 기능 구현.</li>
+              <li>백엔드 개발 총괄과 Flutter 기반 앱 1.0 버전 개발 전담.</li>
+              <li>환자 사연 등록·지정헌혈 응답과 사연 자동 삭제·응답 연장 기능 개발.</li>
+              <li>OCR API 기반 실물 헌혈증 인증과 헌혈 캘린더·뱃지 기능 개발.</li>
+              <li>헌혈의 집 리뷰·정보 커뮤니티와 포인트·기프티콘 기능 개발.</li>
             </ul>
           </div>
           <div class="work-group">
-            <h4>인프라·운영</h4>
+            <h4>3. 클라우드 인프라 관리</h4>
             <ul>
-              <li>AWS ECS·RDS·ElastiCache·EC2·S3·CloudWatch·Elastic Beanstalk 관리.</li>
+              <li>AWS ECS·RDS·ElastiCache·EC2·S3·CloudWatch·Elastic Beanstalk 운영.</li>
             </ul>
           </div>
           <h4 class="outcome-heading">주요 성과</h4>
