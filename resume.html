@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
   <title>고지훈 · 소프트웨어 엔지니어 이력서</title>
-  <link rel="stylesheet" href="resume.css?v=resume-v3">
+  <link rel="stylesheet" href="resume.css?v=resume-v4">
 </head>
 <body>
 <main class="resume">
@@ -41,15 +41,36 @@
           <p>사원 · ITC센터</p>
         </header>
         <div class="career-body">
-          <h4>주요 업무</h4>
-          <ul>
-            <li><b>데이터베이스 구조 개선</b><br>서비스 중인 DB를 재설계·마이그레이션하고 인덱스, 쿼리 튜닝, 캐싱으로 조회 경로를 정리했습니다.</li>
-            <li><b>대량 파일 처리 구조 설계</b><br>Presigned URL 직접 업로드와 Kafka 비동기 검증·후처리, KEDA 워커 확장, PgBouncer 연결 풀링을 구성했습니다.<br>Consumer Lag를 기준으로 워커를 늘리고 기본 Pod 2~3개를 유지해 급격한 기동 부하를 줄였습니다.<br>AIMD로 파일 전송 동시성을 조절하고 메타데이터 조회·인덱스도 함께 최적화했습니다.</li>
-            <li><b>플랫폼·배포·관측 운영</b><br>Kubernetes·Rancher 운영 환경과 ArgoCD GitOps 배포를 구성했습니다.<br>Istio와 헤더 기반 카나리 배포로 스테이징 환경을 만들고 Prometheus·Loki로 메트릭과 로그를 수집했습니다.</li>
-            <li><b>통합 인증 및 접근 정책</b><br>Naver Works를 IdP로 연동해 기존 업무 계정으로 Keycloak에 로그인하도록 구성했습니다.<br>Keycloak SSO로 Admin Console·Sentry·Rancher·VPN에 접근하도록 연결하고, MFA와 속성 기반 권한 정책을 적용했습니다.</li>
-            <li><b>보안·모니터링·개발 환경</b><br>EC2와 Redis를 Private Subnet으로 이관하고 NACL 및 Redis IP·비밀번호 접근 제어를 재편했습니다.<br>Actuator·Micrometer·CloudWatch 메트릭과 Lambda 알림을 연결하고, EventBridge·Lambda로 개발용 EC2 자동 종료·시작을 예약했습니다.</li>
-            <li><b>라이선스 정책 서버</b><br>하드코딩된 제품별 제한을 DB 정책과 검증 흐름으로 분리하고, Strategy·Template Method로 검증 순서와 실패 처리를 고정했습니다.<br>Unit·Integration·E2E 테스트와 CI/CD를 붙였습니다.</li>
-          </ul>
+          <div class="work-group">
+            <h4>설계·개발</h4>
+            <ul>
+              <li>Presigned URL 직접 업로드와 Kafka 비동기 검증·후처리 설계.</li>
+              <li>제품별 라이선스 제한을 DB 정책과 검증 흐름으로 분리하고, Strategy·Template Method로 검증 순서와 실패 처리 고정.</li>
+              <li>Naver Works를 IdP로 연동해 기존 업무 계정으로 Keycloak에 로그인하도록 구성.<br>Keycloak SSO로 Admin Console·Sentry·Rancher·VPN에 접근하도록 연결하고 MFA·속성 기반 권한 정책 적용.</li>
+            </ul>
+          </div>
+          <div class="work-group">
+            <h4>DB·성능 개선</h4>
+            <ul>
+              <li>서비스 중인 DB 재설계·마이그레이션, 인덱스·쿼리 튜닝·캐싱을 통한 조회 경로 개선.</li>
+              <li>AIMD 기반 파일 전송 동시성 조절과 메타데이터 조회·인덱스 최적화.<br>PgBouncer 연결 풀링으로 API·워커 DB 연결 부하 제어.</li>
+            </ul>
+          </div>
+          <div class="work-group">
+            <h4>인프라·운영</h4>
+            <ul>
+              <li>Kubernetes·Rancher 운영 환경 구성.<br>Kafka Consumer Lag 기준 KEDA 워커 확장과 기본 Pod 2~3개 유지로 처리 용량·기동 부하 관리.</li>
+              <li>EC2와 Redis를 Private Subnet으로 이관하고 NACL 및 Redis IP·비밀번호 접근 제어 재편.<br>Prometheus·Loki, Actuator·Micrometer·CloudWatch 메트릭과 Lambda 알림 구성.</li>
+              <li>EventBridge·Lambda 기반 개발용 EC2 자동 종료·시작 스케줄링.</li>
+            </ul>
+          </div>
+          <div class="work-group">
+            <h4>배포·품질 관리</h4>
+            <ul>
+              <li>ArgoCD GitOps 배포와 Istio·헤더 기반 카나리 배포로 스테이징 환경 구성.</li>
+              <li>Unit·Integration·E2E 테스트와 CI/CD 적용.</li>
+            </ul>
+          </div>
           <h4 class="outcome-heading">주요 성과</h4>
           <ul class="outcomes">
             <li>72.94GB·150,205개 입력 파일 기준 스캔·제어 요청·전송·재시도·마무리를 포함한 업로더 실행을 <strong>22분 18.0초 → 15분 28.3초</strong>로 단축하고 재시도를 <strong>3,574회 → 187회</strong>로 줄였습니다.</li>
@@ -72,32 +93,33 @@
           <p>사원 · 소프트웨어개발팀</p>
         </header>
         <div class="career-body">
-          <h4>주요 업무</h4>
           <div class="work-group">
-            <h4>공통 설계·개발</h4>
+            <h4>설계·개발</h4>
             <ul>
-              <li><b>요구사항·데이터 설계</b><br>요구사항을 API와 화면 흐름으로 나누고 Oracle·MySQL 관계형 모델과 ERD를 설계했습니다.<br>Java/Spring API와 KendoUI 기반 화면, Excel 업로드·다운로드 기능을 개발하고 운영 중 버그와 기능 개선도 함께 처리했습니다.</li>
+              <li>요구사항 기반 Java/Spring API 설계·개발, KendoUI 기반 화면과 Excel 업로드·다운로드 기능 개발.</li>
+              <li>시설물 고장 분석 솔루션 WizRAMS 2.0 고도화(2023.09 - 2024.02)에서 Spring → Spring Boot, JSP → Thymeleaf 마이그레이션.</li>
+              <li>철도 시설물 성능평가 시스템의 요구사항 분석·통계 API 설계와 ClipReport 5.0 기반 PPT·Excel·PDF·한글 문서 자동 생성.</li>
             </ul>
           </div>
           <div class="work-group">
-            <h4>WizRAMS 2.0 고도화 <span class="note">2023.09 - 2024.02</span></h4>
+            <h4>DB·성능 개선</h4>
             <ul>
-              <li>시설물 고장 분석과 유지보수 비용 최적화를 위한 RAMS 솔루션의 Spring → Spring Boot, JSP → Thymeleaf 마이그레이션을 담당했습니다.</li>
-              <li>KendoUI 기반 페이지와 Excel 업로드·다운로드 API를 개발하고, Spring Validation을 도입해 입력 검증 규칙을 정리했습니다.<br>도입 배경과 적용 방법을 사내 세미나로 공유했습니다.</li>
+              <li>Oracle·MySQL 관계형 데이터베이스 모델링과 ERD 설계.</li>
+              <li>인덱스 설계, 쿼리 튜닝, 캐싱을 통한 성능 최적화와 운영 중 버그·기능 개선.</li>
             </ul>
           </div>
           <div class="work-group">
-            <h4>철도 시설물 성능평가 시스템</h4>
+            <h4>인프라·운영</h4>
             <ul>
-              <li>국토부 철도 시설물 성능평가 요구사항을 분석하고 ERD·통계 API를 설계했습니다.<br>ClipReport 5.0으로 평가 결과를 PPT·Excel·PDF·한글 문서로 자동 생성했습니다.</li>
-              <li>AWS EC2·Auto Scaling·CloudWatch로 운영 환경을 구성하고 Redis 캐시·공유 세션, Nginx·Docker Blue/Green 배포를 도입했습니다.</li>
+              <li>AWS EC2·RDS·Auto Scaling·CloudWatch 운영과 Redis 캐시·공유 세션 구성.</li>
+              <li>Route53 HealthCheck·CloudWatch·EventBridge·Lambda·Step Functions를 연결한 DB Active-Standby와 DNS 전환 경로 구성.<br>온프레미스와 AWS를 함께 사용하는 하이브리드 구조의 장애 감지·전환 자동화.</li>
             </ul>
           </div>
           <div class="work-group">
-            <h4>재해 복구·검증 체계</h4>
+            <h4>배포·품질 관리</h4>
             <ul>
-              <li>Route53 HealthCheck·CloudWatch·EventBridge·Lambda·Step Functions를 연결한 DB Active-Standby와 DNS 전환 경로를 구성했습니다.<br>온프레미스와 AWS를 함께 사용하는 하이브리드 구조에서 장애 감지부터 전환까지의 순서를 자동화했습니다.</li>
-              <li>Testcontainers와 테스트 DB로 격리 환경을 만들고 GitLab Runner·Jenkins에서 MR 단계는 Unit Test, Merge 후에는 Unit·Integration Test를 실행하도록 CI를 나눴습니다.</li>
+              <li>Nginx·Docker 기반 Blue/Green 무중단 배포 도입.</li>
+              <li>WizRAMS 2.0 고도화에서 Spring Validation을 도입하고 사내 세미나로 공유.<br>Testcontainers·테스트 DB 격리 환경과 GitLab Runner·Jenkins의 MR Unit Test, Merge 후 Unit·Integration Test CI 구성.</li>
             </ul>
           </div>
           <h4 class="outcome-heading">주요 성과</h4>
@@ -123,13 +145,26 @@
           <p>코파운더 · 개발 총괄</p>
         </header>
         <div class="career-body">
-          <h4>주요 업무</h4>
-          <ul>
-            <li><b>서비스 기획·데이터 설계</b><br>환자와 헌혈자를 연결하는 매칭 서비스의 기획에 참여하고 ERD와 백엔드 도메인을 설계했습니다.<br>환자 사연 등록, 지정헌혈 응답, 사연 3일 후 자동 삭제와 응답 시 연장 흐름을 구현했습니다.</li>
-            <li><b>백엔드·앱 개발 총괄</b><br>백엔드 개발을 총괄하고 Flutter 기반 앱 1.0 버전 개발을 전담했습니다.<br>OCR API를 활용한 실물 헌혈증 인증과 헌혈 캘린더·뱃지 기능을 개발했습니다.</li>
-            <li><b>커뮤니티·리워드 기능</b><br>헌혈의 집 리뷰와 정보를 나누는 커뮤니티, 앱 내 포인트 적립과 기프티콘 구매 기능을 구현해 참여가 이어지는 사용 흐름을 만들었습니다.</li>
-            <li><b>AWS 운영</b><br>AWS ECS·RDS·ElastiCache·EC2·S3·CloudWatch·Elastic Beanstalk를 관리했습니다.</li>
-          </ul>
+          <div class="work-group">
+            <h4>기획·설계</h4>
+            <ul>
+              <li>환자와 헌혈자를 연결하는 서비스 기획 참여, ERD와 백엔드 도메인 설계.</li>
+            </ul>
+          </div>
+          <div class="work-group">
+            <h4>서비스·앱 개발</h4>
+            <ul>
+              <li>백엔드 개발 총괄과 Flutter 기반 앱 1.0 버전 개발 전담.<br>환자 사연 등록·지정헌혈 응답, 사연 3일 후 자동 삭제와 응답 시 연장 기능 구현.</li>
+              <li>OCR API 기반 실물 헌혈증 인증과 헌혈 캘린더·뱃지 기능 구현.</li>
+              <li>헌혈의 집 리뷰와 정보를 나누는 커뮤니티, 앱 내 포인트 적립과 기프티콘 구매 기능 구현.</li>
+            </ul>
+          </div>
+          <div class="work-group">
+            <h4>인프라·운영</h4>
+            <ul>
+              <li>AWS ECS·RDS·ElastiCache·EC2·S3·CloudWatch·Elastic Beanstalk 관리.</li>
+            </ul>
+          </div>
           <h4 class="outcome-heading">주요 성과</h4>
           <ul class="outcomes">
             <li>2024년 11월 기준 사용자 <strong>5,758명</strong>, 헌혈 참여 <strong>3,736회</strong>, 지정헌혈 참여 <strong>1,250회</strong>를 기록했습니다.</li>
@@ -141,13 +176,32 @@
     </section>
 
     <section class="section projects">
-      <h2>주요 프로젝트</h2>
+      <h2>기타 개발 경험</h2>
       <article class="project">
         <header><h3>Mongle · 반려견 출장 목욕·미용 플랫폼</h3><span>2024.04 - 2024.05 · 사이드 프로젝트 · 6인 팀 · BE 총괄 · 기여도 90%</span></header>
-        <ul>
-          <li><b>클라우드·운영</b><br>AWS ECR·EC2·RDS·S3·CloudFront·Systems Manager Parameter Store·EventBridge·SQS·Lambda를 구성하고 운영했습니다.</li>
-          <li><b>이미지 처리 파이프라인</b><br>Presigned URL로 클라이언트가 S3에 직접 업로드하도록 하고, CloudFront·Lambda@Edge·Sharp로 이미지 리사이징과 캐싱을 처리했습니다.<br>S3 변경 이벤트로 교체된 이미지 경로의 CDN 캐시를 갱신했으며, 이미지 응답 시간을 <strong>60ms → 20ms</strong>, 콘텐츠 다운로드를 <strong>2.1ms → 0.8ms</strong>로 개선했습니다.</li>
-          <li><b>인증·로깅·CI/CD</b><br>EFK 기반 로그·알림, JWT Rotate, GitHub Actions CI/CD를 구성했습니다.<br>EventBridge·SQS 이벤트를 검증해 저장하고, DB 저장 성공 후 메시지를 삭제하도록 구현했습니다.</li>
+        <div class="work-group">
+          <h4>설계·개발</h4>
+          <ul>
+            <li>Presigned URL을 활용한 클라이언트의 S3 직접 업로드 설계.<br>CloudFront·Lambda@Edge·Sharp 기반 이미지 리사이징·캐싱 파이프라인 구현.<br>S3 변경 이벤트로 교체된 이미지 경로의 CDN 캐시 갱신.</li>
+            <li>EventBridge·SQS 이벤트 검증·저장, DB 저장 성공 후 메시지 삭제 처리.</li>
+          </ul>
+        </div>
+        <div class="work-group">
+          <h4>인프라·운영</h4>
+          <ul>
+            <li>AWS ECR·EC2·RDS·S3·CloudFront·Systems Manager Parameter Store·EventBridge·SQS·Lambda 구성·운영.</li>
+            <li>EFK 기반 로그·알림 구성.</li>
+          </ul>
+        </div>
+        <div class="work-group">
+          <h4>인증·배포 관리</h4>
+          <ul>
+            <li>JWT Rotate와 GitHub Actions CI/CD 구성.</li>
+          </ul>
+        </div>
+        <h4 class="outcome-heading">주요 성과</h4>
+        <ul class="outcomes">
+          <li>이미지 응답 시간을 <strong>60ms → 20ms</strong>, 콘텐츠 다운로드를 <strong>2.1ms → 0.8ms</strong>로 개선했습니다.</li>
         </ul>
       </article>
     </section>

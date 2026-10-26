@@ -45,7 +45,7 @@ h4{font-size:9.5pt; margin-bottom:8px}
 .career-body li{line-height:1.6}
 .career-body li + li{margin-top:9px}
 .work-group + .work-group{margin-top:14px}
-.work-group h4{color:var(--muted)}
+.work-group h4{color:var(--text)}
 .outcome-heading{margin-top:15px; color:var(--accent)}
 .outcomes li + li{margin-top:7px}
 .note{font-size:8pt; color:var(--muted); font-weight:400}
@@ -84,7 +84,13 @@ h4{font-size:9.5pt; margin-bottom:8px}
   .career-meta .period{margin:0 0 0 auto}
   .career-meta p{white-space:nowrap}
   .career-body li{line-height:1.5}
-  .career-body li + li,.outcomes li + li{margin-top:6px}
+  .career-body li + li,.outcomes li + li{margin-top:4px}
+  .work-group + .work-group{margin-top:8px}
+  h4{margin-bottom:5px}
+  .outcome-heading{margin-top:12px}
+  .project li{line-height:1.5}
+  .page:last-child .section{margin-top:16px}
+  .page:last-child .continued{margin-top:0}
   .page:first-child .section{margin-top:16px}
   .page:first-child .section h2{padding-bottom:6px; margin-bottom:8px}
   .page:first-child .intro{line-height:1.55}
