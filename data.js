@@ -25,7 +25,7 @@ const G = {
     const icons = items.map(([label, asset], i) => {
       const logo = window.LOGOS?.[asset];
       const graphic = logo
-        ? `<svg width="${widths[i]}" height="${size}" viewBox="0 0 24 24" aria-hidden="true">${logo.paths.map(d => `<path d="${d}" fill="${logo.color}"/>`).join("")}</svg>`
+        ? `<svg width="${widths[i]}" height="${size}" viewBox="0 0 24 24" aria-hidden="true" style="--logo-brand:${logo.brand || logo.color}">${logo.paths.map(d => `<path d="${d}" fill="${logo.color}"/>`).join("")}</svg>`
         : `<image href="${asset}" width="${widths[i]}" height="${size}" aria-hidden="true"/>`;
       const icon = `<g class="diagram-logo" transform="translate(${iconX},${y + 35.6})" role="img" aria-label="${esc(label)}"><title>${esc(label)}</title>${graphic}</g>`;
       iconX += widths[i] + gap;

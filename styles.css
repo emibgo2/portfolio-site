@@ -667,8 +667,7 @@ footer{margin-top:var(--s10); border-top:1px solid var(--line-2); padding:var(--
   .dg g.nd.act > text,.dg g.nd.t-bad.act > text{fill:#0f172a}
   .dg g.grp.act > rect{stroke:#94a3b8}
   #ar path,#ar-a path,#ar-d path{fill:#475569 !important}
-  .dg .diagram-logo path{fill:#334155 !important}
-  .dg .diagram-logo image{filter:grayscale(1) brightness(.4) contrast(1.2)}
+  .dg .diagram-logo path{fill:var(--logo-brand)}
 
   .foot{margin-top:12pt; padding-top:8pt; border-top:1px solid #cbd5e1; break-inside:avoid; page-break-inside:avoid}
   .tag,.ref{font-size:10pt; line-height:1.4; border-color:#cbd5e1; color:#334155}
@@ -689,8 +688,8 @@ footer{margin-top:var(--s10); border-top:1px solid var(--line-2); padding:var(--
     min-height:0; height:auto; padding:4pt; display:flex; flex-direction:row; align-items:center; justify-content:flex-start;
     gap:5pt; border-color:#cbd5e1; border-radius:4px; background:#f8fafc;
   }
-  .logo svg{width:14pt; height:14pt; flex:none; filter:grayscale(1) contrast(1.35) brightness(.65)}
-  .logo svg path{fill:#334155 !important}
+  .logo svg{width:14pt; height:14pt; flex:none}
+  .logo svg path{fill:var(--logo-brand)}
   .logo .tip{
     position:static; left:auto; bottom:auto; transform:none; display:block; opacity:1 !important;
     pointer-events:auto; z-index:auto; max-width:100%; overflow-wrap:anywhere; white-space:normal;

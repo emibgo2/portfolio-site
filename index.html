@@ -24,7 +24,7 @@
   }
 }
 </script>
-<link rel="stylesheet" href="styles.css?v=pdf-print-v2" />
+<link rel="stylesheet" href="styles.css?v=pdf-print-v3" />
 </head>
 <body data-depth="30">
 <canvas id="graph" role="img" aria-label="Kotlin, Spring Boot, MariaDB, PostgreSQL, Redis, Kubernetes, Argo CD, Docker, Istio, Sentry, AWS, Prometheus, Grafana, GitHub Actions, NGINX, Keycloak로 구성된 3D 기술 스택 그래프"></canvas>
@@ -55,7 +55,7 @@
         <a class="pdf-option" href="output/pdf/go-jihoon-resume.pdf?v=resume-v19" download="고지훈_이력서.pdf">
           <strong>이력서 PDF</strong><span>주요 업무 · 성과</span>
         </a>
-        <a class="pdf-option" href="output/pdf/go-jihoon-portfolio.pdf?v=pdf-v3" download="고지훈_포트폴리오.pdf">
+        <a class="pdf-option" href="output/pdf/go-jihoon-portfolio.pdf?v=pdf-v4" download="고지훈_포트폴리오.pdf">
           <strong>포트폴리오 PDF</strong><span>프로젝트 상세 · 도식</span>
         </a>
       </div>
@@ -131,7 +131,7 @@
 </dialog>
 
 <script src="logos.js"></script>
-<script src="data.js?v=natural-copy-v52"></script>
+<script src="data.js?v=natural-copy-v53"></script>
 <script type="module">
 import { getFlowFrame, findEndpointNode, getPacketState } from "./diagram-flow.mjs?v=arrival-v2";
 import { formatCareerDuration } from "./career-duration.mjs";
@@ -284,7 +284,7 @@ function renderStack() {
     const l = L[slug];
     if (!l) return `<li><span class="logo logo-fallback" role="img" aria-label="${E(slug)}" tabindex="0"><span class="mono-fb">${E(slug.slice(0, 2).toUpperCase())}</span><span class="tip">${E(slug)}</span></span></li>`;
     const paths = l.paths.map(d => `<path d="${d}" fill="${l.color}"/>`).join("");
-    return `<li><span class="logo" role="img" aria-label="${E(l.label)}" tabindex="0" data-mono="${l.mono ? 1 : 0}">` +
+    return `<li><span class="logo" role="img" aria-label="${E(l.label)}" tabindex="0" data-mono="${l.mono ? 1 : 0}" style="--logo-brand:${E(l.brand || l.color)}">` +
       `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">${paths}</svg>` +
       `<span class="tip">${E(l.label)}</span></span></li>`;
   };
