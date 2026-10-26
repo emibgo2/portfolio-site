@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
   <title>고지훈 · 소프트웨어 엔지니어 이력서</title>
-  <link rel="stylesheet" href="resume.css?v=resume-v2">
+  <link rel="stylesheet" href="resume.css?v=resume-v3">
 </head>
 <body>
 <main class="resume">
@@ -27,7 +27,8 @@
       <dl>
         <div><dt>개발</dt><dd>Kotlin · Java · Spring Boot · Spring Security · JPA · TypeScript · NestJS</dd></div>
         <div><dt>데이터</dt><dd>PostgreSQL · MariaDB · MySQL · Oracle · Redis · Kafka · PgBouncer</dd></div>
-        <div><dt>인프라·운영</dt><dd>AWS · Kubernetes · Docker · ArgoCD · Istio · Prometheus · Grafana · Loki</dd></div>
+        <div><dt>인프라·운영</dt><dd>AWS · Kubernetes · Docker · ArgoCD · Istio · Prometheus · Grafana · Loki · GitHub Actions</dd></div>
+        <div><dt>검증·협업</dt><dd>JUnit 5 · Testcontainers · GitLab CI · Jenkins · 설계 문서화 · 운영 런북</dd></div>
       </dl>
     </section>
 
@@ -37,22 +38,24 @@
         <header class="career-meta">
           <h3>메디컬아이피</h3>
           <p class="period">2025.06 - 현재</p>
-          <p>소프트웨어 엔지니어</p>
+          <p>사원 · ITC센터</p>
         </header>
         <div class="career-body">
           <h4>주요 업무</h4>
           <ul>
-            <li><b>대량 파일 처리 구조 설계</b><br>Presigned URL 직접 업로드와 Kafka 비동기 검증·후처리 구성.<br>KEDA 워커 확장과 PgBouncer 연결 풀링으로 처리 부하 제어.</li>
-            <li><b>인프라·배포·모니터링 통합</b><br>Kubernetes·Rancher 운영 환경 구축, ArgoCD GitOps 배포 자동화.<br>Prometheus·Loki 관측 체계와 헤더 기반 카나리 배포로 스테이징 환경 구성.</li>
-            <li><b>통합 인증 및 접근 정책 구축</b><br>Naver Works를 IdP로 연동해 기존 계정으로 Keycloak에 로그인하도록 구성.<br>Keycloak SSO로 사내 시스템 접근을 연결하고 MFA·속성 기반 권한 정책 적용.</li>
-            <li><b>라이선스 정책 서버 재설계</b><br>정책 데이터와 검증 실행 흐름을 분리하고, DB 설계 및 핵심 API 테스트 개선.</li>
+            <li><b>데이터베이스 구조 개선</b><br>서비스 중인 DB를 재설계·마이그레이션하고 인덱스, 쿼리 튜닝, 캐싱으로 조회 경로를 정리했습니다.</li>
+            <li><b>대량 파일 처리 구조 설계</b><br>Presigned URL 직접 업로드와 Kafka 비동기 검증·후처리, KEDA 워커 확장, PgBouncer 연결 풀링을 구성했습니다.<br>Consumer Lag를 기준으로 워커를 늘리고 기본 Pod 2~3개를 유지해 급격한 기동 부하를 줄였습니다.<br>AIMD로 파일 전송 동시성을 조절하고 메타데이터 조회·인덱스도 함께 최적화했습니다.</li>
+            <li><b>플랫폼·배포·관측 운영</b><br>Kubernetes·Rancher 운영 환경과 ArgoCD GitOps 배포를 구성했습니다.<br>Istio와 헤더 기반 카나리 배포로 스테이징 환경을 만들고 Prometheus·Loki로 메트릭과 로그를 수집했습니다.</li>
+            <li><b>통합 인증 및 접근 정책</b><br>Naver Works를 IdP로 연동해 기존 업무 계정으로 Keycloak에 로그인하도록 구성했습니다.<br>Keycloak SSO로 Admin Console·Sentry·Rancher·VPN에 접근하도록 연결하고, MFA와 속성 기반 권한 정책을 적용했습니다.</li>
+            <li><b>보안·모니터링·개발 환경</b><br>EC2와 Redis를 Private Subnet으로 이관하고 NACL 및 Redis IP·비밀번호 접근 제어를 재편했습니다.<br>Actuator·Micrometer·CloudWatch 메트릭과 Lambda 알림을 연결하고, EventBridge·Lambda로 개발용 EC2 자동 종료·시작을 예약했습니다.</li>
+            <li><b>라이선스 정책 서버</b><br>하드코딩된 제품별 제한을 DB 정책과 검증 흐름으로 분리하고, Strategy·Template Method로 검증 순서와 실패 처리를 고정했습니다.<br>Unit·Integration·E2E 테스트와 CI/CD를 붙였습니다.</li>
           </ul>
           <h4 class="outcome-heading">주요 성과</h4>
           <ul class="outcomes">
-            <li>72.94GB·150,205개 입력 파일 기준 업로더 실행 시간<br><strong>22분 18.0초 → 15분 28.3초</strong>, 재시도 <strong>3,574 → 187회</strong>로 감소.</li>
-            <li>온프레미스 이관과 AWS DR 구성으로 월 비용 <strong>89.7% 절감</strong>.<br><span class="note">$448.19 → $46.22 · 2026.01 → 2026.09</span></li>
-            <li>라이선스 정책 조회 <strong>800ms → 400ms</strong>, 핵심 API 테스트 커버리지 <strong>80%</strong> 달성.</li>
-            <li>SSO로 반복 로그인을 줄이고, 사내 시스템의 접근 권한·세션 관리를 중앙화.</li>
+            <li>72.94GB·150,205개 입력 파일 기준 스캔·제어 요청·전송·재시도·마무리를 포함한 업로더 실행을 <strong>22분 18.0초 → 15분 28.3초</strong>로 단축하고 재시도를 <strong>3,574회 → 187회</strong>로 줄였습니다.</li>
+            <li>쿼리 튜닝으로 기존 <strong>7~20초 → 200ms</strong>, 기존 <strong>10초 이상 → 400ms</strong>로 개선했습니다.</li>
+            <li>온프레미스 이관과 AWS DR 구성으로 AWS 월 비용을 <strong>$448.19 → $46.22</strong>로 낮춰 <strong>89.7% 절감</strong>했습니다.<br><span class="note">2026.01 → 2026.09 비교</span></li>
+            <li>라이선스 핵심 API 테스트 커버리지를 <strong>80%</strong>로 높이고, 정책 조회 시간을 <strong>800ms → 400ms</strong>로 단축했습니다.</li>
           </ul>
         </div>
       </article>
@@ -66,24 +69,53 @@
         <header class="career-meta">
           <h3>네모시스</h3>
           <p class="period">2023.02 - 2025.05</p>
-          <p>소프트웨어 엔지니어</p>
+          <p>사원 · 소프트웨어개발팀</p>
         </header>
         <div class="career-body">
           <h4>주요 업무</h4>
-          <ul>
-            <li>철도시설 성능평가 통합 시스템의 API·ERD·DB 설계 및 개발.<br>ClipReport 문서 출력, Redis 공유 세션과 Blue/Green 무중단 배포 구성.</li>
-            <li>AWS Active-Standby 구성과 Route53·Lambda·Step Functions를 활용한 재해 복구 자동화.</li>
-            <li>테스트 세미나를 주도하고 Testcontainers·GitLab Runner·Jenkins로 단계별 CI 검증 구성.</li>
-          </ul>
+          <div class="work-group">
+            <h4>공통 설계·개발</h4>
+            <ul>
+              <li><b>요구사항·데이터 설계</b><br>요구사항을 API와 화면 흐름으로 나누고 Oracle·MySQL 관계형 모델과 ERD를 설계했습니다.<br>Java/Spring API와 KendoUI 기반 화면, Excel 업로드·다운로드 기능을 개발하고 운영 중 버그와 기능 개선도 함께 처리했습니다.</li>
+            </ul>
+          </div>
+          <div class="work-group">
+            <h4>WizRAMS 2.0 고도화 <span class="note">2023.09 - 2024.02</span></h4>
+            <ul>
+              <li>시설물 고장 분석과 유지보수 비용 최적화를 위한 RAMS 솔루션의 Spring → Spring Boot, JSP → Thymeleaf 마이그레이션을 담당했습니다.</li>
+              <li>KendoUI 기반 페이지와 Excel 업로드·다운로드 API를 개발하고, Spring Validation을 도입해 입력 검증 규칙을 정리했습니다.<br>도입 배경과 적용 방법을 사내 세미나로 공유했습니다.</li>
+            </ul>
+          </div>
+          <div class="work-group">
+            <h4>철도 시설물 성능평가 시스템</h4>
+            <ul>
+              <li>국토부 철도 시설물 성능평가 요구사항을 분석하고 ERD·통계 API를 설계했습니다.<br>ClipReport 5.0으로 평가 결과를 PPT·Excel·PDF·한글 문서로 자동 생성했습니다.</li>
+              <li>AWS EC2·Auto Scaling·CloudWatch로 운영 환경을 구성하고 Redis 캐시·공유 세션, Nginx·Docker Blue/Green 배포를 도입했습니다.</li>
+            </ul>
+          </div>
+          <div class="work-group">
+            <h4>재해 복구·검증 체계</h4>
+            <ul>
+              <li>Route53 HealthCheck·CloudWatch·EventBridge·Lambda·Step Functions를 연결한 DB Active-Standby와 DNS 전환 경로를 구성했습니다.<br>온프레미스와 AWS를 함께 사용하는 하이브리드 구조에서 장애 감지부터 전환까지의 순서를 자동화했습니다.</li>
+              <li>Testcontainers와 테스트 DB로 격리 환경을 만들고 GitLab Runner·Jenkins에서 MR 단계는 Unit Test, Merge 후에는 Unit·Integration Test를 실행하도록 CI를 나눴습니다.</li>
+            </ul>
+          </div>
           <h4 class="outcome-heading">주요 성과</h4>
           <ul class="outcomes">
-            <li>실행 계획 기반 쿼리·인덱스 개선으로 분석 쿼리 <strong>33,600ms → 444ms</strong>로 단축.<br>수백 장의 평가 문서를 <strong>5~30초</strong> 내 생성.</li>
-            <li>장애 감지·복구·DNS 전환을 자동화해 복구 시간 <strong>10분 → 3분 이내</strong>로 단축.<br>월 <strong>100달러 미만</strong>으로 재해 복구 체계 구축.</li>
-            <li>MR 단계의 빠른 단위 테스트와 Merge 후 통합 테스트로<br>코드 리뷰·배포 전 검증 절차 정착.</li>
+            <li>실행 계획을 기준으로 서브쿼리·WHERE 절을 정리하고 인덱스를 설계해 분석 쿼리를 <strong>33,600ms → 444ms</strong>로 단축했습니다.<br>수백 장의 평가 문서는 <strong>5~30초</strong> 내 생성했습니다.</li>
+            <li>사내 최초로 AWS 클라우드와 Redis를 도입·운영하고, Blue/Green 무중단 배포와 Spring Boot·Spring Validation 적용을 정착시켰습니다.</li>
+            <li>장애 감지·인스턴스 복구·DNS 전환을 자동화해 재해 복구 시간을 <strong>10분 → 3분 이내</strong>로 줄이고, 월 <strong>100달러 미만</strong>으로 운영했습니다.</li>
+            <li>Validation 세미나와 MR·Merge 후 단계별 테스트를 통해 코드 리뷰와 배포 전 검증 절차를 팀 개발 흐름에 포함했습니다.</li>
           </ul>
         </div>
       </article>
+    </section>
 
+  </section>
+
+  <section class="page">
+    <section class="section experience continued">
+      <h2>경력</h2>
       <article class="career">
         <header class="career-meta">
           <h3>피플</h3>
@@ -93,13 +125,16 @@
         <div class="career-body">
           <h4>주요 업무</h4>
           <ul>
-            <li>헌혈 매칭 서비스 기획·DB 설계, 백엔드와 Flutter 앱 개발 및 AWS 운영.</li>
-            <li>환자 사연·지정헌혈 응답·헌혈증 인증과 캘린더·뱃지·포인트 샵 구현.</li>
+            <li><b>서비스 기획·데이터 설계</b><br>환자와 헌혈자를 연결하는 매칭 서비스의 기획에 참여하고 ERD와 백엔드 도메인을 설계했습니다.<br>환자 사연 등록, 지정헌혈 응답, 사연 3일 후 자동 삭제와 응답 시 연장 흐름을 구현했습니다.</li>
+            <li><b>백엔드·앱 개발 총괄</b><br>백엔드 개발을 총괄하고 Flutter 기반 앱 1.0 버전 개발을 전담했습니다.<br>OCR API를 활용한 실물 헌혈증 인증과 헌혈 캘린더·뱃지 기능을 개발했습니다.</li>
+            <li><b>커뮤니티·리워드 기능</b><br>헌혈의 집 리뷰와 정보를 나누는 커뮤니티, 앱 내 포인트 적립과 기프티콘 구매 기능을 구현해 참여가 이어지는 사용 흐름을 만들었습니다.</li>
+            <li><b>AWS 운영</b><br>AWS ECS·RDS·ElastiCache·EC2·S3·CloudWatch·Elastic Beanstalk를 관리했습니다.</li>
           </ul>
           <h4 class="outcome-heading">주요 성과</h4>
           <ul class="outcomes">
-            <li>사용자 <strong>5,758명</strong>, 헌혈 참여 <strong>3,736회</strong>, 지정헌혈 참여 <strong>1,250회</strong> 기록.<br><span class="note">서비스 성과 · 2024.11 기준</span></li>
-            <li><strong>2023년 예비사회적 기업 선정</strong> 및 서비스 수익화 경험.</li>
+            <li>2024년 11월 기준 사용자 <strong>5,758명</strong>, 헌혈 참여 <strong>3,736회</strong>, 지정헌혈 참여 <strong>1,250회</strong>를 기록했습니다.</li>
+            <li><strong>2023년 예비사회적 기업</strong>으로 선정되고, 서비스 운영과 수익화 과정을 경험했습니다.</li>
+            <li>펄어비스 및 기타 기관과 협력 관계를 형성했습니다.</li>
           </ul>
         </div>
       </article>
@@ -108,24 +143,26 @@
     <section class="section projects">
       <h2>주요 프로젝트</h2>
       <article class="project">
-        <header><h3>Mongle · 이미지 처리 파이프라인</h3><span>2024.04 - 2024.05 · 사이드 프로젝트</span></header>
+        <header><h3>Mongle · 반려견 출장 목욕·미용 플랫폼</h3><span>2024.04 - 2024.05 · 사이드 프로젝트 · 6인 팀 · BE 총괄 · 기여도 90%</span></header>
         <ul>
-          <li>Presigned URL 직접 업로드, CloudFront·Lambda@Edge·Sharp 이미지 변환·캐싱 구현.<br>이미지 응답 시간 <strong>60ms → 20ms</strong>, 콘텐츠 다운로드 <strong>2.1ms → 0.8ms</strong>로 개선.</li>
+          <li><b>클라우드·운영</b><br>AWS ECR·EC2·RDS·S3·CloudFront·Systems Manager Parameter Store·EventBridge·SQS·Lambda를 구성하고 운영했습니다.</li>
+          <li><b>이미지 처리 파이프라인</b><br>Presigned URL로 클라이언트가 S3에 직접 업로드하도록 하고, CloudFront·Lambda@Edge·Sharp로 이미지 리사이징과 캐싱을 처리했습니다.<br>S3 변경 이벤트로 교체된 이미지 경로의 CDN 캐시를 갱신했으며, 이미지 응답 시간을 <strong>60ms → 20ms</strong>, 콘텐츠 다운로드를 <strong>2.1ms → 0.8ms</strong>로 개선했습니다.</li>
+          <li><b>인증·로깅·CI/CD</b><br>EFK 기반 로그·알림, JWT Rotate, GitHub Actions CI/CD를 구성했습니다.<br>EventBridge·SQS 이벤트를 검증해 저장하고, DB 저장 성공 후 메시지를 삭제하도록 구현했습니다.</li>
         </ul>
       </article>
     </section>
 
     <section class="section education">
       <h2>학력</h2>
-      <p><b>평택대학교 융합소프트웨어학과 졸업</b><span class="note">학점 4.27 / 4.5</span></p>
+      <p><b>평택대학교 융합소프트웨어학과 졸업</b><span class="note">2019.03 - 2023.02 · 학점 4.27 / 4.5</span></p>
     </section>
     <section class="section activities">
       <h2>활동·수상</h2>
       <ul>
-        <li><b>토스 Learner's High 1기</b> · 개발자 멘토링에서 커리어 점검과 실무 개선 과제 수행 <span class="note">2024.12 - 2025.01</span></li>
-        <li><b>2022 한이음 공모전 한국정보산업연합회 회장상</b> · 과학기술정보통신부</li>
-        <li><b>2022 신한 스퀘어 브릿지 대학생 부문 우수상</b></li>
-        <li>철도 시설물 성능평가 관련 프로그램 특허 출원 경험</li>
+        <li><b>토스 Learner's High 1기</b> · 실무 서버 개발자 멘토링에서 커리어 점검과 실무 개선 과제를 수행했습니다. <span class="note">2024.12 - 2025.01</span></li>
+        <li><b>2022 한이음 공모전 한국정보산업연합회 회장상</b> · 과학기술정보통신부 주관 ICT 기술 공모전</li>
+        <li><b>2022 신한 스퀘어 브릿지 대학생 부문 우수상</b> · 신한금융그룹 스타트업 육성 프로그램</li>
+        <li><b>철도 시설물 성능평가 관련 프로그램 특허 출원</b></li>
       </ul>
     </section>
   </section>
