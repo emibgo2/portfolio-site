@@ -37,6 +37,7 @@ address{display:flex; flex-direction:column; gap:4px; font-style:normal; font-si
 .skills dt{font-weight:600; color:var(--muted); font-size:8.5pt}
 .skills dd{font-size:9pt}
 .career{display:grid; grid-template-columns:115px minmax(0,1fr); gap:20px}
+.career a,.project a{color:var(--accent); text-decoration:underline; text-underline-offset:2px}
 .career + .career{margin-top:20px; padding-top:18px; border-top:1px solid var(--line)}
 .career-meta h3{font-size:12pt; letter-spacing:-.02em}
 .career-meta p{font-size:8pt; color:var(--muted)}
@@ -101,5 +102,4 @@ h4{font-size:9.5pt; margin-bottom:8px}
   h2,h3,h4,.project header{break-after:avoid}
   li,.career-meta,.skills dl > div,.education p{break-inside:avoid}
   .project,.education,.activities{break-inside:avoid}
-  a[href]{text-decoration:none}
 }
