@@ -66,10 +66,12 @@ h4{font-size:12pt; margin-bottom:8px}
 .outcomes strong{display:inline-block}
 .note{font-size:10pt; color:var(--muted); font-weight:400}
 .continued{margin-top:0}
-.project + .project{margin-top:14px}
-.project header{display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:4px 10px; margin-bottom:6px}
+.project + .project{margin-top:28px; padding-top:18px; border-top:1px solid var(--line)}
+.project header{margin-bottom:10px}
 .project h3{font-size:13.5pt}
-.project header span{font-size:10pt; color:var(--muted)}
+.project header span{display:block; margin-top:6px; font-size:10pt; color:var(--muted)}
+.project-summary{margin:10px 0 14px}
+.projects-page > .projects{margin-top:0}
 .project li{line-height:1.6}
 .education,.activities{margin-top:17px}
 .education p{display:flex; justify-content:space-between; align-items:baseline; gap:12px}
@@ -95,6 +97,7 @@ h4{font-size:12pt; margin-bottom:8px}
   .page{padding:0; min-height:0}
   .page:last-child{break-after:auto}
   .page + .page{border:0; margin-top:24px}
+  .projects-page{break-before:page}
   .continued > h2{display:none}
   .career{display:block}
   .career-meta{display:flex; align-items:baseline; gap:12px; margin-bottom:12px; break-after:avoid}
@@ -109,6 +112,7 @@ h4{font-size:12pt; margin-bottom:8px}
   .project li{line-height:1.5}
   .page:last-child .section{margin-top:16px}
   .page:last-child .continued{margin-top:0}
+  .page.projects-page > .projects{margin-top:0}
   .page:first-child .section{margin-top:16px}
   .page:first-child .section h2{padding-bottom:6px; margin-bottom:8px}
   .page:first-child .intro{line-height:1.55}

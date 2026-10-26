@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
   <title>고지훈 · 소프트웨어 엔지니어 이력서</title>
-  <link rel="stylesheet" href="resume.css?v=resume-v11">
+  <link rel="stylesheet" href="resume.css?v=resume-v12">
 </head>
 <body>
 <main class="resume">
@@ -179,8 +179,31 @@
       </article>
     </section>
 
+  </section>
+
+  <section class="page projects-page">
     <section class="section projects">
-      <h2>기타 개발 경험</h2>
+      <h2>프로젝트</h2>
+      <article class="project">
+        <header><h3>메디컬아이피 서버 및 인프라 개편</h3><span>2025.06 - 2025.08 · 메디컬아이피 · BE 1명 · 기여도 100%</span></header>
+        <p class="project-summary">서비스 가용성과 성능을 높이기 위한 서버·인프라 개편.</p>
+        <div class="work-group">
+          <h4>주요 업무</h4>
+          <ul>
+            <li>EC2·Redis를 Private Subnet으로 이관하고 NACL·IP·비밀번호 기반 접근 보안 구성.</li>
+            <li>Actuator·Micrometer·CloudWatch·Lambda 기반 모니터링·장애 알림 구성.</li>
+            <li>개발용 EC2 자동 종료·시작 스케줄링으로 개발 환경 비용 최적화.</li>
+            <li>라이선스 DB 재설계와 정책 동적 제어 시스템 개발.</li>
+            <li>인덱스·쿼리 튜닝을 통한 조회 성능 개선.</li>
+          </ul>
+        </div>
+        <h4 class="outcome-heading">주요 성과</h4>
+        <ul class="outcomes">
+          <li>쿼리 튜닝으로 기존 <strong>7~20초 → 200ms</strong>로 단축.</li>
+          <li>쿼리 튜닝으로 기존 <strong>10초 이상 → 400ms</strong>로 단축.</li>
+          <li>라이선스 평균 조회 시간 <strong>800ms → 400ms</strong>로 단축.</li>
+        </ul>
+      </article>
       <article class="project">
         <header><h3><a href="https://github.com/PBTP/mongle-server">Mongle · 반려견 출장 목욕·미용 플랫폼</a></h3><span>2024.04 - 2024.05 · 사이드 프로젝트 · 6인 팀 · BE 총괄 · 기여도 90%</span></header>
         <div class="work-group">
@@ -206,6 +229,64 @@
         <h4 class="outcome-heading">주요 성과</h4>
         <ul class="outcomes">
           <li>이미지 응답 시간 <strong>60ms → 20ms</strong>, 콘텐츠 다운로드 시간 <strong>2.1ms → 0.8ms</strong>로 개선.</li>
+        </ul>
+      </article>
+      <article class="project">
+        <header><h3><a href="https://rams2.nemosys.ai/">WizRAMS 2.0 고도화</a></h3><span>2023.09 - 2024.02 · 네모시스 · PM 1명 · FullStack 6명 · 기여도 30%</span></header>
+        <p class="project-summary">시설물 고장을 분석해 유지보수 비용을 최적화하는 RAMS 기반 솔루션.</p>
+        <div class="work-group">
+          <h4>주요 업무</h4>
+          <ul>
+            <li>Spring에서 Spring Boot로 마이그레이션.</li>
+            <li>JSP에서 Thymeleaf로 마이그레이션.</li>
+            <li>KendoUI 기반 화면과 Excel 업로드·다운로드 API 개발.</li>
+            <li>Spring Validation 도입 및 고도화.</li>
+          </ul>
+        </div>
+        <h4 class="outcome-heading">주요 성과</h4>
+        <ul class="outcomes">
+          <li>Spring Boot·Thymeleaf 전환 적용.</li>
+          <li>Spring Validation 도입·고도화를 통한 입력 검증 공통화.</li>
+        </ul>
+      </article>
+      <article class="project">
+        <header><h3><a href="https://rfpe.nemosys.ai/">철도 시설물 성능평가 시스템</a></h3><span>2023.04 - 현재 · 네모시스 · 발주처 한국전기철도협회 · PM 1명 · FullStack 1명 · 기여도 90%</span></header>
+        <p class="project-summary">철도 시설물 성능평가를 위한 웹 시스템 개발.</p>
+        <div class="work-group">
+          <h4>주요 업무</h4>
+          <ul>
+            <li>요구사항 분석 및 DB 설계.</li>
+            <li>통계 API 설계·개발.</li>
+            <li>ClipReport 5.0 기반 PPT·Excel·PDF·한글 문서 자동화.</li>
+            <li>AWS·Redis 인프라 구축 및 운영.</li>
+            <li>Blue/Green 무중단 배포 환경 구성.</li>
+          </ul>
+        </div>
+        <h4 class="outcome-heading">주요 성과</h4>
+        <ul class="outcomes">
+          <li>분석 쿼리 <strong>33,600ms → 444ms</strong>로 단축, 수백 장 평가 문서 <strong>5~30초</strong> 내 생성.</li>
+          <li>사내 최초 AWS·Redis·Spring Boot·Spring Validation·Blue/Green 무중단 배포 도입.</li>
+          <li>철도 시설물 성능평가 관련 프로그램 특허 출원.</li>
+        </ul>
+      </article>
+      <article class="project">
+        <header><h3><a href="https://pple.link/">피플 · 헌혈 매칭 플랫폼</a></h3><span>2022.02 - 2023.11 · (주)피플즈 · PM 1명 · 디자이너 1명 · Flutter 2명 · FE 2명 · BE 1명 · BE 개발 총괄</span></header>
+        <p class="project-summary">피가 부족한 환자와 헌혈자를 연결하는 매칭 서비스.</p>
+        <div class="work-group">
+          <h4>주요 업무</h4>
+          <ul>
+            <li>서비스 기획 참여와 ERD 설계.</li>
+            <li>환자·헌혈자 매칭 서비스 및 Flutter 앱 1.0 개발 전담.</li>
+            <li>OCR API 기반 실물 헌혈증 인증과 헌혈 캘린더·뱃지 기능 개발.</li>
+            <li>헌혈 커뮤니티와 포인트·기프티콘 기능 개발.</li>
+            <li>AWS 기반 서비스 인프라 구축·운영.</li>
+          </ul>
+        </div>
+        <h4 class="outcome-heading">주요 성과</h4>
+        <ul class="outcomes">
+          <li>2024년 11월 기준 사용자 <strong>5,758명</strong>, 헌혈 참여 <strong>3,736회</strong>, 지정헌혈 참여 <strong>1,250회</strong> 기록.</li>
+          <li><strong>2023년 예비사회적 기업</strong> 선정, 서비스 운영·수익화 경험.</li>
+          <li>2022 신한 스퀘어 브릿지 대학생 트랙 우수상 수상 및 펄어비스·기타 기관 협력 관계 형성.</li>
         </ul>
       </article>
     </section>
