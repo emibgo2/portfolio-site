@@ -210,7 +210,7 @@ h4{margin-bottom:7px;font-size:12pt}
 }
 .project-company{
   grid-column:1;
-  grid-row:1 / span 2;
+  grid-row:1;
   font-size:11.5pt;
   font-weight:700;
 }
@@ -229,10 +229,9 @@ h4{margin-bottom:7px;font-size:12pt}
   white-space:nowrap;
 }
 .project-contribution{
-  grid-column:2;
-  grid-row:2;
-  color:var(--muted);
-  font-size:10pt;
+  margin-bottom:14px;
+  color:var(--text);
+  font-size:12pt;
 }
 .project-lead > :not(header),
 .project > :not(.project-lead){
@@ -240,13 +239,17 @@ h4{margin-bottom:7px;font-size:12pt}
   min-width:0;
 }
 .project-summary{margin:0 0 13px}
+.project-summary a{font-weight:700}
+.project strong{white-space:nowrap}
+.project-list li + li{margin-top:5px}
+.project-lead + .project-list{margin-top:5px}
 .project + .project{
   padding-top:17px;
   margin-top:25px;
   border-top:1px solid var(--line);
 }
 .project-lead + .work-group{margin-top:18px}
-.project .work-group,.project .outcomes{break-inside:avoid}
+.project .work-group{break-inside:avoid}
 .projects-page > .projects{margin-top:0}
 
 .education p{
@@ -307,7 +310,6 @@ h4{margin-bottom:7px;font-size:12pt}
   .project-company{grid-column:1;grid-row:2}
   .project h3{grid-column:1;grid-row:1}
   .project-period{grid-column:2;grid-row:1}
-  .project-contribution{grid-column:1 / -1;grid-row:3}
   .project-lead > :not(header),
   .project > :not(.project-lead){
     display:block;
@@ -343,8 +345,6 @@ h4{margin-bottom:7px;font-size:12pt}
     margin-top:1px;
   }
   .project-contribution{
-    grid-column:1;
-    grid-row:4;
     margin-top:1px;
   }
   .activities .activity-organization{display:none}
@@ -376,7 +376,7 @@ h4{margin-bottom:7px;font-size:12pt}
   .project-summary{margin-bottom:11px}
   .project + .project{margin-top:21px}
   .project-lead > header{margin-bottom:9px}
-  .project .work-group,.project .outcomes{break-inside:avoid}
+  .project .work-group{break-inside:avoid}
   .career-body .work-group,.career-body .outcomes{break-inside:avoid}
   .career-meta,.skills dl > div,.education p,.activities li{break-inside:avoid}
   .activities{break-inside:avoid}

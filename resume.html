@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="color-scheme" content="light">
   <title>고지훈 · 소프트웨어 엔지니어 이력서</title>
-  <link rel="stylesheet" href="resume.css?v=resume-v17">
+  <link rel="stylesheet" href="resume.css?v=resume-v18">
 </head>
 <body>
 <main class="resume">
@@ -186,245 +186,230 @@
       <h2>프로젝트</h2>
       <article class="project">
         <div class="project-lead">
-        <header><span class="project-company">메디컬아이피</span><h3><a href="https://emibgo2.github.io/portfolio-site/#sys-01">파일 데이터센터 성능 개선 및<br>비동기 처리 아키텍처 구축</a></h3><span class="project-contribution">설계 · 구축 · 성능 검증</span></header>
-        <p class="project-summary">대량 파일 업로드와 검증·후처리를 분리해 처리 성능과 DB 연결 부하를 개선한 비동기 처리 구조.</p>
+        <header><span class="project-company">메디컬아이피</span><h3>파일 데이터센터 성능 개선 및<br>비동기 처리 아키텍처 구축</h3></header>
+        <p class="project-summary"><a href="https://emibgo2.github.io/portfolio-site/#sys-01">대량 파일 업로드와 검증·후처리를 분리해<br>처리 성능과 DB 연결 부하를 개선한 비동기 처리 구조.</a></p>
+        <p class="project-contribution">역할: 설계 · 구축 · 성능 검증</p>
         <div class="work-group">
-          <h4>주요 업무</h4>
+          <h4>1. 전송 경로·동시성</h4>
           <ul>
             <li>Presigned URL 기반 스토리지 직접 업로드 구성.</li>
+            <li>AIMD 기반 전송 동시성 조절.</li>
+            <li>72.94GB·150,205개 입력 파일 기준 업로더 전체 실행 시간 <strong>22분 18.0초 → 15분 28.3초</strong>, 평균 처리량 <strong>54.5 → 78.6 MB/s</strong>, 재시도 <strong>3,574회 → 187회</strong>로 개선 (2026.08 측정).</li>
+          </ul>
+        </div>
+        </div>
+        <div class="work-group">
+          <h4>2. 비동기 검증·워커</h4>
+          <ul>
             <li>Kafka 기반 비동기 파일 검증·후처리 워커 구성.</li>
             <li>Kafka Consumer Lag 기반 KEDA 워커 확장과 기본 Pod 2~3개 유지 구성.</li>
-            <li>PgBouncer 연결 풀링과 API·워커 DB 연결 경로 분리.</li>
-            <li>AIMD 기반 전송 동시성 조절과 메타데이터 조회·인덱스 최적화.</li>
+            <li>5.37GB·10,636개 파일의 선언부터 전체 검증 완료까지 <strong>4분 30.7초</strong>, 전체 파일 검증 성공 (2026.07 초기 검증 파이프라인).</li>
           </ul>
         </div>
+        <div class="work-group">
+          <h4>3. DB 연결·조회</h4>
+          <ul>
+            <li>PgBouncer 연결 풀링과 API·워커 DB 연결 경로 분리.</li>
+            <li>메타데이터 조회·인덱스 최적화로 업로드 처리 흐름의 DB 연결 부하 개선.</li>
+          </ul>
         </div>
-        <h4 class="outcome-heading">주요 성과</h4>
-        <ul class="outcomes">
-          <li>72.94GB·150,205개 입력 파일 기준 업로더 전체 실행 시간 <strong>22분 18.0초 → 15분 28.3초</strong>, 평균 처리량 <strong>54.5 → 78.6 MB/s</strong>, 재시도 <strong>3,574회 → 187회</strong>로 개선 (2026.08 측정).</li>
-          <li>5.37GB·10,636개 파일의 선언부터 전체 검증 완료까지 <strong>4분 30.7초</strong>, 전체 파일 검증 성공 (2026.07 초기 검증 파이프라인).</li>
-        </ul>
       </article>
       <article class="project">
         <div class="project-lead">
-        <header><span class="project-company">메디컬아이피</span><h3><a href="https://emibgo2.github.io/portfolio-site/#sys-02">사내 SSO 시스템 구축</a></h3><span class="project-period">2026.02 - 2026.03</span><span class="project-contribution">설계 · 구축</span></header>
-        <p class="project-summary">분산된 로그인·세션과 접근 권한을 Keycloak 기반 SSO로 중앙화한 인증 시스템.</p>
-        <div class="work-group">
-          <h4>주요 업무</h4>
-          <ul>
-            <li>Naver Works를 IdP로 연동해 기존 업무 계정으로 Keycloak 로그인 구성.</li>
-            <li>Keycloak·Spring Security·Gateway 기반 OAuth2/OIDC 인증 연동.</li>
-            <li>Admin Console·Sentry·Rancher·VPN 공통 접근 권한·세션 정책 구성.</li>
-            <li>MFA 적용과 RBAC에서 ABAC로의 권한 판단 전환, Keycloak 분산 배포.</li>
-          </ul>
-        </div>
-        </div>
-        <h4 class="outcome-heading">주요 성과</h4>
-        <ul class="outcomes">
-          <li>Keycloak 로그인 후 사내 시스템 SSO 접근 및 반복 로그인 감소.</li>
-          <li>사내 시스템 접근 권한·세션 정책 중앙화.</li>
+        <header><span class="project-company">메디컬아이피</span><h3>사내 SSO 시스템 구축</h3><span class="project-period">2026.02 - 2026.03</span></header>
+        <p class="project-summary"><a href="https://emibgo2.github.io/portfolio-site/#sys-02">분산된 로그인·세션과 접근 권한을 Keycloak 기반 SSO로 중앙화한 인증 시스템.</a></p>
+        <p class="project-contribution">역할: 설계 · 구축</p>
+        <ul class="project-list">
+          <li>Naver Works를 IdP로 연동해 기존 업무 계정으로 Keycloak 로그인 구성.</li>
+          <li>Keycloak·Spring Security·Gateway 기반 OAuth2/OIDC 인증 연동.</li>
+          <li>Admin Console·Sentry·Rancher·VPN 공통 접근 권한·세션 정책 구성.</li>
+          <li>MFA 적용과 RBAC에서 ABAC로의 권한 판단 전환.</li>
+          <li>Keycloak 로그인 후 사내 시스템 SSO 접근으로 반복 로그인 감소, 접근 권한·세션 정책 중앙화.</li>
           <li>Keycloak 분산 배포를 통한 인증 서비스 가용성 개선.</li>
         </ul>
+        </div>
       </article>
       <article class="project">
         <div class="project-lead">
-        <header><span class="project-company">메디컬아이피</span><h3><a href="https://emibgo2.github.io/portfolio-site/#sys-03">온프레미스 Kubernetes 및 DR 환경 구축</a></h3><span class="project-period">2025.11 - 2026.02</span><span class="project-contribution">설계 · 구축 · 운영</span></header>
-        <p class="project-summary">GitOps·모니터링·트래픽 제어를 통합한 온프레미스 Kubernetes와 AWS DR 환경.</p>
+        <header><span class="project-company">메디컬아이피</span><h3>온프레미스 Kubernetes 및 DR 환경 구축</h3><span class="project-period">2025.11 - 2026.02</span></header>
+        <p class="project-summary"><a href="https://emibgo2.github.io/portfolio-site/#sys-03">GitOps·모니터링·트래픽 제어를 통합한<br>온프레미스 Kubernetes와 AWS DR 환경.</a></p>
+        <p class="project-contribution">역할: 설계 · 구축 · 운영</p>
         <div class="work-group">
-          <h4>주요 업무</h4>
+          <h4>1. 클러스터·스토리지</h4>
           <ul>
             <li>유휴 장비 약 4~5대의 RKE·Rancher 클러스터와 NAS 17대 PV 구성.</li>
+          </ul>
+        </div>
+        </div>
+        <div class="work-group">
+          <h4>2. GitOps·트래픽·관측</h4>
+          <ul>
             <li>ArgoCD App of Apps·Image Updater 기반 GitOps 배포와 Teams 상태 알림 구성.</li>
             <li>Istio·Gateway API의 헤더 기반 카나리 배포로 beta(스테이징) 환경 구성.</li>
             <li>Prometheus 메트릭·알림과 Loki 로그 수집 기반 모니터링 구성.</li>
-            <li>Route53 HealthCheck→SQS→KEDA DR Pod 기동과 DB Replication·복구 시나리오 검증.</li>
+            <li>GitOps 배포·메트릭/로그 모니터링·트래픽 제어의 공통 운영 체계 구성.</li>
+            <li>메트릭·로그 관측 기반 이슈 대응 속도 <strong>2배</strong> 개선.</li>
           </ul>
         </div>
+        <div class="work-group">
+          <h4>3. 재해 복구·비용 최적화</h4>
+          <ul>
+            <li>Route53 HealthCheck→SQS→KEDA DR Pod 기동과 DB Replication·복구 시나리오 검증.</li>
+            <li>AWS 월 비용 <strong>$448.19 → $46.22</strong>, <strong>89.7% 감소</strong> (2026.01 → 2026.09).</li>
+          </ul>
         </div>
-        <h4 class="outcome-heading">주요 성과</h4>
-        <ul class="outcomes">
-          <li>GitOps 배포·메트릭/로그 모니터링·트래픽 제어의 공통 운영 체계 구성.</li>
-          <li>메트릭·로그 관측 기반 이슈 대응 속도 <strong>2배</strong> 개선.</li>
-          <li>AWS 월 비용 <strong>$448.19 → $46.22</strong>, <strong>89.7% 감소</strong> (2026.01 → 2026.09).</li>
-        </ul>
       </article>
       <article class="project">
         <div class="project-lead">
-        <header><span class="project-company">메디컬아이피</span><h3><a href="https://emibgo2.github.io/portfolio-site/#sys-04">라이선스 서버 재설계</a></h3><span class="project-period">2025.08 - 2025.10</span><span class="project-contribution">설계 · 개발</span></header>
-        <p class="project-summary">상품별 라이선스 정책을 DB로 분리하고 실행 흐름을 표준화한 라이선스 서버 재설계.</p>
+        <header><span class="project-company">메디컬아이피</span><h3>라이선스 서버 재설계</h3><span class="project-period">2025.08 - 2025.10</span></header>
+        <p class="project-summary"><a href="https://emibgo2.github.io/portfolio-site/#sys-04">상품별 라이선스 정책을 DB로 분리하고 실행 흐름을 표준화한 라이선스 서버 재설계.</a></p>
+        <p class="project-contribution">역할: 설계 · 개발</p>
         <div class="work-group">
-          <h4>주요 업무</h4>
+          <h4>1. 정책 모델·실행 흐름</h4>
           <ul>
             <li>활성 라이선스 정책과 실행 순서의 DB 분리.</li>
             <li>Strategy 기반 정책별 검증기와 Template Method 기반 실행·실패 처리 구성.</li>
             <li>정책 실패 시 403 반환 기준 통일.</li>
-            <li>Unit·Integration·E2E 테스트 기반 핵심 API 검증.</li>
           </ul>
         </div>
         </div>
-        <h4 class="outcome-heading">주요 성과</h4>
-        <ul class="outcomes">
-          <li>정책 조회 시간 <strong>800ms → 400ms</strong> 단축.</li>
-          <li>핵심 API 테스트 커버리지 <strong>80%</strong> 확보.</li>
-          <li>데이터 변경 기반 정책 조정과 신규 정책 검증기 클래스 1개 확장.</li>
-        </ul>
+        <div class="work-group">
+          <h4>2. API 검증·정책 확장</h4>
+          <ul>
+            <li>Unit·Integration·E2E 테스트 기반 핵심 API 검증과 테스트 커버리지 <strong>80%</strong> 확보.</li>
+            <li>정책 조회 시간 <strong>800ms → 400ms</strong> 단축.</li>
+            <li>데이터 변경 기반 정책 조정과 신규 정책 검증기 클래스 1개 확장.</li>
+          </ul>
+        </div>
       </article>
       <article class="project">
         <div class="project-lead">
-        <header><span class="project-company">메디컬아이피</span><h3>메디컬아이피 서버 및 인프라 개편</h3><span class="project-period">2025.06 - 2025.08</span><span class="project-contribution">BE 1명 · 기여도 100%</span></header>
+        <header><span class="project-company">메디컬아이피</span><h3>메디컬아이피 서버 및 인프라 개편</h3><span class="project-period">2025.06 - 2025.08</span></header>
         <p class="project-summary">서비스 가용성과 성능을 높이기 위한 서버·인프라 개편.</p>
+        <p class="project-contribution">참여인원: BE 1명 · 기여도 100%</p>
         <div class="work-group">
-          <h4>주요 업무</h4>
+          <h4>1. 인프라 개선</h4>
           <ul>
-            <li>EC2·Redis를 Private Subnet으로 이관하고 NACL·IP·비밀번호 기반 접근 보안 구성.</li>
-            <li>Actuator·Micrometer·CloudWatch·Lambda 기반 모니터링·장애 알림 구성.</li>
-            <li>개발용 EC2 자동 종료·시작 스케줄링으로 개발 환경 비용 최적화.</li>
-            <li>라이선스 DB 재설계와 정책 동적 제어 시스템 개발.</li>
-            <li>인덱스·쿼리 튜닝을 통한 조회 성능 개선.</li>
+            <li>1~4주 주기로 발생하던 원인 불명의 서비스 장애 문제 해결.</li>
+            <li><b>보안</b>: Public Subnet에 노출된 EC2·Redis를 Private Subnet으로 이관하고 NACL·IP·비밀번호 기반 접근 통제 구성.</li>
+            <li><b>모니터링</b>: Actuator·Micrometer·CloudWatch·Lambda 기반 장애 알림, 비정상 메트릭 감지, RDS SlowQuery·CPU·Memory 점유율 관측 구성.</li>
+            <li><b>가용성</b>: Docker Swarm Clustering과 Manager·Worker Node AutoScaling으로 고가용성 확보.</li>
+            <li><b>결합도·비용</b>: SNS·SQS로 서비스 간 결합도 최소화, EventBridge·Lambda로 개발용 EC2를 오후 9시 자동 종료·오전 7시 자동 시작하도록 스케줄링.</li>
           </ul>
         </div>
         </div>
-        <h4 class="outcome-heading">주요 성과</h4>
-        <ul class="outcomes">
-          <li>쿼리 튜닝으로 기존 <strong>7~20초 → 200ms</strong>로 단축.</li>
-          <li>쿼리 튜닝으로 기존 <strong>10초 이상 → 400ms</strong>로 단축.</li>
-          <li>라이선스 평균 조회 시간 <strong>800ms → 400ms</strong>로 단축.</li>
-        </ul>
+        <div class="work-group">
+          <h4>2. 성능 최적화</h4>
+          <ul>
+            <li>쿼리 튜닝으로 기존 <strong>7~20초 → 200ms</strong>로 단축.</li>
+            <li>쿼리 튜닝으로 기존 <strong>10초 이상 → 400ms</strong>로 단축.</li>
+          </ul>
+        </div>
+        <div class="work-group">
+          <h4>3. 라이선스 DB 재설계</h4>
+          <ul>
+            <li>라이선스 사용 제한을 하드코딩으로 처리하던 구조를 DB·비즈니스 로직 재설계로 동적 제어·관리하도록 개선.</li>
+            <li>라이선스 평균 조회 시간 <strong>800ms → 400ms</strong>로 단축.</li>
+          </ul>
+        </div>
       </article>
       <article class="project">
         <div class="project-lead">
-        <header><span class="project-company">네모시스</span><h3><a href="https://emibgo2.github.io/portfolio-site/#sys-05">NDRS · 재해 복구 시스템</a></h3><span class="project-period">2024.11 - 2025.01</span><span class="project-contribution">설계 · 개발</span></header>
-        <p class="project-summary">온프레미스 장애 감지와 AWS 기반 DB·DNS 자동 복구 시스템.</p>
-        <div class="work-group">
-          <h4>주요 업무</h4>
-          <ul>
+        <header><span class="project-company">네모시스</span><h3>NDRS · 재해 복구 시스템</h3><span class="project-period">2024.11 - 2025.01</span></header>
+        <p class="project-summary"><a href="https://emibgo2.github.io/portfolio-site/#sys-05">온프레미스 장애 감지와 AWS 기반 DB·DNS 자동 복구 시스템.</a></p>
+        <p class="project-contribution">역할: 설계 · 개발</p>
+        <ul class="project-list">
             <li>AWS EC2 기반 DB Active-Standby 구성.</li>
-            <li>Route53 HealthCheck·CloudWatch 기반 장애 감지와 EventBridge 이벤트 전달.</li>
+            <li>Route53 HealthCheck·CloudWatch 기반 장애 감지와<br>EventBridge 이벤트 전달.</li>
             <li>Lambda·Step Functions 기반 인스턴스 복구 및 DNS IP 전환.</li>
             <li>복구 코드 관리와 주기적 검증 절차 구성.</li>
-          </ul>
-        </div>
-        </div>
-        <h4 class="outcome-heading">주요 성과</h4>
-        <ul class="outcomes">
-          <li>복구 시간 <strong>10분 → 3분 이내</strong>, RTA <strong>70%</strong> 감소.</li>
-          <li>월 <strong>100달러 미만</strong>의 자동 재해 복구 체계 구성.</li>
+            <li>복구 시간 <strong>10분 → 3분 이내</strong>, RTA <strong>70%</strong> 감소.</li>
+            <li>월 <strong>100달러 미만</strong>의 자동 재해 복구 체계 구성.</li>
         </ul>
+        </div>
       </article>
       <article class="project">
         <div class="project-lead">
-        <header><span class="project-company">네모시스</span><h3><a href="https://emibgo2.github.io/portfolio-site/#sys-07">테스트 코드 문화 도입 및 CI 파이프라인</a></h3><span class="project-period">2024.12 - 2025.01</span><span class="project-contribution">주도 · 세미나</span></header>
-        <p class="project-summary">테스트 기준을 정립하고 MR·Merge 후 단계별 자동 검증을 CI에 도입한 개발 문화 개선.</p>
-        <div class="work-group">
-          <h4>주요 업무</h4>
-          <ul>
+        <header><span class="project-company">네모시스</span><h3>테스트 코드 문화 도입 및 CI 파이프라인</h3><span class="project-period">2024.12 - 2025.01</span></header>
+        <p class="project-summary"><a href="https://emibgo2.github.io/portfolio-site/#sys-07">테스트 기준을 정립하고<br>MR·Merge 후 단계별 자동 검증을 CI에 도입한 개발 문화 개선.</a></p>
+        <p class="project-contribution">역할: 주도 · 세미나</p>
+        <ul class="project-list">
             <li>E2E·Integration·Unit 테스트 역할과 도입 효과 세미나 공유.</li>
             <li>Testcontainers·테스트 DB 기반 격리 환경 구성.</li>
             <li>GitLab Runner·Jenkins에서 MR Unit, Merge 후 Unit·Integration 단계별 실행.</li>
             <li>테스트 통과 조건과 배포 전 검증 절차 구성.</li>
-          </ul>
-        </div>
-        </div>
-        <h4 class="outcome-heading">주요 성과</h4>
-        <ul class="outcomes">
-          <li>테스트를 코드 리뷰·배포 확인 절차에 포함.</li>
-          <li>MR·Merge 후 단계별 자동 검증 정착.</li>
+            <li>테스트를 코드 리뷰·배포 확인 절차에 포함하고 MR·Merge 후 단계별 자동 검증 정착.</li>
         </ul>
+        </div>
       </article>
       <article class="project">
         <div class="project-lead">
-        <header><span class="project-company">사이드 프로젝트</span><h3><a href="https://github.com/PBTP/mongle-server">Mongle · 반려견 출장 목욕·미용 플랫폼</a></h3><span class="project-period">2024.04 - 2024.05</span><span class="project-contribution">6인 팀 · BE 총괄 · 기여도 90%</span></header>
-        <div class="work-group">
-          <h4>설계·개발</h4>
-          <ul>
-            <li><a href="https://hoonco.tistory.com/46">Presigned URL을 활용한 클라이언트의 S3 직접 업로드 설계.</a><br>CloudFront·Lambda@Edge·Sharp 기반 이미지 리사이징·캐싱 파이프라인 구현.<br>S3 변경 이벤트로 교체된 이미지 경로의 CDN 캐시 갱신.</li>
-            <li>EventBridge·SQS 이벤트 검증·저장, DB 저장 성공 후 메시지 삭제 처리.</li>
-          </ul>
+        <header><span class="project-company">사이드 프로젝트</span><h3>Mongle</h3><span class="project-period">2024.04 - 2024.05</span></header>
+        <p class="project-summary"><a href="https://github.com/PBTP/mongle-server">반려견 출장 목욕·미용 플랫폼 서비스</a></p>
+        <p class="project-contribution">참여인원: 디자이너 1명 · iOS 1명 · FE 2명 · BE 2명<br>역할: BE 총괄 · 기여도 90%</p>
+        <ul class="project-list">
+          <li>AWS ECR·EC2·RDS·S3·CloudFront·Systems Manager Parameter Store·EventBridge·SQS·Lambda 구성·운영.</li>
+          <li><a href="https://hoonco.tistory.com/46">Presigned URL을 활용한 클라이언트의 S3 직접 업로드 설계.</a><br>CloudFront·Lambda@Edge·Sharp 기반<br>이미지 리사이징·캐싱 파이프라인 구현.<br>S3 변경 이벤트로 교체된 이미지 경로의 CDN 캐시 갱신.</li>
+        </ul>
         </div>
-        </div>
-        <div class="work-group">
-          <h4>인프라·운영</h4>
-          <ul>
-            <li>AWS ECR·EC2·RDS·S3·CloudFront·Systems Manager Parameter Store·EventBridge·SQS·Lambda 구성·운영.</li>
-            <li>EFK 기반 로그·알림 구성.</li>
-          </ul>
-        </div>
-        <div class="work-group">
-          <h4>인증·배포 관리</h4>
-          <ul>
-            <li><a href="https://github.com/PBTP/mongle-server/pull/6">JWT Rotate</a>와 <a href="https://github.com/PBTP/mongle-server/pull/1">GitHub Actions CI/CD</a> 구성.</li>
-          </ul>
-        </div>
-        <h4 class="outcome-heading">주요 성과</h4>
-        <ul class="outcomes">
+        <ul class="project-list">
+          <li>EventBridge·SQS 이벤트 검증·저장, DB 저장 성공 후 메시지 삭제 처리.</li>
+          <li>EFK 기반 로그·알림 구성.</li>
+          <li><a href="https://github.com/PBTP/mongle-server/pull/6">JWT Rotate</a>와 <a href="https://github.com/PBTP/mongle-server/pull/1">GitHub Actions CI/CD</a> 구성.</li>
           <li>이미지 응답 시간 <strong>60ms → 20ms</strong>,<br>콘텐츠 다운로드 시간 <strong>2.1ms → 0.8ms</strong>로 개선.</li>
         </ul>
       </article>
       <article class="project">
         <div class="project-lead">
-        <header><span class="project-company">네모시스</span><h3><a href="https://rams2.nemosys.ai/">WizRAMS 2.0 고도화</a></h3><span class="project-period">2023.09 - 2024.02</span><span class="project-contribution">PM 1명 · FullStack 6명 · 기여도 30%</span></header>
-        <p class="project-summary">시설물 고장을 분석해 유지보수 비용을 최적화하는 RAMS 기반 솔루션.</p>
-        <div class="work-group">
-          <h4>주요 업무</h4>
-          <ul>
-            <li>Spring에서 Spring Boot로 마이그레이션.</li>
-            <li>JSP에서 Thymeleaf로 마이그레이션.</li>
-            <li>KendoUI 기반 화면과 Excel 업로드·다운로드 API 개발.</li>
-            <li>Spring Validation 도입 및 고도화.</li>
-          </ul>
-        </div>
-        </div>
-        <h4 class="outcome-heading">주요 성과</h4>
-        <ul class="outcomes">
-          <li>Spring Boot·Thymeleaf 전환 적용.</li>
-          <li>Spring Validation 도입·고도화를 통한 입력 검증 공통화.</li>
+        <header><span class="project-company">네모시스</span><h3>WizRAMS 2.0 고도화</h3><span class="project-period">2023.09 - 2024.02</span></header>
+        <p class="project-summary"><a href="https://rams2.nemosys.ai/">시설물의 고장을 분석하여 유지보수 비용을 최적화하는 RAMS 기반 솔루션 프로그램</a></p>
+        <p class="project-contribution">참여인원: PM 1명 · FullStack 6명 · 기여도 30%</p>
+        <ul class="project-list">
+          <li>Spring에서 Spring Boot로, JSP에서 Thymeleaf로 마이그레이션해 애플리케이션 기반 전환 적용.</li>
+          <li>KendoUI 기반 화면과 Excel 업로드·다운로드 API 개발.</li>
+          <li>Spring Validation 도입·고도화로 입력 검증 공통화.</li>
         </ul>
+        </div>
       </article>
       <article class="project">
         <div class="project-lead">
-        <header><span class="project-company">네모시스</span><h3><a href="https://rfpe.nemosys.ai/">철도 시설물 성능평가 시스템</a></h3><span class="project-period">2023.04 - 현재</span><span class="project-contribution">발주처 한국전기철도협회 · PM 1명 · FullStack 1명 · 기여도 90%</span></header>
-        <p class="project-summary">철도 시설물 성능평가를 위한 웹 시스템 개발.</p>
-        <div class="work-group">
-          <h4>주요 업무</h4>
-          <ul>
+        <header><span class="project-company">네모시스</span><h3>철도 시설물 성능평가 시스템</h3><span class="project-period">2023.04 - 현재</span></header>
+        <p class="project-summary"><a href="https://rfpe.nemosys.ai/">국토부에서 진행하는 철도 시설물 성능평가 프로그램 사이트 개발</a></p>
+        <p class="project-contribution">발주처: 한국전기철도협회<br>참여인원: PM 1명 · FullStack 1명 · 기여도 90%</p>
+        <ul class="project-list">
             <li>요구사항 분석 및 DB 설계.</li>
             <li>통계 API 설계·개발.</li>
             <li>ClipReport 5.0 기반 PPT·Excel·PDF·한글 문서 자동화.</li>
-            <li>AWS·Redis 인프라 구축 및 운영.</li>
-            <li>Blue/Green 무중단 배포 환경 구성.</li>
-          </ul>
+        </ul>
         </div>
-        </div>
-        <h4 class="outcome-heading">주요 성과</h4>
-        <ul class="outcomes">
-          <li>분석 쿼리 <strong>33,600ms → 444ms</strong>로 단축, 수백 장 평가 문서 <strong>5~30초</strong> 내 생성.</li>
+        <ul class="project-list">
+          <li>AWS·Redis 인프라 구축 및 운영.</li>
+          <li>Blue/Green 무중단 배포 환경 구성.</li>
+          <li>분석 쿼리 <strong>33,600ms → 444ms</strong>로 단축하고,<br>수백 장 평가 문서를 <strong>5~30초</strong> 내 생성.</li>
+          <li>철도 시설물 성능평가 최초 자동화 프로그램 선정과 관련 프로그램 특허 출원.</li>
           <li>사내 최초 AWS·Redis·Spring Boot·Spring Validation·Blue/Green 무중단 배포 도입.</li>
-          <li>철도 시설물 성능평가 관련 프로그램 특허 출원.</li>
         </ul>
       </article>
       <article class="project">
         <div class="project-lead">
-        <header><span class="project-company">(주)피플즈</span><h3><a href="https://pple.link/">피플 · 헌혈 매칭 플랫폼</a></h3><span class="project-period">2022.02 - 2023.11</span><span class="project-contribution">PM 1명 · 디자이너 1명 · Flutter 2명 · FE 2명 · BE 1명 · BE 개발 총괄</span></header>
-        <p class="project-summary">피가 부족한 환자와 헌혈자를 연결하는 매칭 서비스.</p>
-        <div class="work-group">
-          <h4>주요 업무</h4>
-          <ul>
+        <header><span class="project-company">(주)피플즈</span><h3>피플 · 헌혈 매칭 플랫폼</h3><span class="project-period">2022.02 - 2023.11</span></header>
+        <p class="project-summary"><a href="https://pple.link/">피가 부족한 환자와 헌혈자를 이어주는 매칭 서비스 피플</a></p>
+        <p class="project-contribution">참여인원: PM 1명 · 디자이너 1명 · Flutter 2명 · FE 2명 · BE 1명<br>역할: BE 개발 총괄</p>
+        <ul class="project-list">
             <li>서비스 기획 참여와 ERD 설계.</li>
-            <li>환자·헌혈자 매칭 서비스 및 Flutter 앱 1.0 개발 전담.</li>
+            <li>환자·헌혈자 매칭 서비스 개발 및 Flutter 앱 1.0 개발 전담.</li>
+          </ul>
+        </div>
+        <ul class="project-list">
             <li>환자 사연 3일 후 자동 삭제와 응답 시 연장 기능 개발.</li>
             <li>OCR API 기반 실물 헌혈증 인증과 헌혈 캘린더·뱃지 기능 개발.</li>
             <li>헌혈 커뮤니티와 포인트·기프티콘 기능 개발.</li>
             <li>AWS 기반 서비스 인프라 구축·운영.</li>
+            <li>2024년 11월 기준 사용자 <strong>5,758명</strong>, 헌혈 참여 <strong>3,736회</strong>,<br>지정헌혈 참여 <strong>1,250회</strong> 기록.</li>
+            <li>700건 이상 사연에 헌혈 응답 <strong>2,000건</strong> 확보.</li>
+            <li><strong>2023년 예비사회적 기업</strong> 선정, 서비스 운영·수익화 경험.</li>
+            <li>2022 신한 스퀘어 브릿지 대학생 트랙 우수상 수상 및 펄어비스·기타 기관 협력 관계 형성.</li>
           </ul>
-        </div>
-        </div>
-        <h4 class="outcome-heading">주요 성과</h4>
-        <ul class="outcomes">
-          <li>2024년 11월 기준 사용자 <strong>5,758명</strong>, 헌혈 참여 <strong>3,736회</strong>,<br>지정헌혈 참여 <strong>1,250회</strong> 기록.</li>
-          <li>700건 이상 사연에 헌혈 응답 <strong>2,000건</strong> 확보.</li>
-          <li><strong>2023년 예비사회적 기업</strong> 선정, 서비스 운영·수익화 경험.</li>
-          <li>2022 신한 스퀘어 브릿지 대학생 트랙 우수상 수상 및 펄어비스·기타 기관 협력 관계 형성.</li>
-        </ul>
       </article>
     </section>
 
