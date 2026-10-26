@@ -202,19 +202,19 @@ const systems = [
   thesis: "GitOps·모니터링·트래픽 제어를 Kubernetes로 통합하고, 온프레미스 운영과 AWS DR로 비용·복구 체계를 개선했습니다.",
   story: [
     ["문제", ["<b>운영 통합</b> · GitOps·모니터링·트래픽 제어를 일관된 운영 체계로 연결할 필요", "<b>배포</b> · 환경별 설정 차이와 운영 채널 기록 부재로 변경 이력 추적 어려움", "<b>비용</b> · 상시 AWS 비용을 줄이고 사내 유휴 장비·NAS를 활용할 필요"]],
-    ["실행", ["<b>클러스터</b> · 유휴 장비 약 4~5대로 RKE/Rancher 구성, NAS 17대를 PV로 활용", "<b>가용성·트래픽</b> · Probe·ReplicaSet·DaemonSet으로 상태 관리, 헤더 기반 카나리 배포로 beta(스테이징) 환경 구성", "<b>GitOps</b> · ArgoCD App of Apps·Image Updater로 배포 자동화, Teams 알림 연동", "<b>관측</b> · kube-prometheus-stack으로 메트릭·알림, Loki로 로그 수집", "<b>DR</b> · AWS는 복구용으로 축소하고 HealthCheck → SQS → KEDA로 DR Pod 기동, DB Replication·복구 시나리오 정기 검증"]],
+    ["실행", ["<b>클러스터</b> · 유휴 장비 9대로 RKE/Rancher 구성, NAS 17대를 PV로 활용", "<b>가용성·트래픽</b> · Probe·ReplicaSet·DaemonSet으로 상태 관리, 헤더 기반 카나리 배포로 beta(스테이징) 환경 구성", "<b>GitOps</b> · ArgoCD App of Apps·Image Updater로 배포 자동화, Teams 알림 연동", "<b>관측</b> · kube-prometheus-stack으로 메트릭·알림, Loki로 로그 수집", "<b>DR</b> · AWS는 복구용으로 축소하고 HealthCheck → SQS → KEDA로 DR Pod 기동, DB Replication·복구 시나리오 정기 검증"]],
     ["결과", ["<b>운영 통합</b> · GitOps 배포·메트릭/로그 모니터링·트래픽 제어를 공통 운영 체계로 구성", "<b>배포 추적</b> · Git에서 변경·롤백 기준 관리, ArgoCD로 일관된 반영, Teams에서 상태 확인", "<b>운영 대응</b> · 메트릭·로그 관측으로 이슈 대응 속도 <b>2배 개선</b>", "<b>비용 절감</b> · AWS 월 비용 <b>$448.19 → $46.22 · 89.7% 감소</b> · 2026.01 → 09"]],
     ["선택 이유", "<b>GitOps·모니터링·트래픽 제어를 하나의 운영 체계로 통합</b>하기 위해 Kubernetes를 선택했습니다."],
   ],
   storyDetail: [
-    ["문제", "인프라 운영의 우선순위는 <b>비용 절감</b>이었으며,<br>트래픽은 빈번한 Scale-out·Scale-in이 필요할 정도로 변동하지 않았고, 사내에는 유휴 컴퓨팅 장비 약 4~5대와 NAS 17대가 있었습니다. 기존 Docker Swarm 운영 환경에서는 GitOps·모니터링·트래픽 제어를 일관된 방식으로 연결하고 관리할 필요가 있었습니다."],
+    ["문제", "인프라 운영의 우선순위는 <b>비용 절감</b>이었으며,<br>트래픽은 빈번한 Scale-out·Scale-in이 필요할 정도로 변동하지 않았고, 사내에는 유휴 컴퓨팅 장비 9대와 NAS 17대가 있었습니다. 기존 Docker Swarm 운영 환경에서는 GitOps·모니터링·트래픽 제어를 일관된 방식으로 연결하고 관리할 필요가 있었습니다."],
     ["판단", "상시 클라우드 비용을 줄이기 위해 <b>기존 사내 장비로 운영 워크로드를 감당하는 온프레미스 구성</b>을 선택하고,<br>유휴 장비는 컴퓨팅 자원으로, NAS는 영속 스토리지로 활용하면서 AWS는 DR 중심으로 축소했습니다. 잦은 인프라 확장보다 현재 트래픽에 필요한 용량과 복구 경로를 경제적으로 확보하는 데 집중했습니다."],
     ["전환 이유", "<b>ArgoCD 기반 GitOps, Prometheus·Loki 기반 모니터링, Istio·Gateway API 기반 트래픽 제어를 통합</b>하기 위해 Kubernetes로 전환하면서,<br>배포 설정과 운영 정책을 리소스로 선언하고 컨트롤러가 일관되게 반영하는 방식을 선택했습니다."],
     ["생태계 활용", "<b>ArgoCD 기반 GitOps</b>로 배포 변경과 롤백 기준을 Git에 모으고,<br><b>Prometheus 스택과 Loki</b>로 메트릭·알림·로그를 함께 살펴 장애 원인을 찾도록 구성했습니다. 원하는 구성을 리소스로 선언하면 컨트롤러가 반영하는 <b>Operator 패턴</b>은<br>Prometheus Operator처럼 반복적인 운영 설정을 자동화할 수 있다는 점에서 장점으로 봤습니다. 트래픽 제어에는 <b>Istio·Gateway API</b>를 적용해 헤더 기반 카나리 배포로 beta(스테이징) 환경을 구성했습니다."],
-    ["실행", "유휴 컴퓨팅 장비 약 4~5대로 RKE 클러스터를 구성해 Rancher로 관리하면서 AWS의 운영 워크로드를 온프레미스로 이관하고,<br><b>NAS 17대를 Kubernetes 스토리지에 연결해 PV(PersistentVolume)로 활용</b>하며 애플리케이션의 영속 데이터를 저장했습니다. Readiness·Liveness Probe와 ReplicaSet·DaemonSet을 운영 기반으로 삼고,<br>ArgoCD App of Apps와 Image Updater로 GitOps 배포를 구성했습니다. Istio와 Gateway API로 <b>헤더 기반 카나리 배포를 도입해 beta(스테이징) 환경</b>을 구성하고,<br>Kiali로 서비스 간 트래픽 흐름을 확인했습니다. AWS는 DR 중심으로 사용 범위를 줄이고,<br>Route53 HealthCheck 실패를 SQS로 보내 KEDA가 AWS 클러스터의 Pod를 기동하도록 구성했습니다. DB Replication과 복구 경로는 실행 시나리오로 정리해 정기 DR 훈련으로 검증했습니다."],
+    ["실행", "유휴 컴퓨팅 장비 9대로 RKE 클러스터를 구성해 Rancher로 관리하면서 AWS의 운영 워크로드를 온프레미스로 이관하고,<br><b>NAS 17대를 Kubernetes 스토리지에 연결해 PV(PersistentVolume)로 활용</b>하며 애플리케이션의 영속 데이터를 저장했습니다. Readiness·Liveness Probe와 ReplicaSet·DaemonSet을 운영 기반으로 삼고,<br>ArgoCD App of Apps와 Image Updater로 GitOps 배포를 구성했습니다. Istio와 Gateway API로 <b>헤더 기반 카나리 배포를 도입해 beta(스테이징) 환경</b>을 구성하고,<br>Kiali로 서비스 간 트래픽 흐름을 확인했습니다. AWS는 DR 중심으로 사용 범위를 줄이고,<br>Route53 HealthCheck 실패를 SQS로 보내 KEDA가 AWS 클러스터의 Pod를 기동하도록 구성했습니다. DB Replication과 복구 경로는 실행 시나리오로 정리해 정기 DR 훈련으로 검증했습니다."],
     ["결과", "GitOps 배포·메트릭/로그 모니터링·트래픽 제어를 하나의 운영 체계로 연결하면서,<br>ArgoCD로 배포 이력과 롤백 기준을 관리하고 헤더 기반 카나리 배포로 beta(스테이징) 환경을 구성했습니다. 장애가 감지되면 개발자 개입 없이 복구가 시작되며,<br>로그 수집 자동화와 메트릭 모니터링으로 이슈 대응 속도가 두 배가 되었습니다. 전환 이후 확인한 <b>AWS 월 비용은 2026년 1월 $448.19에서 9월 $46.22로 89.7% 감소</b>했고,<br>EC2 서비스 요금은 2026년 1월 $238.98에서 7월 $9.03로 줄었습니다."],
   ],
-  metrics: [["89.7%↓", "AWS 월 비용 · 2026.01 → 09"], ["$46.22", "2026.09 월 비용"], ["약 4~5대", "유휴 컴퓨팅 장비 활용"], ["NAS 17대", "스토리지 연결 · PV 활용"], ["RKE · Rancher", "온프레미스 클러스터"], ["자동", "DR Pod 기동"], ["2배", "이슈 대응 속도"]],
+  metrics: [["89.7%↓", "AWS 월 비용 · 2026.01 → 09"], ["$46.22", "2026.09 월 비용"], ["9대", "유휴 컴퓨팅 장비 활용"], ["NAS 17대", "스토리지 연결 · PV 활용"], ["RKE · Rancher", "온프레미스 클러스터"], ["자동", "DR Pod 기동"], ["2배", "이슈 대응 속도"]],
   diagram: {
     q: "온프레미스 장애가 나면 DR은 어떻게 가동되는가?",
     svg: G.svg(456, [

@@ -74,7 +74,7 @@ strong{color:var(--text)}
 }
 .portrait img{
   position:absolute;
-  top:0;
+  top:10%;
   left:50%;
   width:150%;
   max-width:none;
