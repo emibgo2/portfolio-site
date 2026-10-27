@@ -401,6 +401,47 @@ body.dialog-open{overflow:hidden}
   .record-dialog .kv dt:not(:first-child){margin-top:14px}
 }
 
+/* --------------------------------------------------- performance evidence */
+.record-dialog[data-kind="comparison"]{width:min(1360px,calc(100% - 32px)); scroll-padding-top:88px}
+.record-dialog[data-kind="comparison"] .record-toolbar{position:sticky; top:0; z-index:2; padding:8px 0; background:var(--bg-2); box-shadow:0 -28px 0 var(--bg-2)}
+.performance-intro{max-width:74ch; margin-top:12px; color:var(--fg-3); line-height:1.7}
+.performance-table{width:100%; margin:24px 0; border-collapse:collapse; font-variant-numeric:tabular-nums}
+.performance-table caption{text-align:left; margin-bottom:10px; font-size:13px; color:var(--fg-4)}
+.performance-table th,.performance-table td{padding:12px 16px; text-align:left; border-bottom:1px solid var(--line)}
+.performance-table thead{background:var(--bg-3); color:var(--fg-3); font-size:13px}
+.performance-table tbody th{font-size:15px; font-weight:500; width:46%}
+.performance-table td{font-family:var(--mono); white-space:nowrap}
+.performance-table strong{color:var(--accent); font-weight:600}
+.performance-table small{display:block; font-family:var(--sans); font-size:12px; color:var(--fg-4); font-weight:400; margin-top:4px}
+.performance-table td:last-child small{color:var(--accent)}
+.performance-images{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px}
+.performance-image{min-width:0; margin:0; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:var(--bg)}
+.performance-image-heading{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:16px}
+.performance-image h3{font-size:15px; font-weight:500; line-height:1.5}
+.performance-image h3 span{display:block; font-family:var(--mono); font-size:11px; letter-spacing:.1em; color:var(--fg-4); margin-bottom:4px}
+.performance-zoom{flex:none; font:inherit; font-size:13px; padding:7px 12px; color:var(--accent); background:var(--accent-2); border:1px solid var(--line); border-radius:5px; cursor:pointer}
+.performance-zoom:hover{border-color:var(--accent)}
+.performance-viewport{overflow:auto; max-height:min(540px,60dvh); overscroll-behavior:contain}
+.performance-stage{position:relative; width:100%}
+.performance-stage img{display:block; width:100%; height:auto; max-width:none}
+.performance-highlight{position:absolute; inset:0; width:100%; height:100%; pointer-events:none}
+.performance-highlight rect{fill:none; stroke:#ff3939; stroke-width:3}
+.performance-image.is-expanded{grid-column:1/-1}
+.performance-image.is-expanded .performance-stage{width:max(100%,2048px)}
+.performance-image figcaption{display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px 16px; padding:12px 16px; font-size:12px; color:var(--fg-3); border-top:1px solid var(--line)}
+.performance-image figcaption code{font-size:11px; color:var(--fg-4)}
+.performance-help{margin-top:16px; color:var(--fg-4); font-size:13px}
+@media(max-width:900px){.performance-images{grid-template-columns:1fr}}
+@media(max-width:620px){
+  .record-dialog[data-kind="comparison"]{width:calc(100% - 16px); padding:16px}
+  .performance-table th,.performance-table td{padding:10px 7px}
+  .performance-table tbody th{width:40%; font-size:13px}
+  .performance-table td{font-size:13px}
+  .performance-table small{font-size:10px}
+  .performance-image-heading{padding:12px}
+  .performance-image h3{font-size:14px}
+}
+
 /* ------------------------------------------------------------ adr / inc */
 .entry{padding-top:var(--s7); border-top:1px solid var(--line-2); margin-top:var(--s7)}
 .entry:first-of-type{border-top:0; margin-top:var(--s6); padding-top:0}
@@ -641,6 +682,7 @@ footer{margin-top:var(--s10); border-top:1px solid var(--line-2); padding:var(--
     border:1px solid #94a3b8; border-radius:4px; background:#fff; padding:10pt 12pt;
     margin:16pt 0 0; break-inside:avoid; page-break-inside:avoid; overflow:visible;
   }
+  .rec > .plate:last-of-type{break-after:avoid; page-break-after:avoid}
   .plate .cap-top{
     font-size:10pt; line-height:1.4; font-weight:700; color:#334155;
     margin-bottom:10pt; break-after:avoid; page-break-after:avoid;

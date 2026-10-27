@@ -9,10 +9,10 @@ index.html    # 페이지 구조 + 렌더 엔진 (약 420줄)
 styles.css    # 디자인 시스템 (토큰 · 레이아웃 · 도식 · 인쇄)
 data.js       # 콘텐츠 전체 + SVG 도식 12개
 og-image.svg  # 공유 미리보기 (카카오톡 · 슬랙 · X)
-output/pdf/go-jihoon-portfolio.pdf # 다운로드용 30분 상세본
+output/pdf/kojihoon-portfolio.pdf # 다운로드용 30분 상세본
 resume.html   # 주요 업무·성과 중심 이력서 원본
 resume.css    # 이력서 화면·A4 인쇄 양식
-output/pdf/go-jihoon-resume.pdf # 다운로드용 이력서
+output/pdf/kojihoon-resume.pdf # 다운로드용 이력서
 README.md     # 이 문서
 ```
 
@@ -72,14 +72,16 @@ git push origin main
 
 3분은 `story`, 30분은 `storyDetail`을 표시합니다. 본문 두 버전을 함께 나열하지 않으며, 인쇄 시에는 상세 설명만 출력합니다.
 
+Mongle의 **성능 비교**는 첨부된 전후 측정 화면을 팝업으로 보여줍니다. 원본은 `assets/performance/`에 보관하고, 빨간 강조 박스와 확대 기능은 원본 위에 표시합니다. 수치는 Chrome DevTools의 서버 응답 대기·콘텐츠 다운로드 구간을 기준으로 합니다.
+
 ## PDF 다운로드
 
 상단의 **PDF 다운로드**를 누르면 이력서와 포트폴리오를 선택할 수 있습니다.
 
 | 선택 | 원본 | 다운로드 파일 |
 |---|---|---|
-| **이력서** | `resume.html` · `resume.css` | `output/pdf/go-jihoon-resume.pdf` |
-| **포트폴리오** | `index.html` · `data.js` · `styles.css` | `output/pdf/go-jihoon-portfolio.pdf` |
+| **이력서** | `resume.html` · `resume.css` | `output/pdf/kojihoon-resume.pdf` |
+| **포트폴리오** | `index.html` · `data.js` · `styles.css` | `output/pdf/kojihoon-portfolio.pdf` |
 
 이력서는 기본 정보·기술 스택·회사별 주요 업무와 성과·별도 프로젝트·학력·활동으로 정리한 9쪽 문서입니다. 본문은 12pt, 보조 정보는 10pt 이상으로 표시합니다. 회사별 경력 안에서는 클라우드 운영 및 관리, DB 설계 및 최적화, 백엔드 서버 개발 등 번호가 있는 업무 영역별로 주로 담당한 일을 정리합니다. 프로젝트란에는 웹 포트폴리오의 9개 프로젝트를 모두 포함하고, 랠릿의 메디컬아이피 초기 서버 개편과 WizRAMS 2.0을 추가해 총 11개를 소개합니다. 중복되는 철도·피플·Mongle은 하나로 통합하며, 확인된 기간·소속·참여 인원·역할·주요 작업과 성과를 정리합니다. 추가한 웹 프로젝트 제목은 포트폴리오의 해당 상세 내용으로 연결합니다. 상세 구현 설명은 포트폴리오에서 다루며, 이력서의 성과에는 검증된 수치를 유지합니다. 철도시설 성능평가 통합 시스템 업무는 네모시스 경력에 포함합니다. 포트폴리오는 상세 설명과 도식을 담은 30분 버전입니다.
 

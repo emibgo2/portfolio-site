@@ -24,7 +24,7 @@
   }
 }
 </script>
-<link rel="stylesheet" href="styles.css?v=project-links-v1" />
+<link rel="stylesheet" href="styles.css?v=performance-comparison-v3" />
 </head>
 <body data-depth="30">
 <canvas id="graph" role="img" aria-label="Kotlin, Spring Boot, MariaDB, PostgreSQL, Redis, Kubernetes, Argo CD, Docker, Istio, Sentry, AWS, Prometheus, Grafana, GitHub Actions, NGINX, Keycloak로 구성된 3D 기술 스택 그래프"></canvas>
@@ -52,10 +52,10 @@
         <span>PDF 다운로드</span><span class="pdf-caret" aria-hidden="true">⌄</span>
       </summary>
       <div class="pdf-menu-panel" role="group" aria-label="다운로드할 PDF 선택">
-        <a class="pdf-option" href="output/pdf/go-jihoon-resume.pdf?v=resume-v20" download="고지훈_이력서.pdf">
+        <a class="pdf-option" href="output/pdf/kojihoon-resume.pdf?v=resume-v20" download="고지훈_이력서.pdf">
           <strong>이력서 PDF</strong><span>주요 업무 · 성과</span>
         </a>
-        <a class="pdf-option" href="output/pdf/go-jihoon-portfolio.pdf?v=pdf-v12" download="고지훈_포트폴리오.pdf">
+        <a class="pdf-option" href="output/pdf/kojihoon-portfolio.pdf?v=pdf-v20" download="고지훈_포트폴리오.pdf">
           <strong>포트폴리오 PDF</strong><span>프로젝트 상세 · 도식</span>
         </a>
       </div>
@@ -130,8 +130,50 @@
   <div id="recordContent"></div>
 </dialog>
 
+<template id="monglePerformanceTemplate">
+  <h2 id="recordTitle">Mongle 이미지 성능 비교</h2>
+  <p class="performance-intro">리사이징·CDN 적용 전후의 Chrome DevTools 측정 화면입니다. 빨간 테두리는 서버 응답 대기와 콘텐츠 다운로드 구간을 표시합니다.</p>
+  <table class="performance-table">
+    <caption>첨부 화면의 단일 이미지 요청 측정값</caption>
+    <thead><tr><th scope="col">측정 항목</th><th scope="col">적용 전</th><th scope="col">적용 후</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">서버 응답 대기<small>Waiting for server response</small></th><td>62.69 ms</td><td><strong>24.72 ms</strong><small>60.6% 감소</small></td></tr>
+      <tr><th scope="row">콘텐츠 다운로드<small>Content Download</small></th><td>2.10 ms</td><td><strong>0.82 ms</strong><small>61.0% 감소</small></td></tr>
+    </tbody>
+  </table>
+  <div class="performance-images">
+    <figure class="performance-image">
+      <div class="performance-image-heading">
+        <h3><span>BEFORE</span>원본 이미지 요청</h3>
+        <button type="button" class="performance-zoom" data-label="원본 화면" aria-label="원본 화면 확대" aria-expanded="false" aria-controls="mongle-before-frame">확대</button>
+      </div>
+      <div class="performance-viewport" id="mongle-before-frame" role="region" aria-label="원본 이미지 성능 측정 화면" tabindex="0">
+        <div class="performance-stage">
+          <img src="assets/performance/mongle-before.png" width="2048" height="815" alt="원본 이미지 요청의 Chrome DevTools Timing 화면. 서버 응답 대기 62.69ms, 콘텐츠 다운로드 2.10ms." loading="lazy" decoding="async" />
+          <svg class="performance-highlight" viewBox="0 0 2048 815" aria-hidden="true"><rect x="1262" y="408" width="782" height="56" vector-effect="non-scaling-stroke" /></svg>
+        </div>
+      </div>
+      <figcaption><code>0.png</code><span>응답 대기 62.69ms · 다운로드 2.10ms</span></figcaption>
+    </figure>
+    <figure class="performance-image">
+      <div class="performance-image-heading">
+        <h3><span>AFTER</span>200 × 200 리사이징 요청</h3>
+        <button type="button" class="performance-zoom" data-label="리사이징 화면" aria-label="리사이징 화면 확대" aria-expanded="false" aria-controls="mongle-after-frame">확대</button>
+      </div>
+      <div class="performance-viewport" id="mongle-after-frame" role="region" aria-label="리사이징 이미지 성능 측정 화면" tabindex="0">
+        <div class="performance-stage">
+          <img src="assets/performance/mongle-after.png" width="2048" height="774" alt="200×200 리사이징 이미지 요청의 Chrome DevTools Timing 화면. 서버 응답 대기 24.72ms, 콘텐츠 다운로드 0.82ms." loading="lazy" decoding="async" />
+          <svg class="performance-highlight" viewBox="0 0 2048 774" aria-hidden="true"><rect x="1298" y="378" width="746" height="56" vector-effect="non-scaling-stroke" /></svg>
+        </div>
+      </div>
+      <figcaption><code>0.png?w=200&amp;h=200</code><span>응답 대기 24.72ms · 다운로드 0.82ms</span></figcaption>
+    </figure>
+  </div>
+  <p class="performance-help">확대를 누르면 빨간 테두리 안의 측정값을 원본 크기로 볼 수 있습니다.</p>
+</template>
+
 <script src="logos.js"></script>
-<script src="data.js?v=natural-copy-v61"></script>
+<script src="data.js?v=performance-comparison-v69"></script>
 <script type="module">
 import { getFlowFrame, findEndpointNode, getPacketState } from "./diagram-flow.mjs?v=arrival-v2";
 import { formatCareerDuration } from "./career-duration.mjs";
@@ -144,6 +186,7 @@ const sentenceBreaks = (html) => html
 const $ = (s, r) => (r || document).querySelector(s);
 const D = window.PF;
 const records = new Map([...D.decisions, ...D.incidents].map(record => [record.id, record]));
+records.set("MONGLE-PERFORMANCE", { id: "MONGLE-PERFORMANCE", kind: "comparison" });
 
 function renderHead() {
   $("#careerDuration").textContent = `${formatCareerDuration(D.profile.careerStartMonth)}차 `;
@@ -218,10 +261,12 @@ function initRecordDialog() {
   const open = (record, trigger) => {
     opener = trigger || document.activeElement;
     const isIncident = record.id.startsWith("INC-");
-    dialog.dataset.kind = isIncident ? "incident" : "decision";
+    const isComparison = record.kind === "comparison";
+    dialog.dataset.kind = isComparison ? "comparison" : isIncident ? "incident" : "decision";
     const category = isIncident ? (record.kind === "risk" ? "예방 개선 · 실제 사고 아님" : record.kind === "experiment" ? "실험 · 문제 해결" : "장애 대응") : "설계 판단";
-    $("#recordId").textContent = `${category} · ${record.id}`;
-    $("#recordContent").innerHTML = isIncident ? `
+    $("#recordId").textContent = isComparison ? "Mongle · 전후 비교" : `${category} · ${record.id}`;
+    $(".record-close", dialog).setAttribute("aria-label", isComparison ? "성능 비교 팝업 닫기" : "상세 기록 팝업 닫기");
+    $("#recordContent").innerHTML = isComparison ? $("#monglePerformanceTemplate").innerHTML : isIncident ? `
       <h2 id="recordTitle">${E(record.title)}</h2>
       <p class="record-summary">${sentenceBreaks(E(record.impact))}</p>
       <dl class="kv">
@@ -254,6 +299,25 @@ function initRecordDialog() {
     const record = records.get(trigger.dataset.record);
     if (record) open(record, trigger);
   });
+  dialog.addEventListener("click", event => {
+    const button = event.target.closest(".performance-zoom");
+    if (!button) return;
+    const figure = button.closest(".performance-image");
+    const expanded = figure.classList.toggle("is-expanded");
+    button.setAttribute("aria-expanded", String(expanded));
+    button.textContent = expanded ? "축소" : "확대";
+    button.setAttribute("aria-label", `${button.dataset.label} ${expanded ? "축소" : "확대"}`);
+    const viewport = $(".performance-viewport", figure);
+    if (expanded) {
+      const highlight = $(".performance-highlight rect", figure).getBoundingClientRect();
+      const frame = viewport.getBoundingClientRect();
+      viewport.scrollTo({ left: highlight.right - frame.left - viewport.clientWidth + 8, top: highlight.top - frame.top - viewport.clientHeight / 2 + highlight.height / 2, behavior: "instant" });
+      viewport.scrollIntoView({ block: "center", inline: "nearest", behavior: "instant" });
+    } else {
+      viewport.scrollTo({ left: 0, top: 0, behavior: "instant" });
+      button.scrollIntoView({ block: "nearest", behavior: "instant" });
+    }
+  });
   $(".record-close", dialog).addEventListener("click", () => dialog.close());
   dialog.addEventListener("click", event => {
     if (event.target !== dialog) return;
@@ -267,7 +331,7 @@ function initRecordDialog() {
   // Preserve links to retained ADR / INC records.
   const openFromHash = () => {
     const record = records.get(location.hash.slice(1).toUpperCase());
-    if (record) open(record, document.querySelector(`[data-record="${record.id}"]`));
+    if (record) open(record, [...document.querySelectorAll(`[data-record="${record.id}"]`)].find(trigger => trigger.getClientRects().length));
   };
   window.addEventListener("hashchange", openFromHash);
   openFromHash();
