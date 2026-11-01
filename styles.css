@@ -573,6 +573,7 @@ footer{margin-top:var(--s10); border-top:1px solid var(--line-2); padding:var(--
 }
 
 /* ----------------------------------------------------------------- print */
+.print-web-link{display:none}
 @media print{
   @page{size:A4; margin:14mm}
   :root{
@@ -609,7 +610,7 @@ footer{margin-top:var(--s10); border-top:1px solid var(--line-2); padding:var(--
 
   main{padding-top:0}
   .hero{min-height:0; background:#fff; border-bottom:1px solid #94a3b8; overflow:visible}
-  .hero-in{min-height:0; display:block; padding:0 0 18pt}
+  .hero-in{min-height:0; display:block; padding:0 0 8pt}
   .hero-copy{width:100%; margin:0; transform:none}
   .hero .eyebrow{font-size:10pt; font-weight:700; letter-spacing:.12em; color:#334155}
   .hero h1{font-size:24pt; line-height:1.2; margin-top:12pt; max-width:none; color:#0f172a; font-weight:700}
@@ -617,7 +618,7 @@ footer{margin-top:var(--s10); border-top:1px solid var(--line-2); padding:var(--
   .hero .lead{font-size:12pt; line-height:1.65; margin-top:14pt; color:#1e293b}
   .hero .lead strong,.hero .lead b{color:#0f172a; font-weight:700}
   .hero .kpis{
-    margin:18pt 0 0; border-top:1.5px solid #64748b; border-bottom:1.5px solid #64748b;
+    margin:10pt 0 0; border-top:1.5px solid #64748b; border-bottom:1.5px solid #64748b;
     background:#f8fafc; grid-template-columns:repeat(4,minmax(0,1fr));
     break-inside:avoid; page-break-inside:avoid;
   }
@@ -628,6 +629,8 @@ footer{margin-top:var(--s10); border-top:1px solid var(--line-2); padding:var(--
   .hero .kpi .v{font-size:11pt; color:#0f172a; font-weight:700; white-space:normal}
   .hero .kpi .v i{color:#0f172a; font-style:normal; font-weight:700}
   .hero .kpi .k{font-size:10pt; line-height:1.45; margin-top:4pt; color:#475569}
+  .print-web-link{display:block; margin:8pt 0 0; font-size:10pt; line-height:1.4; color:#334155; break-inside:avoid}
+  .print-web-link a{text-decoration:underline; text-underline-offset:2pt}
 
   .shell{display:block; padding:0}
   .content{max-width:none; font-size:12pt; line-height:1.6}
@@ -673,8 +676,9 @@ footer{margin-top:var(--s10); border-top:1px solid var(--line-2); padding:var(--
 
   .metrics{
     margin-top:18pt; padding:10pt 12pt; border:1px solid #cbd5e1; border-top:2px solid #334155;
-    background:#f8fafc; gap:14pt; break-inside:avoid; page-break-inside:avoid;
+    background:#f8fafc; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14pt; break-inside:avoid; page-break-inside:avoid;
   }
+  .metrics .metric:nth-child(n+4){display:none}
   .metric .v{font-family:var(--sans); font-size:12pt; line-height:1.35; color:#0f172a; font-weight:700}
   .metric .k{font-size:10pt; line-height:1.45; margin-top:4pt; color:#475569}
 
@@ -689,6 +693,13 @@ footer{margin-top:var(--s10); border-top:1px solid var(--line-2); padding:var(--
   }
   .plate .cap-top .qn{color:#0969da; font-weight:700}
   .plate .cap-bot{font-size:10pt; line-height:1.5; color:#334155; margin-top:10pt; padding-top:8pt; border-top:1px solid #cbd5e1}
+  /* Fit only the near-overflow diagrams; keep project text in its original flow. */
+  :is(#sys-05,#sys-07) .plate{margin-top:12pt; padding-top:8pt; padding-bottom:8pt}
+  :is(#sys-05,#sys-07) .plate .cap-bot{margin-top:8pt; padding-top:6pt}
+  #sys-07 .plate{margin-top:10pt}
+  #sys-07 .plate .cap-top{margin-bottom:6pt}
+  #systems #sys-05 .dg{width:95%; margin-inline:auto}
+  #systems #sys-07 .dg{width:90%; margin-inline:auto}
   #systems .dg{width:100%; max-width:100%; min-width:0 !important; height:auto}
   #systems .diagram-viewport{overflow:visible; min-width:0}
   .dg text{font-family:var(--sans); font-size:16px; letter-spacing:0; fill:#0f172a}

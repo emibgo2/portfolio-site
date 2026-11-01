@@ -24,7 +24,7 @@
   }
 }
 </script>
-<link rel="stylesheet" href="styles.css?v=performance-comparison-v3" />
+<link rel="stylesheet" href="styles.css?v=print-three-metrics-v7" />
 </head>
 <body data-depth="30">
 <canvas id="graph" role="img" aria-label="Kotlin, Spring Boot, MariaDB, PostgreSQL, Redis, Kubernetes, Argo CD, Docker, Istio, Sentry, AWS, Prometheus, Grafana, GitHub Actions, NGINX, Keycloak로 구성된 3D 기술 스택 그래프"></canvas>
@@ -55,7 +55,7 @@
         <a class="pdf-option" href="output/pdf/kojihoon-resume.pdf?v=resume-v20" download="고지훈_이력서.pdf">
           <strong>이력서 PDF</strong><span>주요 업무 · 성과</span>
         </a>
-        <a class="pdf-option" href="output/pdf/kojihoon-portfolio.pdf?v=pdf-v20" download="고지훈_포트폴리오.pdf">
+        <a class="pdf-option" href="output/pdf/kojihoon-portfolio.pdf?v=pdf-v25" download="고지훈_포트폴리오.pdf">
           <strong>포트폴리오 PDF</strong><span>프로젝트 상세 · 도식</span>
         </a>
       </div>
@@ -75,6 +75,10 @@
         <span class="sentence">맡아온 <span id="careerDuration"></span>소프트웨어 엔지니어 고지훈입니다.</span>
       </p>
       <div class="kpis" id="kpis"></div>
+      <p class="print-web-link">
+        웹 포트폴리오에서 프로젝트별 상세 설명과 기술적 의사결정 과정을 살펴보세요.<br />
+        <a href="https://emibgo2.github.io/portfolio-site/">emibgo2.github.io/portfolio-site</a>
+      </p>
       </div>
     </div>
   </div>
@@ -173,7 +177,7 @@
 </template>
 
 <script src="logos.js"></script>
-<script src="data.js?v=performance-comparison-v69"></script>
+<script src="data.js?v=ci-diagram-note-v70"></script>
 <script type="module">
 import { getFlowFrame, findEndpointNode, getPacketState } from "./diagram-flow.mjs?v=arrival-v2";
 import { formatCareerDuration } from "./career-duration.mjs";
